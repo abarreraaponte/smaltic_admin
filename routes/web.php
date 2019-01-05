@@ -12,9 +12,11 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/web/home');
 });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::prefix('web')->middleware(['auth'])->group(function () {
+	Route::get('/home', 'Web\HomeController@index')->name('home');
+});
