@@ -20,4 +20,9 @@ class Payment extends BaseModel
     {
     	return $this->belongsTo('App\Models\Job');
     }
+
+    public function canBeDeleted()
+    {
+        return true;
+    }
 }

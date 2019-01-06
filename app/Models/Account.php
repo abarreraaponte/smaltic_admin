@@ -11,10 +11,25 @@ class Account extends BaseModel
     	return $this->hasMany('App\Models\Payment');
     }
 
-    public function expensePayment()
+    public function expense_payments()
     {
     	return $this->hasMany('App\Models\ExpensePayment');
     }
 
-    
+    public function canBeDeleted()
+    {
+    	$p = $this->payments->count();
+    	$ep = $this->expense_payments->count();
+
+    	if($p + $ep >= 1)
+    	{
+    		return false;
+    	}
+
+    	else
+    	{
+    		return true;
+    	}
+
+    }
 }

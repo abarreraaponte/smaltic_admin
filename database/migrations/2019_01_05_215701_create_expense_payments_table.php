@@ -25,7 +25,7 @@ class CreateExpensePaymentsTable extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('account_id')->references('id')->('accounts');
+            $table->foreign('account_id')->references('id')->on('accounts');
             $table->foreign('payment_method_id')->references('id')->on('payment_methods');
             $table->foreign('expense_id')->references('id')->on('expenses');
         });

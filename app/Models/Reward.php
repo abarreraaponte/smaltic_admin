@@ -20,4 +20,9 @@ class Reward extends BaseModel
     {
         return $this->belongsTo('App\Models\Payment');
     }
+
+    public function canBeDeleted()
+    {
+        return true;
+    }
 }

@@ -50,4 +50,6 @@ abstract class BaseModel extends Model
         $this->active = true;
         $this->save();
     }
+
+    abstract public function canBeDeleted();
 }

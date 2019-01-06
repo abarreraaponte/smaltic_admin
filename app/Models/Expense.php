@@ -10,4 +10,20 @@ class Expense extends BaseModel
     {
     	return $this->hasMany('App\Models\ExpensePayment');
     }
+
+    public function canBeDeleted()
+    {
+        $ep = $this->expense_payments->count();
+
+        if($jb >= 1)
+        {
+            return false;
+        }
+
+        else
+        {
+            return true;
+        }
+
+    }
 }

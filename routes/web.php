@@ -19,4 +19,5 @@ Auth::routes();
 
 Route::prefix('web')->middleware(['auth'])->group(function () {
 	Route::get('/home', 'Web\HomeController@index')->name('home');
+	Route::resource('/customers', 'Web\CustomerController');
 });

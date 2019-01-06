@@ -23,7 +23,7 @@ class CreateRewardsTable extends Migration
             $table->softdeletes();
 
             $table->foreign('customer_id')->references('id')->on('customers');
-            $table->foreign('job_id')->references('id').>on('jobs');
+            $table->foreign('job_id')->references('id')->on('jobs');
             $table->foreign('payment_id')->references('id')->on('payments');
         });
     }
