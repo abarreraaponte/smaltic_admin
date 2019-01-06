@@ -19,5 +19,10 @@ Auth::routes();
 
 Route::prefix('web')->middleware(['auth'])->group(function () {
 	Route::get('/home', 'Web\HomeController@index')->name('home');
+
+	## Customer CRUD Routes ##
 	Route::resource('/customers', 'Web\CustomerController');
+	Route::get('/customers/inactives/list', 'Web\CustomerController@inactives');
+	Route::put('/customers/{customer}/inactivate', 'Web\CustomerController@inactivate');
+    Route::put('/customers/{customer}/reactivate', 'Web\CustomerController@reactivate');
 });

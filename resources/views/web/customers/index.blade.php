@@ -10,6 +10,7 @@
 	                <a class="h5"><i class="fas fa-female"></i> {{ __('Clientas') }}</a>
 	            </div>
 	            <div>
+	            	<a href="/web/customers/inactives/list" class="btn btn-light mr-2"><i class="fas fa-exclamation-triangle"></i> {{ __('Ver Inactivos')}}</a>
 	                <a href="/web/customers/create" class="btn btn-primary"><i class="fas fa-plus-circle"></i> {{ __('Nuevo')}}</a>
 	            </div>
 	        </div>
@@ -34,8 +35,8 @@
 		                                <td>{{ $customer->phone }}</td>
 					                    <td>
 		                                    <a  class="btn btn-sm btn-primary" href="{{ '/web/customers/' . $customer->getRouteKey() }}"><i class="fas fa-eye"></i></a>
-					                        <a  class="btn btn-sm btn-secondary" href="{{ '/web/customers/' . $customer->getRouteKey() . '/edit' }}"><i class="fas fa-edit"></i></a>
-					                        <a class="btn btn-sm btn-light" href="#" onclick="{{ 'delete' . $customer->id . '()' }}"><i class="fas fa-trash-alt"></i></a>
+					                        <a  class="btn btn-sm btn-outline-primary" href="{{ '/web/customers/' . $customer->getRouteKey() . '/edit' }}"><i class="fas fa-edit"></i></a>
+					                        <a class="btn btn-sm btn-link text-secondary" href="#" onclick="{{ 'delete' . $customer->id . '()' }}"><i class="fas fa-trash-alt"></i></a>
 					                        <form id="{{ 'delete-record' . $customer->getRouteKey() }}" method="post" action="{{ '/web/customers/' . $customer->getRouteKey() }}">
 					                            <input name="_method" type="hidden" value="DELETE">
 					                            @csrf
@@ -52,7 +53,6 @@
         </div>
     </div>
 </div>
-
 
 @endsection
 
@@ -79,3 +79,7 @@
         </script>
     @endforeach
 @endpush
+
+@section('ps_scripts')
+    @include('web.layouts.partials.main-datatable')
+@endsection

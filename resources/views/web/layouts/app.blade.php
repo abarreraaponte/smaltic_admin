@@ -16,6 +16,7 @@
     <link rel="shortcut icon" href="/img/brand/logo.png" type="image/png">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/all.css')}}"" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/lib/DataTables/datatables.min.css"/>
 </head>
 <body>
     <div id="app">
@@ -103,6 +104,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script type="text/javascript" src="/lib/DataTables/datatables.min.js"></script>
 
     @yield('ps_scripts')
     @stack('list_scripts')

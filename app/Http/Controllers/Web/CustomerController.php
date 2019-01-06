@@ -26,6 +26,15 @@ class CustomerController extends Controller
         return view('web.customers.index', compact('customers'));
     }
 
+
+    public function inactives()
+    {
+        $customers = Customer::inactive()->orderBy('created_at', 'desc')->get();
+
+        return view('web.customers.inactives', compact('customers'));
+    }
+
+
     /**
      * Show the form for creating a new resource.
      *

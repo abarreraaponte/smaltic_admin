@@ -10,9 +10,9 @@
                     <a class="h5"><i class="fas fa-user-female"></i> {{ __('Ver Clienta:') . ' ' . $customer->name }}</a>
                 </div>
                 <div>
-                    <a href="{{ '/web/customers/' . $customer->getRouteKey() . '/edit' }}" class="btn btn-secondary"><i class="fas fa-edit"></i> {{ __('Editar Cliente') }}</a>
-                    <a href="/web/customers" class="btn btn-light"><i class="fas fa-list"></i> {{ __('Lista') }}</a>
-                    <a href="#" class="btn btn-link" onclick="{{ 'delete' . $customer->id . '()' }}"><i class="fas fa-trash"></i></a>
+                    <a href="{{ '/web/customers/' . $customer->getRouteKey() . '/edit' }}" class="btn btn-primary"><i class="fas fa-edit"></i> {{ __('Editar Cliente') }}</a>
+                    <a href="/web/customers" class="btn btn-outline-primary"><i class="fas fa-list"></i> {{ __('Lista') }}</a>
+                    <a href="#" class="btn btn-link text-secondary" onclick="{{ 'delete' . $customer->id . '()' }}"><i class="fas fa-trash"></i></a>
                     <form id="{{ 'delete-record' . $customer->getRouteKey() }}" method="post" action="{{ '/web/customers/' . $customer->getRouteKey() }}">
                         <input name="_method" type="hidden" value="DELETE">
                         @csrf
@@ -30,26 +30,26 @@
                                 <div class="row mt-4">
                                     <div class="col-md-4 mb-3">
                                         <label for="name"><a class="text-danger">*</a> {{ __('Nombre') }}<span class="text-muted ml-1">{{ __('  (Obligatorio)') }}</span></label>
-                                        <input type="text" class="form-control" id="name" value="{{ $customer->name }}" readonly>
+                                        <input type="text" class="form-control form-control-alternative" id="name" value="{{ $customer->name }}" readonly>
                                     </div>
                                     <div class="col-md-4 mb-3">
                                         <label for="instagram"><i class="fab fa-instagram"></i> {{ __('Instagram') }}<span class="text-muted ml-1">{{ __('  (Obligatorio)') }}</span></label>
-                                        <input type="text" class="form-control" id="instagram" value="{{ $customer->instagram }}" readonly>
+                                        <input type="text" class="form-control form-control-alternative" id="instagram" value="{{ $customer->instagram }}" readonly>
                                     </div>
                                     <div class="col-md-4 mb-3">
                                         <label for="phone"><i class="fas fa-phone"></i> {{ __('Teléfono') }}<span class="text-muted ml-1">{{ __('  (Obligatorio)') }}</span></label>
-                                        <input type="text" class="form-control" id="phone" value="{{ $customer->phone }}" readonly>
+                                        <input type="text" class="form-control form-control-alternative" id="phone" value="{{ $customer->phone }}" readonly>
                                     </div>
                                 </div>
 
                                 <div class="row mt-3">
                                     <div class="col-md-6 mb-3">
                                         <label for="source">{{ __('¿Cómo nos Conoce?') }}</label>
-                                        <input type="text" class="form-control" id="source_id" @isset($customer->source->name)value="{{ $customer->source->name }}" @endisset readonly>
+                                        <input type="text" class="form-control form-control-alternative" id="source_id" @isset($customer->source->name)value="{{ $customer->source->name }}" @endisset readonly>
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label for="artist">{{ __('Artista Asignado por defecto') }}</label>
-	                                    <input type="text" class="form-control" id="artist_id" @isset($customer->artist->name)value="{{ $customer->artist->name }}" @endisset readonly>
+	                                    <input type="text" class="form-control form-control-alternative" id="artist_id" @isset($customer->artist->name)value="{{ $customer->artist->name }}" @endisset readonly>
                                     </div>
                                 </div>
                             </div>                            
