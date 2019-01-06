@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateJobsTable extends Migration
+class CreateRewardsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,19 +13,18 @@ class CreateJobsTable extends Migration
      */
     public function up()
     {
-        Schema::create('jobs', function (Blueprint $table) {
+        Schema::create('rewards', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('artist_id')->unsigned();
             $table->integer('customer_id')->unsigned();
-            $table->date('date');
-            $table->string('hour')->nullable();
-            $table->integer('amount')->unsigned();
-            $table->boolean('active')->default(1);
+            $table->integer('job_id')->unsigned();
+            $table->integer('payment_id')->unsigned();
+            $table->integer('value');
             $table->timestamps();
-            $table->softDeletes();
+            $table->softdeletes();
 
-            $table->foreign('artist_id')->references('id')->on('artists');
             $table->foreign('customer_id')->references('id')->on('customers');
+            $table->foreign('job_id')->references('id').>on('jobs');
+            $table->foreign('payment_id')->references('id')->on('payments');
         });
     }
 
@@ -36,6 +35,6 @@ class CreateJobsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('jobs');
+        Schema::dropIfExists('rewards');
     }
 }

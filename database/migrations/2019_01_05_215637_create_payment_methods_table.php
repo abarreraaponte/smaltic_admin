@@ -17,6 +17,9 @@ class CreatePaymentMethodsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->boolean('active')->default(1);
+            $table->boolean('for_income')->default(0);
+            $table->boolean('for_expense')->default(0);
+            $table->boolean('is_reward')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });
