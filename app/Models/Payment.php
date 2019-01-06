@@ -25,4 +25,9 @@ class Payment extends BaseModel
     {
         return true;
     }
+
+    public function customer()
+    {
+        return $this->belongsTo('App\Models\Customer');
+    }
 }

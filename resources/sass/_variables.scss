@@ -3,25 +3,25 @@
 $body-bg: #f8fafc;
 
 // Typography
-$font-family-sans-serif: "Raleway", sans-serif;
+$font-family-sans-serif: "Montserrat", sans-serif;
 $font-size-base: 0.9rem;
 $line-height-base: 1.6;
 
 // Colors
-$blue: #3490dc;
-$indigo: #6574cd;
+$blue: #0582ca;
+$indigo: #006494;
 $purple: #9561e2;
-$pink: #f66D9b;
-$red: #e3342f;
+$pink: #ffcad4;
+$red: #e84860;
 $orange: #f6993f;
 $yellow: #ffed4a;
 $green: #38c172;
 $teal: #4dc0b5;
-$cyan: #6cb2eb;
+$cyan: #00a6fb;
 
 $theme-colors: (
   "primary": $blue,
-  "secondary": $pink,
-  "info": $purple,
-  "danger": $red
+  "info": $cyan,
+  "danger": $red,
+  "dark": #051923
 );

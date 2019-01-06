@@ -7,17 +7,17 @@
 	    <div class="col col-md-12">
 	         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap mb-2">
 	            <div>
-	                <a class="h5"><i class="fas fa-users"></i> {{ __('Clientes') }}</a>
+	                <a class="h5"><i class="fas fa-female"></i> {{ __('Clientas') }}</a>
 	            </div>
 	            <div>
-	                <button type="button" data-toggle="modal" data-target="#addcustomer" href="#" class="btn btn-primary"><i class="fas fa-plus-circle"></i> {{ __('Nuevo')}}</button>
+	                <a href="/web/customers/create" class="btn btn-primary"><i class="fas fa-plus-circle"></i> {{ __('Nuevo')}}</a>
 	            </div>
 	        </div>
 
 	        <div class="card">
 	            <div class="card-body">
 					<div class="table-responsive table-hover">
-				        <table id="main_table" class="table table-sm table-bordered table-striped">
+				        <table id="main_table" class="table table-bordered table-striped">
 				            <thead class="thead-light">
 				            <tr>
 				                <th>Nombre</th>
@@ -33,10 +33,9 @@
 		                                <td>{{ $customer->instagram }}</td>
 		                                <td>{{ $customer->phone }}</td>
 					                    <td>
-		                                    <a  class="btn btn-sm btn-info" href="{{ '/web/customers/' . $customer->getRouteKey() }}"><i class="fas fa-eye"></i></a>
-					                        <a  class="btn btn-sm btn-dark" href="{{ '/web/customers/' . $customer->getRouteKey() . '/edit' }}"><i class="fas fa-edit"></i></a>
-					                        <a class="btn btn-sm btn-danger" href="#" onclick="event.preventDefault();
-					                                document.getElementById('{{ 'delete-record' . $customer->getRouteKey() }}').submit();"><i class="fas fa-trash-alt"></i></a>
+		                                    <a  class="btn btn-sm btn-primary" href="{{ '/web/customers/' . $customer->getRouteKey() }}"><i class="fas fa-eye"></i></a>
+					                        <a  class="btn btn-sm btn-secondary" href="{{ '/web/customers/' . $customer->getRouteKey() . '/edit' }}"><i class="fas fa-edit"></i></a>
+					                        <a class="btn btn-sm btn-light" href="#" onclick="{{ 'delete' . $customer->id . '()' }}"><i class="fas fa-trash-alt"></i></a>
 					                        <form id="{{ 'delete-record' . $customer->getRouteKey() }}" method="post" action="{{ '/web/customers/' . $customer->getRouteKey() }}">
 					                            <input name="_method" type="hidden" value="DELETE">
 					                            @csrf
@@ -56,3 +55,27 @@
 
 
 @endsection
+
+@push('list_scripts')
+    @foreach($customers as $customer)
+        <script>
+            function {{ 'delete' . $customer->id . '()' }} {
+                swal({
+                    title: "{{ __('Seguro que desea eliminar a la clienta?') . ' ' . $customer->getNameValue() }}",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: '#e84860',
+                    cancelButtonColor: '#aaa',
+                    confirmButtonText: 'Si, Borrar',
+                    cancelButtonText: "No, Cancelar"
+                }).then((result) => {
+                        if (result.value) {
+                            event.preventDefault();
+                            document.getElementById('{{ 'delete-record' . $customer->getRouteKey() }}').submit();
+                        }
+                    }
+                )
+            }
+        </script>
+    @endforeach
+@endpush

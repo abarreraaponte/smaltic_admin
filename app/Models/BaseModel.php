@@ -8,6 +8,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 abstract class BaseModel extends Model
 {
 	use SoftDeletes;
+
+    public function getNameValue()
+    {
+        return $this->name;
+    }
     
     /**
      * @param $query
