@@ -15,4 +15,22 @@ class Source extends BaseModel
     {
     	return $this->hasManyThrough('App\Models\Job', 'App\Models\Customer');
     }
+
+    public function canBeDeleted()
+    {
+        $c = $this->customers->count();
+
+        if($c >= 1)
+        {
+            return false;
+        }
+
+        else
+        {
+            return true;
+        }
+
+    }
 }
+
+

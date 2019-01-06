@@ -13,8 +13,10 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
 
     <!-- Styles -->
+    <link rel="shortcut icon" href="/img/brand/logo.png" type="image/png">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/all.css')}}"" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/lib/DataTables/datatables.min.css"/>
 </head>
 <body>
     <div id="app">
@@ -30,7 +32,11 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        <li class="nav-item dropdown ml-2">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre><i class="fas fa-th"></i> {{ __('Menú')}}</a>
+                            <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="/web/customers"><i class="fas fa-female"></i> {{ __('Clientas') }}</a>
+                            </div>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -69,6 +75,27 @@
             </div>
         </nav>
 
+        @if (session('status'))
+            <div class="alert alert-info" role="alert">
+                {{ session('status') }}
+            </div>
+        @endif
+        @if (session('success'))
+            <div class="alert alert-success" role="alert">
+                {{ session('success') }}
+            </div>
+        @endif
+        @if (session('errors'))
+            <div class="alert alert-danger" role="alert">
+                {{ session('errors') }}
+            </div>
+        @endif
+        @if (session('warning'))
+            <div class="alert alert-warning" role="alert">
+                {{ session('warning') }}
+            </div>
+        @endif
+
         <main class="py-4">
             @yield('content')
         </main>
@@ -77,5 +104,11 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script type="text/javascript" src="/lib/DataTables/datatables.min.js"></script>
+
+    @yield('ps_scripts')
+    @stack('list_scripts')
+    @stack('form_scripts')
+    
 </body>
 </html>

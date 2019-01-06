@@ -8,6 +8,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 abstract class BaseModel extends Model
 {
 	use SoftDeletes;
+
+    public function getNameValue()
+    {
+        return $this->name;
+    }
     
     /**
      * @param $query
@@ -50,4 +55,6 @@ abstract class BaseModel extends Model
         $this->active = true;
         $this->save();
     }
+
+    abstract public function canBeDeleted();
 }

@@ -20,4 +20,9 @@ class ExpensePayment extends BaseModel
     {
     	return $this->belongsTo('App\Models\Expense');
     }
+
+    public function canBeDeleted()
+    {
+        return true;
+    }
 }

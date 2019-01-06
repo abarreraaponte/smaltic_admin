@@ -20,4 +20,20 @@ class Job extends BaseModel
     {
     	return $this->hasMany('App\Models\Payment');
     }
+
+    public function canBeDeleted()
+    {
+        $p = $this->payments->count();
+
+        if($p >= 1)
+        {
+            return false;
+        }
+
+        else
+        {
+            return true;
+        }
+
+    }
 }

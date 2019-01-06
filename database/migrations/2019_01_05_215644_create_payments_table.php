@@ -18,6 +18,7 @@ class CreatePaymentsTable extends Migration
             $table->integer('account_id')->unsigned();
             $table->integer('payment_method_id')->unsigned();
             $table->integer('job_id')->unsigned();
+            $table->integer('customer_id')->unsigned();
             $table->date('date');
             $table->integer('amount');
             $table->string('reference')->nullable();
@@ -29,6 +30,7 @@ class CreatePaymentsTable extends Migration
             $table->foreign('account_id')->references('id')->on('accounts');
             $table->foreign('payment_method_id')->references('id')->on('payment_methods');
             $table->foreign('job_id')->references('id')->on('jobs');
+            $table->foreign('customer_id')->references('id')->on('customers');
         });
     }
 

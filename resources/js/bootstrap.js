@@ -54,3 +54,8 @@ if (token) {
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     encrypted: true
 // });
+
+/**
+ * Let´s Import Sweetalert 2 for use within the application
+ */
+window.swal = require('sweetalert2');
