@@ -13,6 +13,7 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
 
     <!-- Styles -->
+    <link rel="shortcut icon" href="/img/brand/logo.png" type="image/png">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/all.css')}}"" rel="stylesheet">
 </head>
@@ -30,7 +31,12 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
+                        <li class="nav-item dropdown ml-2">
+                            <a id="navbarDropdown" class="btn btn-lg btn-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre><i class="fas fa-th"></i> {{ __('Menú')}}</a>
 
+                            <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="/web/customers"><i class="fas fa-users"></i> {{ __('Clientes') }}</a>
+                            </div>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -98,5 +104,10 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+
+    @yield('ps_scripts')
+    @stack('list_scripts')
+    @stack('form_scripts')
+    
 </body>
 </html>

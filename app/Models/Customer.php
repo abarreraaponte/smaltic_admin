@@ -26,6 +26,11 @@ class Customer extends BaseModel
     	return $this->belongsTo('App\Models\Source');
     }
 
+    public function rewards()
+    {
+        return $this->hasMany('App\Models\Reward');
+    }
+
     public function canBeDeleted()
     {
         $jb = $this->jobs->count();
