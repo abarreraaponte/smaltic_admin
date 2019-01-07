@@ -31,4 +31,10 @@ Route::prefix('web')->middleware(['auth'])->group(function () {
 	Route::get('/artists/inactives/list', 'Web\ArtistController@inactives');
 	Route::put('/artists/{artist}/inactivate', 'Web\ArtistController@inactivate');
     Route::put('/artists/{artist}/reactivate', 'Web\ArtistController@reactivate');
+
+    ## Sources CRUD Routes ##
+	Route::resource('/sources', 'Web\SourceController');
+	Route::get('/sources/inactives/list', 'Web\SourceController@inactives');
+	Route::put('/sources/{source}/inactivate', 'Web\SourceController@inactivate');
+    Route::put('/sources/{source}/reactivate', 'Web\SourceController@reactivate');
 });

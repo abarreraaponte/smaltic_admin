@@ -20,6 +20,7 @@ class CreateJobsTable extends Migration
             $table->date('date');
             $table->string('hour')->nullable();
             $table->integer('amount')->unsigned();
+            $table->text('details')->nullable();
             $table->boolean('active')->default(1);
             $table->timestamps();
             $table->softDeletes();

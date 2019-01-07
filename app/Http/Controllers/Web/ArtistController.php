@@ -56,7 +56,7 @@ class ArtistController extends Controller
         $artist->name = $request->get('name');
         $artist->save();
 
-        return redirect('/web/artists')->with('success', __('El Artista ha sido creado exitosamente'));
+        return redirect('/web/artists/' . $artist->getRouteKey())->with('success', __('El Artista ha sido creado exitosamente'));
     }
 
 

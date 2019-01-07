@@ -2,13 +2,13 @@
 
 @section('content')
 
-@if($artists->count() < 1)
+@if($sources->count() < 1)
 {
 	<div class="text-center mb-4">
         <img class="mb-4" src="/img/undempty05.svg" alt="" width="200">
-        <h1 class="h2 mb-3 font-weight-normal">{{ __(':/ No has creado ningún artista') }}</h1>
+        <h1 class="h2 mb-3 font-weight-normal">{{ __(':/ No has creado ningún como nos conoce') }}</h1>
         <p>{{ __('Para crear el primero, presiona el botón que está a continuación') }}</p>
-        <a class="btn btn-lg btn-primary" href="/web/artists/create"><i class="fas fa-paint-brush"></i>{{ __('Crear Artista') }}</a>
+        <a class="btn btn-lg btn-primary" href="/web/sources/create"><i class="fas fa-database"></i> {{ __('Crear Como nos conoce') }}</a>
     </div>
 }
 
@@ -19,11 +19,11 @@
 	    <div class="col col-md-12">
 	         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap mb-2">
 	            <div>
-	                <a class="h5"><i class="fas fa-paint-brush"></i> {{ __('Artistas') }}</a>
+	                <a class="h5"><i class="fas fa-database"></i> {{ __('Como nos conoce') }}</a>
 	            </div>
 	            <div>
-	            	<a href="/web/artists/inactives/list" class="btn btn-light mr-2"><i class="fas fa-exclamation-triangle"></i> {{ __('Ver Inactivos')}}</a>
-	                <a href="/web/artists/create" class="btn btn-primary"><i class="fas fa-plus-circle"></i> {{ __('Nuevo')}}</a>
+	            	<a href="/web/sources/inactives/list" class="btn btn-light mr-2"><i class="fas fa-exclamation-triangle"></i> {{ __('Ver Inactivos')}}</a>
+	                <a href="/web/sources/create" class="btn btn-primary"><i class="fas fa-plus-circle"></i> {{ __('Nuevo')}}</a>
 	            </div>
 	        </div>
 
@@ -38,14 +38,14 @@
 				            </tr>
 				            </thead>
 				            <tbody>
-					            @foreach($artists as $artist)
+					            @foreach($sources as $source)
 					                <tr>
-					                	<td>{{ $artist->name }}</td>
+					                	<td>{{ $source->name }}</td>
 					                    <td>
-		                                    <a  class="btn btn-sm btn-primary" href="{{ '/web/artists/' . $artist->getRouteKey() }}"><i class="fas fa-eye"></i></a>
-					                        <a  class="btn btn-sm btn-outline-primary" href="{{ '/web/artists/' . $artist->getRouteKey() . '/edit' }}"><i class="fas fa-edit"></i></a>
-					                        <a class="btn btn-sm btn-link text-danger" href="#" onclick="{{ 'delete' . $artist->id . '()' }}"><i class="fas fa-trash-alt"></i></a>
-					                        <form id="{{ 'delete-record' . $artist->getRouteKey() }}" method="post" action="{{ '/web/artists/' . $artist->getRouteKey() }}">
+		                                    <a  class="btn btn-sm btn-primary" href="{{ '/web/sources/' . $source->getRouteKey() }}"><i class="fas fa-eye"></i></a>
+					                        <a  class="btn btn-sm btn-outline-primary" href="{{ '/web/sources/' . $source->getRouteKey() . '/edit' }}"><i class="fas fa-edit"></i></a>
+					                        <a class="btn btn-sm btn-link text-danger" href="#" onclick="{{ 'delete' . $source->id . '()' }}"><i class="fas fa-trash-alt"></i></a>
+					                        <form id="{{ 'delete-record' . $source->getRouteKey() }}" method="post" action="{{ '/web/sources/' . $source->getRouteKey() }}">
 					                            <input name="_method" type="hidden" value="DELETE">
 					                            @csrf
 					                        </form>
@@ -67,11 +67,11 @@
 @endsection
 
 @push('list_scripts')
-    @foreach($artists as $artist)
+    @foreach($sources as $source)
         <script>
-            function {{ 'delete' . $artist->id . '()' }} {
+            function {{ 'delete' . $source->id . '()' }} {
                 swal({
-                    title: "{{ __('Seguro que desea eliminar el artista?') . ' ' . $artist->getNameValue() }}",
+                    title: "{{ __('Seguro que desea eliminar el como nos conoce?') . ' ' . $source->getNameValue() }}",
                     type: "warning",
                     showCancelButton: true,
                     confirmButtonColor: '#e84860',
@@ -81,7 +81,7 @@
                 }).then((result) => {
                         if (result.value) {
                             event.preventDefault();
-                            document.getElementById('{{ 'delete-record' . $artist->getRouteKey() }}').submit();
+                            document.getElementById('{{ 'delete-record' . $source->getRouteKey() }}').submit();
                         }
                     }
                 )
