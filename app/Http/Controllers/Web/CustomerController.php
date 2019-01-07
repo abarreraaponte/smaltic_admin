@@ -150,7 +150,7 @@ class CustomerController extends Controller
     }
 
 
-    public function deactivate(Customer $customer)
+    public function inactivate(Customer $customer)
     {
         $customer->inactivate();
 

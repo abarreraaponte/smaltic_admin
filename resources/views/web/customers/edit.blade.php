@@ -12,9 +12,14 @@
                 <div>
                     <a href="{{ '/web/customers/' . $customer->getRouteKey() }}" class="btn btn-primary"><i class="fas fa-eye"></i> {{ __('Ver Cliente') }}</a>
                     <a href="/web/customers" class="btn btn-outline-primary"><i class="fas fa-list"></i> {{ __('Lista') }}</a>
+                    <a href="#" class="btn btn-link text-warning" onclick="{{ 'deactivate' . $customer->id . '()' }}"><i class="fas fa-exclamation-triangle"></i></a>
                     <a href="#" class="btn btn-link text-secondary" onclick="{{ 'delete' . $customer->id . '()' }}"><i class="fas fa-trash"></i></a>
                     <form id="{{ 'delete-record' . $customer->getRouteKey() }}" method="post" action="{{ '/web/customers/' . $customer->getRouteKey() }}">
                         <input name="_method" type="hidden" value="DELETE">
+                        @csrf
+                    </form>
+                    <form id="{{ 'deactivate-record' . $customer->getRouteKey() }}" method="post" action="{{ '/web/customers/' . $customer->getRouteKey() . '/inactivate' }}">
+                        <input name="_method" type="hidden" value="PUT">
                         @csrf
                     </form>
                 </div>
@@ -111,6 +116,26 @@
                     if (result.value) {
                         event.preventDefault();
                         document.getElementById('{{ 'delete-record' . $customer->getRouteKey() }}').submit();
+                    }
+                }
+            )
+        }
+    </script>
+
+    <script>
+        function {{ 'deactivate' . $customer->id . '()' }} {
+            swal({
+                title: "{{ __('Seguro que desea desactivar a la clienta?') . ' ' . $customer->getNameValue() }}",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: '#f6993f',
+                cancelButtonColor: '#aaa',
+                confirmButtonText: 'Si, Borrar',
+                cancelButtonText: "No, Cancelar"
+            }).then((result) => {
+                    if (result.value) {
+                        event.preventDefault();
+                        document.getElementById('{{ 'deactivate-record' . $customer->getRouteKey() }}').submit();
                     }
                 }
             )
