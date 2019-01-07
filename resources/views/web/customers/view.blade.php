@@ -7,7 +7,7 @@
         <div class="col-md-12">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap mb-2">
                 <div>
-                    <a class="h5"><i class="fas fa-user-female"></i> {{ __('Ver Clienta:') . ' ' . $customer->name }}</a>
+                    <a class="h5"><i class="fas fa-female"></i> {{ __('Ver Clienta:') . ' ' . $customer->name }}</a>
                 </div>
                 <div>
                     <a href="{{ '/web/customers/' . $customer->getRouteKey() . '/edit' }}" class="btn btn-primary"><i class="fas fa-edit"></i> {{ __('Editar Cliente') }}</a>

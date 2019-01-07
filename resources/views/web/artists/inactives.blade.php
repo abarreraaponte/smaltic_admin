@@ -7,10 +7,10 @@
 	    <div class="col col-md-12">
 	         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap mb-2">
 	            <div>
-	                <a class="h5"><i class="fas fa-female"></i> {{ __('Clientas Inactivas') }}</a>
+	                <a class="h5"><i class="fas fa-paint-brush"></i> {{ __('Artistas Inactivos') }}</a>
 	            </div>
 	            <div>
-	                <a href="/web/customers" class="btn btn-primary"><i class="fas fa-undo"></i> {{ __('Volver')}}</a>
+	                <a href="/web/artists" class="btn btn-primary"><i class="fas fa-undo"></i> {{ __('Volver')}}</a>
 	            </div>
 	        </div>
 
@@ -21,20 +21,16 @@
 				            <thead class="thead-light">
 				            <tr>
 				                <th>Nombre</th>
-	                            <th>Instagram</th>
-	                            <th>Teléfono</th>
 				                <th>Acciones</th>
 				            </tr>
 				            </thead>
 				            <tbody>
-					            @foreach($customers as $customer)
+					            @foreach($artists as $artist)
 					                <tr>
-					                	<td>{{ $customer->name }}</td>
-		                                <td>{{ $customer->instagram }}</td>
-		                                <td>{{ $customer->phone }}</td>
+					                	<td>{{ $artist->name }}</td>
 					                    <td>
-					                        <a class="btn btn-sm btn-primary" href="#" onclick="{{ 'reactivate' . $customer->id . '()' }}"><i class="fas fa-undo"></i> {{ __('Reactivar') }}</a>
-					                        <form id="{{ 'reactivate-record' . $customer->getRouteKey() }}" method="post" action="{{ '/web/customers/' . $customer->getRouteKey() . '/reactivate' }}">
+					                        <a class="btn btn-sm btn-primary" href="#" onclick="{{ 'reactivate' . $artist->id . '()' }}"><i class="fas fa-undo"></i> {{ __('Reactivar') }}</a>
+					                        <form id="{{ 'reactivate-record' . $artist->getRouteKey() }}" method="post" action="{{ '/web/artists/' . $artist->getRouteKey() . '/reactivate' }}">
 					                            <input name="_method" type="hidden" value="PUT">
 					                            @csrf
 					                        </form>
@@ -55,11 +51,11 @@
 @endsection
 
 @push('list_scripts')
-    @foreach($customers as $customer)
+    @foreach($artists as $artist)
         <script>
-            function {{ 'reactivate' . $customer->id . '()' }} {
+            function {{ 'reactivate' . $artist->id . '()' }} {
                 swal({
-                    title: "{{ __('Seguro que desea reactivar a la clienta?') . ' ' . $customer->getNameValue() }}",
+                    title: "{{ __('Seguro que desea reactivar al artista?') . ' ' . $artist->getNameValue() }}",
                     type: "warning",
                     showCancelButton: true,
                     confirmButtonColor: '#0582ca',
@@ -69,7 +65,7 @@
                 }).then((result) => {
                         if (result.value) {
                             event.preventDefault();
-                            document.getElementById('{{ 'reactivate-record' . $customer->getRouteKey() }}').submit();
+                            document.getElementById('{{ 'reactivate-record' . $artist->getRouteKey() }}').submit();
                         }
                     }
                 )

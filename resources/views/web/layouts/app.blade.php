@@ -21,7 +21,7 @@
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light navbar-main-top">
-            <div class="container-fluid">
+            <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <img src="/img/brand/logo.png" width="90" height="60">
                 </a>
@@ -36,6 +36,7 @@
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre><i class="fas fa-th"></i> {{ __('Menú')}}</a>
                             <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="/web/customers"><i class="fas fa-female"></i> {{ __('Clientas') }}</a>
+                                <a class="dropdown-item" href="/web/artists"><i class="fas fa-paint-brush"></i> {{ __('Artistas') }}</a>
                             </div>
                     </ul>
 
