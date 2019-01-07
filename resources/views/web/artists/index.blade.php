@@ -7,11 +7,11 @@
 	    <div class="col col-md-12">
 	         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap mb-2">
 	            <div>
-	                <a class="h5"><i class="fas fa-female"></i> {{ __('Clientas') }}</a>
+	                <a class="h5"><i class="fas fa-paint-brush"></i> {{ __('Artistas') }}</a>
 	            </div>
 	            <div>
-	            	<a href="/web/customers/inactives/list" class="btn btn-light mr-2"><i class="fas fa-exclamation-triangle"></i> {{ __('Ver Inactivos')}}</a>
-	                <a href="/web/customers/create" class="btn btn-primary"><i class="fas fa-plus-circle"></i> {{ __('Nuevo')}}</a>
+	            	<a href="/web/artists/inactives/list" class="btn btn-light mr-2"><i class="fas fa-exclamation-triangle"></i> {{ __('Ver Inactivos')}}</a>
+	                <a href="/web/artists/create" class="btn btn-primary"><i class="fas fa-plus-circle"></i> {{ __('Nuevo')}}</a>
 	            </div>
 	        </div>
 
@@ -22,22 +22,18 @@
 				            <thead class="thead-light">
 				            <tr>
 				                <th>Nombre</th>
-	                            <th>Instagram</th>
-	                            <th>Teléfono</th>
 				                <th>Acciones</th>
 				            </tr>
 				            </thead>
 				            <tbody>
-					            @foreach($customers as $customer)
+					            @foreach($artists as $artist)
 					                <tr>
-					                	<td>{{ $customer->name }}</td>
-		                                <td>{{ $customer->instagram }}</td>
-		                                <td>{{ $customer->phone }}</td>
+					                	<td>{{ $artist->name }}</td>
 					                    <td>
-		                                    <a  class="btn btn-sm btn-primary" href="{{ '/web/customers/' . $customer->getRouteKey() }}"><i class="fas fa-eye"></i></a>
-					                        <a  class="btn btn-sm btn-outline-primary" href="{{ '/web/customers/' . $customer->getRouteKey() . '/edit' }}"><i class="fas fa-edit"></i></a>
-					                        <a class="btn btn-sm btn-link text-danger" href="#" onclick="{{ 'delete' . $customer->id . '()' }}"><i class="fas fa-trash-alt"></i></a>
-					                        <form id="{{ 'delete-record' . $customer->getRouteKey() }}" method="post" action="{{ '/web/customers/' . $customer->getRouteKey() }}">
+		                                    <a  class="btn btn-sm btn-primary" href="{{ '/web/artists/' . $artist->getRouteKey() }}"><i class="fas fa-eye"></i></a>
+					                        <a  class="btn btn-sm btn-outline-primary" href="{{ '/web/artists/' . $artist->getRouteKey() . '/edit' }}"><i class="fas fa-edit"></i></a>
+					                        <a class="btn btn-sm btn-link text-danger" href="#" onclick="{{ 'delete' . $artist->id . '()' }}"><i class="fas fa-trash-alt"></i></a>
+					                        <form id="{{ 'delete-record' . $artist->getRouteKey() }}" method="post" action="{{ '/web/artists/' . $artist->getRouteKey() }}">
 					                            <input name="_method" type="hidden" value="DELETE">
 					                            @csrf
 					                        </form>
@@ -57,11 +53,11 @@
 @endsection
 
 @push('list_scripts')
-    @foreach($customers as $customer)
+    @foreach($artists as $artist)
         <script>
-            function {{ 'delete' . $customer->id . '()' }} {
+            function {{ 'delete' . $artist->id . '()' }} {
                 swal({
-                    title: "{{ __('Seguro que desea eliminar a la clienta?') . ' ' . $customer->getNameValue() }}",
+                    title: "{{ __('Seguro que desea eliminar el artista?') . ' ' . $artist->getNameValue() }}",
                     type: "warning",
                     showCancelButton: true,
                     confirmButtonColor: '#e84860',
@@ -71,7 +67,7 @@
                 }).then((result) => {
                         if (result.value) {
                             event.preventDefault();
-                            document.getElementById('{{ 'delete-record' . $customer->getRouteKey() }}').submit();
+                            document.getElementById('{{ 'delete-record' . $artist->getRouteKey() }}').submit();
                         }
                     }
                 )

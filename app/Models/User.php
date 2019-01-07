@@ -72,8 +72,4 @@ class User extends Authenticatable
         $this->save();
     }
 
-    public function artist()
-    {
-        return $this->hasOne('App\Artist');
-    }
 }

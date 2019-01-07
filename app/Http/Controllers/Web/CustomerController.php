@@ -65,11 +65,11 @@ class CustomerController extends Controller
         ]);
 
         $customer = new Customer;
-        $customer->source_id = $request->get('id');
-        $customer->artist_id = $request->get('id');
+        $customer->source_id = $request->get('source_id');
+        $customer->artist_id = $request->get('artist_id');
         $customer->name = $request->get('name');
         $customer->instagram = $request->get('instagram');
-        $customer->phone = $request->get('phone');
+        $customer->phone = str_replace(['+', '.', '-'], ['', '', ''], $request->get('phone'));
         $customer->save();
 
         return redirect('/web/customers/' . $customer->getRouteKey())->with('success', __('El cliente ha sido creado exitosamente'));
@@ -119,11 +119,11 @@ class CustomerController extends Controller
             'phone' => 'string|required|max:100',
         ]);
 
-        $customer->source_id = $request->get('id');
-        $customer->artist_id = $request->get('id');
+        $customer->source_id = $request->get('source_id');
+        $customer->artist_id = $request->get('artist_id');
         $customer->name = $request->get('name');
         $customer->instagram = $request->get('instagram');
-        $customer->phone = $request->get('phone');
+        $customer->phone = str_replace(['+', '.', '-'], ['', '', ''], $request->get('phone'));
         $customer->save();
 
         return redirect('/web/customers/' . $customer->getRouteKey())->with('success', __('El cliente ha sido actualizado exitosamente'));
@@ -154,7 +154,7 @@ class CustomerController extends Controller
     {
         $customer->inactivate();
 
-        return redirect('/web/customers')->with('success', 'El cliente ha sido desactivado exitosamente');
+        return redirect('/web/customers')->with('success', __('El cliente ha sido desactivado exitosamente'));
     }
 
 
@@ -162,7 +162,7 @@ class CustomerController extends Controller
     {
         $customer->reactivate();
         {
-            return redirect('/web/customers/' . $customer->getRouteKey())->with('success', 'El Cliente ha sido reactivado exitosamente');
+            return redirect('/web/customers/' . $customer->getRouteKey())->with('success', __('El Cliente ha sido reactivado exitosamente'));
         }
     }
 }

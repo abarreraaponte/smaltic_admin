@@ -16,18 +16,12 @@ class Artist extends BaseModel
     	return $this->hasMany('App\Models\Customer');
     }
 
-    public function user()
-    {
-    	return $this->belongsTo('App\Models\User');
-    }
-
     public function canBeDeleted()
     {
         $jb = $this->jobs->count();
         $c = $this->customers->count();
-        $u = $this->users->count();
 
-        if($jb + $c + $u >= 1)
+        if($jb + $c >= 1)
         {
             return false;
         }
