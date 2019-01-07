@@ -12,8 +12,8 @@
                 <div>
                     <a href="{{ '/web/customers/' . $customer->getRouteKey() }}" class="btn btn-primary"><i class="fas fa-eye"></i> {{ __('Ver Cliente') }}</a>
                     <a href="/web/customers" class="btn btn-outline-primary"><i class="fas fa-list"></i> {{ __('Lista') }}</a>
-                    <a href="#" class="btn btn-link text-warning" onclick="{{ 'deactivate' . $customer->id . '()' }}"><i class="fas fa-exclamation-triangle"></i></a>
-                    <a href="#" class="btn btn-link text-secondary" onclick="{{ 'delete' . $customer->id . '()' }}"><i class="fas fa-trash"></i></a>
+                    <a href="#" class="btn btn-outline-warning" onclick="{{ 'deactivate' . $customer->id . '()' }}"><i class="fas fa-exclamation-triangle"></i></a>
+                    <a href="#" class="btn btn-outline-danger" onclick="{{ 'delete' . $customer->id . '()' }}"><i class="fas fa-trash"></i></a>
                     <form id="{{ 'delete-record' . $customer->getRouteKey() }}" method="post" action="{{ '/web/customers/' . $customer->getRouteKey() }}">
                         <input name="_method" type="hidden" value="DELETE">
                         @csrf

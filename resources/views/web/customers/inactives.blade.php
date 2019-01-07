@@ -10,8 +10,7 @@
 	                <a class="h5"><i class="fas fa-female"></i> {{ __('Clientas') }}</a>
 	            </div>
 	            <div>
-	            	<a href="/web/customers/inactives" class="btn btn-light mr-2"><i class="fas fa-exclamation-triangle"></i> {{ __('Ver Inactivos')}}</a>
-	                <a href="/web/customers/create" class="btn btn-primary"><i class="fas fa-plus-circle"></i> {{ __('Nuevo')}}</a>
+	                <a href="/web/customers" class="btn btn-primary"><i class="fas fa-undo"></i> {{ __('Volver')}}</a>
 	            </div>
 	        </div>
 
