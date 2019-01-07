@@ -2,6 +2,18 @@
 
 @section('content')
 
+@if($customers->count() < 1)
+{
+	<div class="text-center mb-4">
+        <img class="mb-4" src="/img/undempty05.svg" alt="" width="200">
+        <h1 class="h2 mb-3 font-weight-normal">{{ __(':/ No has creado ninguna clienta') }}</h1>
+        <p>{{ __('Para crear a la primera, presiona el botón que está a continuación') }}</p>
+        <a class="btn btn-lg btn-primary" href="/web/customers/create"><i class="fas fa-female"></i> {{ __('Crear Clienta') }}</a>
+    </div>
+}
+
+@else
+
 <div class="container">
     <div class="row justify-content-center">
 	    <div class="col col-md-12">
@@ -53,6 +65,8 @@
         </div>
     </div>
 </div>
+
+@endif
 
 @endsection
 

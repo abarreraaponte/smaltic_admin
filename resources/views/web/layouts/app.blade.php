@@ -37,6 +37,7 @@
                             <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="/web/customers"><i class="fas fa-female"></i> {{ __('Clientas') }}</a>
                                 <a class="dropdown-item" href="/web/artists"><i class="fas fa-paint-brush"></i> {{ __('Artistas') }}</a>
+                                <a class="dropdown-item" href="/web/sources"><i class="fas fa-database"></i> {{ __('Como nos conoce') }}</a>
                             </div>
                     </ul>
 
