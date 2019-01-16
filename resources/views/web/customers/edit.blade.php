@@ -38,22 +38,22 @@
                                 <div class="row mt-4">
                                     <div class="col-md-4 mb-3">
                                         <label for="name"><a class="text-danger">*</a> {{ __('Nombre') }}<span class="text-muted ml-1">{{ __('  (Obligatorio)') }}</span></label>
-                                        <input type="text" class="form-control form-control-alternative" id="name" value="{{ $customer->name }}" name="name" required>
+                                        <input type="text" class="form-control" id="name" value="{{ $customer->name }}" name="name" required>
                                     </div>
                                     <div class="col-md-4 mb-3">
                                         <label for="instagram"><i class="fab fa-instagram"></i> {{ __('Instagram') }}<span class="text-muted ml-1">{{ __('  (Obligatorio)') }}</span></label>
-                                        <input type="text" class="form-control form-control-alternative" id="instagram" value="{{ $customer->instagram }}" name="instagram">
+                                        <input type="text" class="form-control" id="instagram" value="{{ $customer->instagram }}" name="instagram">
                                     </div>
                                     <div class="col-md-4 mb-3">
                                         <label for="phone"><i class="fas fa-phone"></i> {{ __('Teléfono') }}<span class="text-muted ml-1">{{ __('  (Obligatorio)') }}</span></label>
-                                        <input type="text" class="form-control form-control-alternative" id="phone" value="{{ $customer->phone }}" name="phone" required>
+                                        <input type="text" class="form-control" id="phone" value="{{ $customer->phone }}" name="phone" required>
                                     </div>
                                 </div>
 
                                 <div class="row mt-3">
                                     <div class="col-md-6 mb-3">
                                         <label for="source">{{ __('¿Cómo nos Conoce?') }}</label>
-	                                    <select class="form-control form-control-alternative" name="source_id">
+	                                    <select class="form-control" name="source_id">
 	                                        <option value="">Seleccionar</option>
 	                                        @foreach($sources as $source)
 	                                        <option value="{{ $source->id }}" @if($source->id === $customer->source_id) selected @endif>{{ $source->name }}</option>
@@ -63,7 +63,7 @@
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label for="artist">{{ __('Artista Asignado por defecto') }}</label>
-	                                    <select class="form-control form-control-alternative" name="artist_id">
+	                                    <select class="form-control" name="artist_id">
 	                                        <option value="">Seleccionar</option>
 	                                        @foreach($artists as $artist)
 	                                        <option value="{{ $artist->id }}" @if($artist->id === $customer->artist_id) selected @endif>{{ $artist->name }}</option>
