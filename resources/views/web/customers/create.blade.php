@@ -26,22 +26,22 @@
                                 <div class="row mt-4">
                                     <div class="col-md-4 mb-3">
                                         <label for="name"><a class="text-danger">*</a> {{ __('Nombre') }}<span class="text-muted ml-1">{{ __('  (Obligatorio)') }}</span></label>
-                                        <input type="text" class="form-control form-control-alternative" id="name" name="name" required>
+                                        <input type="text" class="form-control" id="name" name="name" required>
                                     </div>
                                     <div class="col-md-4 mb-3">
                                         <label for="instagram"><i class="fab fa-instagram"></i> {{ __('Instagram') }}</label>
-                                        <input type="text" class="form-control form-control-alternative" id="instagram" name="instagram" placeholder="{{ __('@smaltic_art') }}">
+                                        <input type="text" class="form-control" id="instagram" name="instagram" placeholder="{{ __('@smaltic_art') }}">
                                     </div>
                                     <div class="col-md-4 mb-3">
                                         <label for="phone"><i class="fas fa-phone"></i> {{ __('Teléfono') }}<span class="text-muted ml-1">{{ __('  (Obligatorio)') }}</span></label>
-                                        <input type="text" class="form-control form-control-alternative" id="phone" name="phone" placeholder="56912345678" required>
+                                        <input type="text" class="form-control" id="phone" name="phone" placeholder="56912345678" required>
                                     </div>
                                 </div>
 
                                 <div class="row mt-3">
                                     <div class="col-md-6 mb-3">
                                         <label for="source">{{ __('¿Cómo nos Conoce?') }}</label>
-	                                    <select class="form-control form-control-alternative" name="source_id">
+	                                    <select class="form-control" name="source_id">
 	                                        <option value="">Seleccionar</option>
 	                                        @foreach($sources as $source)
 	                                        <option value="{{ $source->id }}">{{ $source->name }}</option>
@@ -51,7 +51,7 @@
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label for="artist">{{ __('Artista Asignado por defecto') }}</label>
-	                                    <select class="form-control form-control-alternative" name="artist_id">
+	                                    <select class="form-control" name="artist_id">
 	                                        <option value="">Seleccionar</option>
 	                                        @foreach($artists as $artist)
 	                                        <option value="{{ $artist->id }}">{{ $artist->name }}</option>

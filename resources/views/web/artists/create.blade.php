@@ -26,7 +26,7 @@
                                 <div class="row mt-4">
                                     <div class="col-md-4 mb-3">
                                         <label for="name"><a class="text-danger">*</a> {{ __('Nombre') }}<span class="text-muted ml-1">{{ __('  (Obligatorio)') }}</span></label>
-                                        <input type="text" class="form-control form-control-alternative" id="name" name="name" required>
+                                        <input type="text" class="form-control" id="name" name="name" required>
                                     </div>
                                 </div>
                             </div>

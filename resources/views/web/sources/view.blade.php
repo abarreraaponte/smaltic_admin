@@ -35,7 +35,7 @@
                                 <div class="row mt-4">
                                     <div class="col-md-4 mb-3">
                                         <label for="name"><a class="text-danger">*</a> {{ __('Nombre') }}</label>
-                                        <input type="text" class="form-control form-control-alternative" id="name" value="{{ $source->name }}" readonly>
+                                        <input type="text" class="form-control" id="name" value="{{ $source->name }}" readonly>
                                     </div>
                                 </div>
                             </div>                            
