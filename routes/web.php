@@ -48,6 +48,16 @@ Route::prefix('web')->middleware(['auth'])->group(function () {
 	Route::resource('/payment-methods', 'Web\PaymentMethodController');
 	Route::get('/payment-methods/inactives/list', 'Web\PaymentMethodController@inactives');
 	Route::put('/payment-methods/{payment_method}/inactivate', 'Web\PaymentMethodController@inactivate');
-    Route::put('/payment-methods/{payment_method}/reactivate', 'Web\PaymentMethodController@reactivate');
+	Route::put('/payment-methods/{payment_method}/reactivate', 'Web\PaymentMethodController@reactivate');
+	
+	## Jobs CRUD Routes ##
+	Route::resource('/jobs', 'Web\JobController');
 
+	## Expenses CRUD Routes ##
+	Route::resource('/expenses', 'Web\ExpenseController');
+
+	## Reports Routes ##
+	Route::get('/reports', 'Web\ReportController@index');
+
+	
 });

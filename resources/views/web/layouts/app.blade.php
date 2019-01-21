@@ -35,6 +35,15 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item ml-2">
+                            <a class="nav-link" href="/web/jobs"><i class="fas fa-calendar-check"></i> {{ __('Citas') }}</a>
+                        </li>
+                        <li class="nav-item ml-2">
+                            <a class="nav-link" href="/web/expenses"><i class="fas fa-receipt"></i> {{ __('Gastos') }}</a>
+                        </li>
+                        <li class="nav-item ml-2">
+                            <a class="nav-link" href="/web/reports"><i class="fas fa-chart-bar"></i> {{ __('Reportes') }}</a>
+                        </li>
+                        <li class="nav-item ml-2">
                             <a class="nav-link" href="/web/customers"><i class="fas fa-female"></i> {{ __('Clientas') }}</a>
                         </li>
                         <li class="nav-item dropdown">
