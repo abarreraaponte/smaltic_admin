@@ -9,6 +9,7 @@
         <h1 class="h2 mb-3 font-weight-normal">{{ __(':/ No has creado ninguna clienta') }}</h1>
         <p>{{ __('Para crear a la primera, presiona el botón que está a continuación') }}</p>
         <a class="btn btn-lg btn-primary" href="/web/customers/create"><i class="fas fa-female"></i> {{ __('Crear Clienta') }}</a>
+        <a class="btn btn-lg btn-link text-muted" href="/web/customers/inactives/list"><i class="fas fa-exclamation-triangle"></i> {{ __('Revisar Inactivas') }}</a>
     </div>
 }
 
@@ -33,10 +34,10 @@
 				        <table id="main_table" class="table table-bordered table-striped">
 				            <thead class="thead-light">
 				            <tr>
-				                <th>Nombre</th>
-	                            <th>Instagram</th>
-	                            <th>Teléfono</th>
-				                <th>Acciones</th>
+				                <th>{{ __('Nombre') }}</th>
+	                            <th>{{ __('Instagram') }}</th>
+	                            <th>{{ __('Teléfono') }}</th>
+				                <th>{{ __('Acciones') }}</th>
 				            </tr>
 				            </thead>
 				            <tbody>

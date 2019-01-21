@@ -15137,20 +15137,20 @@ textarea[resize=horizontal] {
   border-radius: 0.25rem;
   transition: all 0.15s ease;
   /*.form-control {
+  	box-shadow: none;
+
+  	&:not(:first-child) {
+  	    border-left: 0;
+  	    padding-left: 0;
+  	}
+  	&:not(:last-child) {
+  		border-right: 0;
+  		padding-right: 0;
+  	}
+  	&:focus {
   		box-shadow: none;
-  
-  		&:not(:first-child) {
-  		    border-left: 0;
-  		    padding-left: 0;
-  		}
-  		&:not(:last-child) {
-  			border-right: 0;
-  			padding-right: 0;
-  		}
-  		&:focus {
-  			box-shadow: none;
-  		}
-  	}*/
+  	}
+  }*/
 }
 
 .input-group-text {

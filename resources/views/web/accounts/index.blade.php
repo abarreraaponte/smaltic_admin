@@ -2,14 +2,14 @@
 
 @section('content')
 
-@if($sources->count() < 1)
+@if($accounts->count() < 1)
 {
 	<div class="text-center mb-4">
         <img class="mb-4" src="/img/undempty05.svg" alt="" width="200">
-        <h1 class="h2 mb-3 font-weight-normal">{{ __(':/ No has creado ningún como nos conoce') }}</h1>
-        <p>{{ __('Para crear el primero, presiona el botón que está a continuación') }}</p>
-        <a class="btn btn-lg btn-primary" href="/web/sources/create"><i class="fas fa-database"></i> {{ __('Crear Como nos conoce') }}</a>
-        <a class="btn btn-lg btn-link text-muted" href="/web/sources/inactives/list"><i class="fas fa-exclamation-triangle"></i> {{ __('Revisar Inactivos') }}</a>
+        <h1 class="h2 mb-3 font-weight-normal">{{ __(':/ No has creado ninguna cuenta') }}</h1>
+        <p>{{ __('Para crear la primera, presiona el botón que está a continuación') }}</p>
+        <a class="btn btn-lg btn-primary" href="/web/accounts/create"><i class="fas fa-file-invoice-dollar"></i> {{ __('Crear Cuenta') }}</a>
+        <a class="btn btn-lg btn-link text-muted" href="/web/accounts/inactives/list"><i class="fas fa-exclamation-triangle"></i> {{ __('Revisar Inactivas') }}</a>
     </div>
 }
 
@@ -20,11 +20,11 @@
 	    <div class="col col-md-12">
 	         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap mb-2">
 	            <div>
-	                <a class="h5"><i class="fas fa-database"></i> {{ __('Como nos conoce') }}</a>
+	                <a class="h5"><i class="fas fa-file-invoice-dollar"></i> {{ __('Cuentas') }}</a>
 	            </div>
 	            <div>
-	            	<a href="/web/sources/inactives/list" class="btn btn-light mr-2"><i class="fas fa-exclamation-triangle"></i> {{ __('Ver Inactivos')}}</a>
-	                <a href="/web/sources/create" class="btn btn-primary"><i class="fas fa-plus-circle"></i> {{ __('Nuevo')}}</a>
+	            	<a href="/web/accounts/inactives/list" class="btn btn-light mr-2"><i class="fas fa-exclamation-triangle"></i> {{ __('Ver Inactivos')}}</a>
+	                <a href="/web/accounts/create" class="btn btn-primary"><i class="fas fa-plus-circle"></i> {{ __('Nuevo')}}</a>
 	            </div>
 	        </div>
 
@@ -39,14 +39,14 @@
 				            </tr>
 				            </thead>
 				            <tbody>
-					            @foreach($sources as $source)
+					            @foreach($accounts as $account)
 					                <tr>
-					                	<td>{{ $source->name }}</td>
+					                	<td>{{ $account->name }}</td>
 					                    <td>
-		                                    <a  class="btn btn-sm btn-primary" href="{{ '/web/sources/' . $source->getRouteKey() }}"><i class="fas fa-eye"></i></a>
-					                        <a  class="btn btn-sm btn-outline-primary" href="{{ '/web/sources/' . $source->getRouteKey() . '/edit' }}"><i class="fas fa-edit"></i></a>
-					                        <a class="btn btn-sm btn-link text-danger" href="#" onclick="{{ 'delete' . $source->id . '()' }}"><i class="fas fa-trash-alt"></i></a>
-					                        <form id="{{ 'delete-record' . $source->getRouteKey() }}" method="post" action="{{ '/web/sources/' . $source->getRouteKey() }}">
+		                                    <a  class="btn btn-sm btn-primary" href="{{ '/web/accounts/' . $account->getRouteKey() }}"><i class="fas fa-eye"></i></a>
+					                        <a  class="btn btn-sm btn-outline-primary" href="{{ '/web/accounts/' . $account->getRouteKey() . '/edit' }}"><i class="fas fa-edit"></i></a>
+					                        <a class="btn btn-sm btn-link text-danger" href="#" onclick="{{ 'delete' . $account->id . '()' }}"><i class="fas fa-trash-alt"></i></a>
+					                        <form id="{{ 'delete-record' . $account->getRouteKey() }}" method="post" action="{{ '/web/accounts/' . $account->getRouteKey() }}">
 					                            <input name="_method" type="hidden" value="DELETE">
 					                            @csrf
 					                        </form>
@@ -68,11 +68,11 @@
 @endsection
 
 @push('list_scripts')
-    @foreach($sources as $source)
+    @foreach($accounts as $account)
         <script>
-            function {{ 'delete' . $source->id . '()' }} {
+            function {{ 'delete' . $account->id . '()' }} {
                 swal({
-                    title: "{{ __('Seguro que desea eliminar el como nos conoce?') . ' ' . $source->getNameValue() }}",
+                    title: "{{ __('Seguro que desea eliminar la cuenta?') . ' ' . $account->getNameValue() }}",
                     type: "warning",
                     showCancelButton: true,
                     confirmButtonColor: '#e84860',
@@ -82,7 +82,7 @@
                 }).then((result) => {
                         if (result.value) {
                             event.preventDefault();
-                            document.getElementById('{{ 'delete-record' . $source->getRouteKey() }}').submit();
+                            document.getElementById('{{ 'delete-record' . $account->getRouteKey() }}').submit();
                         }
                     }
                 )

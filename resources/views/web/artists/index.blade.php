@@ -8,7 +8,8 @@
         <img class="mb-4" src="/img/undempty05.svg" alt="" width="200">
         <h1 class="h2 mb-3 font-weight-normal">{{ __(':/ No has creado ningún artista') }}</h1>
         <p>{{ __('Para crear el primero, presiona el botón que está a continuación') }}</p>
-        <a class="btn btn-lg btn-primary" href="/web/artists/create"><i class="fas fa-paint-brush"></i>{{ __('Crear Artista') }}</a>
+        <a class="btn btn-lg btn-primary" href="/web/artists/create"><i class="fas fa-paint-brush"></i> {{ __('Crear Artista') }}</a>
+        <a class="btn btn-lg btn-link text-muted" href="/web/artists/inactives/list"><i class="fas fa-exclamation-triangle"></i> {{ __('Revisar Inactivos') }}</a>
     </div>
 }
 
@@ -33,8 +34,8 @@
 				        <table id="main_table" class="table table-bordered table-striped">
 				            <thead class="thead-light">
 				            <tr>
-				                <th>Nombre</th>
-				                <th>Acciones</th>
+				                <th>{{ __('Nombre') }}</th>
+				                <th>{{ __('Acciones') }}</th>
 				            </tr>
 				            </thead>
 				            <tbody>

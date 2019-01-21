@@ -8,7 +8,7 @@ class PaymentMethod extends BaseModel
 {
     public function payments()
     {
-    	return $this->hasMany('App\Models\Payments');
+    	return $this->hasMany('App\Models\Payment');
     }
 
     public function expense_payments()

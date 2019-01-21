@@ -20,25 +20,32 @@
 </head>
 <body>
     <div id="app">
+        
+        <!-- Top Bar-->
         <nav class="navbar navbar-expand-md navbar-light navbar-main-top">
-            <div class="container">
+            <div class="container-fluid">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <img src="/img/brand/logo.png" width="90" height="60">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
+                    <span class="navbar-toggler-icon"></span><i class="fas fa-th"></i>
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item dropdown ml-2">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre><i class="fas fa-th"></i> {{ __('Menú')}}</a>
+                        <li class="nav-item ml-2">
+                            <a class="nav-link" href="/web/customers"><i class="fas fa-female"></i> {{ __('Clientas') }}</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre><i class="fas fa-database"></i> {{ __('Datos')}}</a>
                             <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="/web/customers"><i class="fas fa-female"></i> {{ __('Clientas') }}</a>
-                                <a class="dropdown-item" href="/web/artists"><i class="fas fa-paint-brush"></i> {{ __('Artistas') }}</a>
-                                <a class="dropdown-item" href="/web/sources"><i class="fas fa-database"></i> {{ __('Como nos conoce') }}</a>
+                                <a class="dropdown-item" href="/web/artists"><i class="fas fa-angle-right"></i> {{ __('Artistas') }}</a>
+                                <a class="dropdown-item" href="/web/accounts"><i class="fas fa-angle-right"></i> {{ __('Cuentas') }}</a>
+                                <a class="dropdown-item" href="/web/sources"><i class="fas fa-angle-right"></i> {{ __('Como nos conoce') }}</a>
+                                <a class="dropdown-item" href="/web/payment-methods"><i class="fas fa-angle-right"></i> {{ __('Medios de Pago') }}</a>
                             </div>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

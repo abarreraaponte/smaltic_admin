@@ -20,8 +20,8 @@
 				        <table id="main_table" class="table table-bordered table-striped">
 				            <thead class="thead-light">
 				            <tr>
-				                <th>Nombre</th>
-				                <th>Acciones</th>
+				                <th>{{ __('Nombre') }}</th>
+				                <th>{{ __('Acciones') }}</th>
 				            </tr>
 				            </thead>
 				            <tbody>
