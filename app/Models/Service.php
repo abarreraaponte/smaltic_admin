@@ -15,7 +15,7 @@ class Service extends BaseModel
     {
     	$jl = $this->job_lines->count();
 
-    	if($jl + >= 1)
+    	if($jl >= 1)
     	{
     		return false;
     	}
