@@ -6,11 +6,7 @@ use App\Models\BaseModel;
 
 class Job extends BaseModel
 {
-    public function artist()
-    {
-    	return $this->belongsTo('App\Models\Artist');
-    }
-
+    
     public function customer()
     {
     	return $this->belongsTo('App\Models\Customer');
@@ -21,11 +17,17 @@ class Job extends BaseModel
     	return $this->hasMany('App\Models\Payment');
     }
 
+    public function job_lines()
+    {
+        return $this->hasMany('App\Models\JobLine');
+    }
+
     public function canBeDeleted()
     {
         $p = $this->payments->count();
+        $jl = $this->job_lines->count();
 
-        if($p >= 1)
+        if($p + $jl >= 1)
         {
             return false;
         }

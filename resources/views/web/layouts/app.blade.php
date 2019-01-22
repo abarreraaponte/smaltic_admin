@@ -53,6 +53,7 @@
                                 <a class="dropdown-item" href="/web/accounts"><i class="fas fa-angle-right"></i> {{ __('Cuentas') }}</a>
                                 <a class="dropdown-item" href="/web/sources"><i class="fas fa-angle-right"></i> {{ __('Como nos conoce') }}</a>
                                 <a class="dropdown-item" href="/web/payment-methods"><i class="fas fa-angle-right"></i> {{ __('Medios de Pago') }}</a>
+                                <a class="dropdown-item" href="/web/services"><i class="fas fa-angle-right"></i> {{ __('Servicios') }}</a>
                             </div>
                         </li>
                     </ul>

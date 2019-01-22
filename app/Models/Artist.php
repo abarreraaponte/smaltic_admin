@@ -6,9 +6,9 @@ use App\Models\BaseModel;
 
 class Artist extends BaseModel
 {
-    public function jobs()
+    public function job_lines()
     {
-    	return $this->hasMany('App\Models\Job');
+    	return $this->hasMany('App\Models\JobLine');
     }
 
     public function customers()
@@ -18,10 +18,10 @@ class Artist extends BaseModel
 
     public function canBeDeleted()
     {
-        $jb = $this->jobs->count();
+        $jl = $this->job_lines->count();
         $c = $this->customers->count();
 
-        if($jb + $c >= 1)
+        if($jl + $c >= 1)
         {
             return false;
         }

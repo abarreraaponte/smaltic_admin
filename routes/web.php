@@ -44,6 +44,12 @@ Route::prefix('web')->middleware(['auth'])->group(function () {
 	Route::put('/accounts/{account}/inactivate', 'Web\AccountController@inactivate');
     Route::put('/accounts/{account}/reactivate', 'Web\AccountController@reactivate');
 
+    ## Service CRUD Routes ##
+    Route::resource('/services', 'Web\ServiceController');
+	Route::get('/services/inactives/list', 'Web\ServiceController@inactives');
+	Route::put('/services/{service}/inactivate', 'Web\ServiceController@inactivate');
+    Route::put('/services/{service}/reactivate', 'Web\ServiceController@reactivate');
+
     ## Payment Methods CRUD Routes ##
 	Route::resource('/payment-methods', 'Web\PaymentMethodController');
 	Route::get('/payment-methods/inactives/list', 'Web\PaymentMethodController@inactives');
