@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Customer;
 use App\Models\Artist;
 use App\Models\Service;
+use App\Models\Job;
 
 class JobController extends Controller
 {
@@ -19,7 +20,7 @@ class JobController extends Controller
     {
         $jobs = Job::all();
 
-        return view('web.jobs.view', compact('jobs'));
+        return view('web.jobs.index', compact('jobs'));
     }
 
     /**
@@ -27,15 +28,16 @@ class JobController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Customer $customer)
+    public function create()
     {
+        $customers = Customer::active()->get();
         $artists = Artist::active()->get();
         $services = Service::active()->get();
 
         return view('web.jobs.create', compact([
             'artists',
             'services',
-            'customer',
+            'customers',
         ]));
     }
 
@@ -47,7 +49,19 @@ class JobController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'customer_id' => 'required|integer',
+            'date' => 'required|date',
+            'hour' => 'string|nullable|max:20',
+        ]);
+
+        $job = new Job;
+        $job->customer_id = $request->get('customer_id');
+        $job->date = $request->get('date');
+        $job->hour = $request->get('hour');
+        $job->save();
+
+        return redirect('/web/jobs/' . $job->getRouteKey())->with('success', __('La cita ha sido creada exitosamente'));
     }
 
     /**
@@ -58,7 +72,9 @@ class JobController extends Controller
      */
     public function show(Job $job)
     {
-        //
+        $job->load(['job_lines', 'payments']);
+
+        return view('web.jobs.view', compact('job'));
     }
 
     /**
@@ -69,7 +85,11 @@ class JobController extends Controller
      */
     public function edit(Job $job)
     {
-        //
+        $customers = Customer::active()->get();
+
+        $job->load(['job_lines', 'payments']);
+
+        return view('web.jobs.edit', compact('job', 'customers'));
     }
 
     /**
@@ -81,7 +101,18 @@ class JobController extends Controller
      */
     public function update(Request $request, Job $job)
     {
-        //
+        $request->validate([
+            'customer_id' => 'required|integer',
+            'date' => 'required|date',
+            'hour' => 'string|nullable|max:20',
+        ]);
+
+        $job->customer_id = $request->get('customer_id');
+        $job->date = $request->get('date');
+        $job->hour = $request->get('hour');
+        $job->save();
+
+        return redirect('/web/jobs/' . $job->getRouteKey())->with('success', __('La cita ha sido creada exitosamente'));
     }
 
     /**
@@ -92,6 +123,15 @@ class JobController extends Controller
      */
     public function destroy(Job $job)
     {
-        //
+        if($job->canBeDeleted() === true)
+        {
+            $job->delete();
+            return redirect('/web/jobs')->with('success', __('La cita ha sido eliminada exitosamente'));
+        }
+
+        else
+        {
+            return back()->with('errors', __('Esta cita no puede ser eliminado, intente eliminar los pagos primero')); 
+        }
     }
 }
