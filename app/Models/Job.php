@@ -38,4 +38,19 @@ class Job extends BaseModel
         }
 
     }
+
+    public function getAmount()
+    {
+        return $this->job_lines->pluck('amount')->sum();
+    }
+
+    public function getPaidAmount()
+    {
+        return $this->payments->pluck('amount')->sum();
+    }
+
+    public function getPendingAmount()
+    {
+        return $this->getAmount() - $this->getPaidAmount();
+    }
 }
