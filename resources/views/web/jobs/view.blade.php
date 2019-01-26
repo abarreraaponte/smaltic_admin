@@ -34,13 +34,11 @@
                                     </div>
                                 </div>
                                 <div class="row mt-6">
-                                    <div class="col-md-4 mb-3">
+                                    <div class="col-md-6 mb-3">
                                         <label for="date"><a class="text-danger">*</a> {{ __('Fecha') }}<span class="text-muted ml-1">{{ __('  (Obligatorio)') }}</span></label>
                                         <input type="text" class="form-control" id="name" value="{{ $job->date }}" readonly>
                                     </div>
-                                </div>
-                                <div class="row mt-6">
-                                    <div class="col-md-4 mb-3">
+                                    <div class="col-md-6 mb-3">
                                         <label for="hour"> {{ __('Hora') }}</label>
                                         <input type="text" class="form-control" id="name" value="{{ $job->hour }}" readonly>
                                     </div>
