@@ -20,7 +20,7 @@ class Source extends BaseModel
     {
         $c = $this->customers->count();
 
-        if($c >= 1)
+        if($c >= 1 or $this->is_customer_reference === 1)
         {
             return false;
         }

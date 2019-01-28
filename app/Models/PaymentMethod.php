@@ -18,10 +18,10 @@ class PaymentMethod extends BaseModel
 
     public function canBeDeleted()
     {
-       $p = $this->payments->count();
+        $p = $this->payments->count();
     	$ep = $this->expense_payments->count();
 
-    	if($p + $ep >= 1)
+    	if($p + $ep >= 1 or $this->is_reward === 1)
     	{
     		return false;
     	}
