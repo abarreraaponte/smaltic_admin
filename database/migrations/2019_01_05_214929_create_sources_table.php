@@ -16,7 +16,7 @@ class CreateSourcesTable extends Migration
         Schema::create('sources', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->boolean('is_recommended')->default(0);
+            $table->boolean('is_customer_reference')->default(0);
             $table->boolean('active')->default(1);
             $table->timestamps();
             $table->softDeletes();
