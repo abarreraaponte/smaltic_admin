@@ -6,9 +6,9 @@
 {
 	<div class="text-center mb-4">
         <img class="mb-4" src="/img/undempty05.svg" alt="" width="200">
-        <h1 class="h2 mb-3 font-weight-normal">{{ __(':/ No has creado ninguna cita') }}</h1>
-        <p>{{ __('Para crear la primera, presiona el botón que está a continuación') }}</p>
-        <a class="btn btn-lg btn-primary" href="/web/jobs/create"><i class="fas fa-calendar-check"></i> {{ __('Crear Cita') }}</a>
+        <h1 class="h2 mb-3 font-weight-normal">{{ __(':/ No has creado ningún Trabajo') }}</h1>
+        <p>{{ __('Para crear el primero, presiona el botón que está a continuación') }}</p>
+        <a class="btn btn-lg btn-primary" href="/web/jobs/create"><i class="fas fa-calendar-check"></i> {{ __('Crear Trabajo') }}</a>
     </div>
 }
 
@@ -19,7 +19,7 @@
 	    <div class="col col-md-12">
 	         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap mb-2">
 	            <div>
-	                <a class="h5"><i class="fas fa-calendar-check"></i> {{ __('Citas') }}</a>
+	                <a class="h5"><i class="fas fa-calendar-check"></i> {{ __('Trabajos') }}</a>
 	            </div>
 	            <div>
 	                <a href="/web/jobs/create" class="btn btn-primary"><i class="fas fa-plus-circle"></i> {{ __('Nuevo')}}</a>
@@ -74,7 +74,7 @@
         <script>
             function {{ 'delete' . $job->id . '()' }} {
                 swal({
-                    title: "{{ __('Seguro que desea eliminar la cita?') . ' ' . $job->getNameValue() }}",
+                    title: "{{ __('Seguro que desea eliminar el Trabajo?') . ' ' . $job->getNameValue() }}",
                     type: "warning",
                     showCancelButton: true,
                     confirmButtonColor: '#e84860',
