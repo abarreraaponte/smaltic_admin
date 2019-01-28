@@ -58,8 +58,8 @@
                             <div id="lines">
                                 <div class="row">
                                     <div class="col-md-3 mb-3">
-                                        <label for="country">Servicio</label>
-                                        <select class="custom-select d-block w-100" id="country" required>
+                                        <label for="service">Servicio</label>
+                                        <select class="custom-select d-block w-100" id="service_id" name="service_id[]" required>
                                             <option value="">{{ __('Seleccionar Servicio') }}</option>
                                             @foreach($services as $service)
                                             <option value="{{ $service->id }}">{{ $service->name }}</option>
@@ -67,8 +67,8 @@
                                         </select>
                                     </div>
                                     <div class="col-md-3 mb-3">
-                                        <label for="state">Artista</label>
-                                        <select class="custom-select d-block w-100" id="state" required>
+                                        <label for="artist">Artista</label>
+                                        <select class="custom-select d-block w-100" id="artist_id" name="artist_id[]" required>
                                             <option value="">{{ __('Seleccionar Artista') }}</option>
                                             @foreach($artists as $artist)
                                             <option value="{{ $artist->id }}">{{ $artist->name }}</option>
@@ -76,12 +76,12 @@
                                         </select>
                                     </div>
                                     <div class="col-md-3 mb-3">
-                                        <label for="zip">Detalles</label>
-                                        <input type="text" class="form-control" id="zip" placeholder="" required>
+                                        <label for="details">Detalles</label>
+                                        <input type="text" class="form-control" id="details" value="" name="details[]">
                                     </div>
                                     <div class="col-md-2 mb-3">
-                                        <label for="zip">Monto</label>
-                                        <input type="text" class="form-control" id="zip" placeholder="" required>
+                                        <label for="amount">Monto</label>
+                                        <input type="number" class="form-control" id="amount" value="" name="amount[]" required>
                                     </div>
                                     <div class="col-md-1 mb-3">
                                         <label>-</label>
@@ -120,7 +120,7 @@
     <script>
         function addline() {
             var lines = document.getElementById("lines");
-            var clone = lines.firstElementChild.cloneNode(true);
+            var clone = lines.lastElementChild.cloneNode(true);
             lines.appendChild(clone);
         }
         function deleteline(line)
