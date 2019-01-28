@@ -2,12 +2,12 @@
 
 @section('content')
 
-<div class="container">
+<div class="container-fluid">
 	<div class="row justify-content-center">
-        <div class="col-md-12">
+        <div class="col-md-8">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap mb-2">
                 <div>
-                    <a class="h5"><i class="fas fa-calendar-check"></i> {{ __('Crear Cita') }}</a>
+                    <a class="h5"><i class="fas fa-calendar-check"></i> {{ __('Crear Trabajo') }}</a>
                 </div>
                 <div>
                     <a href="/web/jobs" class="btn btn-primary"><i class="fas fa-list"></i> {{ __('Lista') }}</a>
@@ -47,6 +47,52 @@
                             </div>
 
                             <hr class="mb-4">
+                            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap mb-4">
+                                <div>
+                                    <a class="h5"><i class="fas fa-calendar-plus"></i> {{ __('Detalles del Trabajo') }}</a>
+                                </div>
+                                <div>
+                                    <a href="#" class="btn btn-sm btn-secondary" onclick="addline()"><i class="fas fa-plus"></i> {{ __('Agregar Línea') }}</a>
+                                </div>
+                            </div>
+                            <div id="lines">
+                                <div class="row">
+                                    <div class="col-md-3 mb-3">
+                                        <label for="country">Servicio</label>
+                                        <select class="custom-select d-block w-100" id="country" required>
+                                            <option value="">{{ __('Seleccionar Servicio') }}</option>
+                                            @foreach($services as $service)
+                                            <option value="{{ $service->id }}">{{ $service->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <label for="state">Artista</label>
+                                        <select class="custom-select d-block w-100" id="state" required>
+                                            <option value="">{{ __('Seleccionar Artista') }}</option>
+                                            @foreach($artists as $artist)
+                                            <option value="{{ $artist->id }}">{{ $artist->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <label for="zip">Detalles</label>
+                                        <input type="text" class="form-control" id="zip" placeholder="" required>
+                                    </div>
+                                    <div class="col-md-2 mb-3">
+                                        <label for="zip">Monto</label>
+                                        <input type="text" class="form-control" id="zip" placeholder="" required>
+                                    </div>
+                                    <div class="col-md-1 mb-3">
+                                        <label>-</label>
+                                        <div>
+                                            <a class="btn btn-link" onclick="deleteline(this)"><i class="text-danger fas fa-times"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr class="mb-4">
 
                             <button class="btn btn-primary" type="submit">{{ __('Guardar') }}</button>
                         </div>
@@ -70,5 +116,16 @@
             // disable unload warning
             $(window).off('beforeunload');
         });
+    </script>
+    <script>
+        function addline() {
+            var lines = document.getElementById("lines");
+            var clone = lines.firstElementChild.cloneNode(true);
+            lines.appendChild(clone);
+        }
+        function deleteline(line)
+        {
+            line.closest(".row").remove();
+        }
     </script>
 @endsection
