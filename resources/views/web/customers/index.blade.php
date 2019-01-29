@@ -47,6 +47,7 @@
 		                                <td>{{ $customer->instagram }}</td>
 		                                <td>{{ $customer->phone }}</td>
 					                    <td>
+					                    	<a class="btn btn-sm btn-success" href="{{ '/web/customers/' . $customer->getRouteKey() . '/job/create' }}"><i class="fas fa-comment-dollar"></i> {{ __('Nuevo Trabajo') }}</a>
 		                                    <a  class="btn btn-sm btn-primary" href="{{ '/web/customers/' . $customer->getRouteKey() }}"><i class="fas fa-eye"></i></a>
 					                        <a  class="btn btn-sm btn-outline-primary" href="{{ '/web/customers/' . $customer->getRouteKey() . '/edit' }}"><i class="fas fa-edit"></i></a>
 					                        <a class="btn btn-sm btn-link text-danger" href="#" onclick="{{ 'delete' . $customer->id . '()' }}"><i class="fas fa-trash-alt"></i></a>

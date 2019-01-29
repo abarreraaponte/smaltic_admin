@@ -16,11 +16,11 @@ class SourceSeeder extends Seeder
         $source->name = 'Instagram';
         $source->save();
 
-        $source new Source;
+        $source = new Source;
         $source->name = 'Eventos';
         $source->save();
 
-        $source new Source;
+        $source = new Source;
         $source->name = 'Referencia';
         $source->is_customer_reference = 1;	
         $source->save();
