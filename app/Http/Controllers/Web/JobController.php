@@ -29,16 +29,15 @@ class JobController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Customer $customer)
     {
-        $customers = Customer::active()->get();
         $artists = Artist::active()->get();
         $services = Service::active()->get();
 
         return view('web.jobs.create', compact([
             'artists',
             'services',
-            'customers',
+            'customer',
         ]));
     }
 

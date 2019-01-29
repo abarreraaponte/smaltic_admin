@@ -14,5 +14,5 @@ use Illuminate\Http\Request;
 */
 
 Route::middleware('auth:api')->group(function () {
-	Route::get('/web/ajax/customers', 'Web\Ajax\CustomerAjaxController@index');
+	//
 });

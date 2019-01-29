@@ -10,6 +10,7 @@
                     <a class="h5"><i class="fas fa-female"></i> {{ __('Ver Clienta:') . ' ' . $customer->name }}</a>
                 </div>
                 <div>
+                    <a class="btn btn-success" href="{{ '/web/customers/' . $customer->getRouteKey() . '/job/create' }}"><i class="fas fa-comment-dollar"></i> {{ __('Nuevo Trabajo') }}</a>
                     <a href="{{ '/web/customers/' . $customer->getRouteKey() . '/edit' }}" class="btn btn-primary"><i class="fas fa-edit"></i> {{ __('Editar Cliente') }}</a>
                     <a href="/web/customers" class="btn btn-outline-primary"><i class="fas fa-list"></i> {{ __('Lista') }}</a>
                     <a href="#" class="btn btn-outline-warning" onclick="{{ 'deactivate' . $customer->id . '()' }}"><i class="fas fa-exclamation-triangle"></i></a>

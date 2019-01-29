@@ -57,7 +57,8 @@ Route::prefix('web')->middleware(['auth'])->group(function () {
 	Route::put('/payment-methods/{payment_method}/reactivate', 'Web\PaymentMethodController@reactivate');
 	
 	## Jobs CRUD Routes ##
-	Route::resource('/jobs', 'Web\JobController');
+	Route::resource('/jobs', 'Web\JobController')->except('create');
+	Route::get('/customers/{customer}/job/create', 'Web\JobController@create');
 
 	## Expenses CRUD Routes ##
 	Route::resource('/expenses', 'Web\ExpenseController');

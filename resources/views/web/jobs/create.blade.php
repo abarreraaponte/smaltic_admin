@@ -26,12 +26,8 @@
                                 <div class="row mt-3">
                                     <div class="col-md-6 mb-3">
                                         <label for="customer">{{ __('Cliente') }}</label>
-                                        <select class="form-control" name="customer_id" required>
-                                            <option value="">Seleccionar</option>
-                                            @foreach($customers as $customer)
-                                            <option value="{{ $customer->id }}">{{ $customer->name }}</option>
-                                            @endforeach
-                                        </select>
+                                        <input type="hidden" name="customer_id" value="{{ $customer->id }}">
+                                        <input type="text" class="form-control" id="customer_name" value="{{ $customer->name }}" readonly>
                                     </div>
                                 </div>
                                 <div class="row mt-4">
