@@ -7,7 +7,7 @@
         <div class="col-md-8">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap mb-2">
                 <div>
-                    <a class="h5"><i class="fas fa-calendar-check"></i> {{ __('Crear Trabajo') }}</a>
+                    <a class="h5"><i class="fas fa-calendar-check"></i> {{ __('Crear Trabajo para: ') . ' ' . $customer->name }}</a>
                 </div>
                 <div>
                     <a href="/web/jobs" class="btn btn-primary"><i class="fas fa-list"></i> {{ __('Lista') }}</a>
@@ -27,7 +27,7 @@
                                     <div class="col-md-6 mb-3">
                                         <label for="customer">{{ __('Cliente') }}</label>
                                         <input type="hidden" name="customer_id" value="{{ $customer->id }}">
-                                        <input type="text" class="form-control" id="customer_name" value="{{ $customer->name }}" readonly>
+                                        <div><a href="{{ '/web/customers/' . $customer->getRouteKey() }}" target="_blank">{{ $customer->name }}</a></div>
                                     </div>
                                 </div>
                                 <div class="row mt-4">

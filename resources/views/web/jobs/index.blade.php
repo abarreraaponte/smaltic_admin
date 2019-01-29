@@ -8,7 +8,7 @@
         <img class="mb-4" src="/img/undempty05.svg" alt="" width="200">
         <h1 class="h2 mb-3 font-weight-normal">{{ __(':/ No has creado ningún Trabajo') }}</h1>
         <p>{{ __('Para crear el primero, presiona el botón que está a continuación') }}</p>
-        <a class="btn btn-lg btn-primary" href="/web/jobs/create"><i class="fas fa-calendar-check"></i> {{ __('Crear Trabajo') }}</a>
+        <button data-toggle="modal" data-target="#selectcustomer" class="btn btn-lg btn-primary" href="#"><i class="fas fa-calendar-check"></i> {{ __('Crear Trabajo') }}</button>
     </div>
 }
 
@@ -22,7 +22,7 @@
 	                <a class="h5"><i class="fas fa-calendar-check"></i> {{ __('Trabajos') }}</a>
 	            </div>
 	            <div>
-	                <a href="/web/jobs/create" class="btn btn-primary"><i class="fas fa-plus-circle"></i> {{ __('Nuevo')}}</a>
+	                <button data-toggle="modal" data-target="#selectcustomer" class="btn btn-primary" href="#"><i class="fas fa-calendar-check"></i> {{ __('Nuevo')}}</button>
 	            </div>
 	        </div>
 
@@ -67,6 +67,46 @@
 
 @endif
 
+<!--Modal Addresses-->
+<div class="modal fade" id="selectcustomer" role="dialog" tabindex="-1" aria-labelledby="addcustomer" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-dark text-white">
+                <a class="h5 modal-title" id="contactmodallabel">Seleccionar Cliente</a>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive table-sm table-hover">
+			        <table id="secondary_table" class="table table-bordered table-striped">
+			            <thead class="thead-light">
+			            <tr>
+			                <th>{{ __('Nombre') }}</th>
+                            <th>{{ __('Instagram') }}</th>
+                            <th>{{ __('Teléfono') }}</th>
+			                <th>{{ __('Acciones') }}</th>
+			            </tr>
+			            </thead>
+			            <tbody>
+				            @foreach($customers as $customer)
+				                <tr>
+				                	<td>{{ $customer->name }}</td>
+	                                <td>{{ $customer->instagram }}</td>
+	                                <td>{{ $customer->phone }}</td>
+				                    <td>
+				                    	<a class="btn btn-sm btn-success" href="{{ '/web/customers/' . $customer->getRouteKey() . '/job/create' }}"><i class="fas fa-comment-dollar"></i> {{ __('Seleccionar') }}</a>
+				                    </td>
+				                </tr>
+				            @endforeach
+			            </tbody>
+			        </table>
+		        </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 @endsection
 
 @push('list_scripts')
@@ -95,4 +135,5 @@
 
 @section('ps_scripts')
     @include('web.layouts.partials.main-datatable')
+    @include('web.layouts.partials.secondary-datatable')
 @endsection

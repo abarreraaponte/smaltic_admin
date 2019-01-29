@@ -30,7 +30,7 @@
                                 <div class="row mt-3">
                                     <div class="col-md-6 mb-3">
                                         <label for="customer">{{ __('Cliente') }}</label>
-                                        <input class="form-control" type="text" value="{{ $job->customer->name }}" readonly>
+                                        <div><a href="{{ '/web/customers/' . $job->customer->getRouteKey() }}" target="_blank">{{ $job->customer->name }}</a></div>
                                     </div>
                                 </div>
                                 <div class="row mt-6">

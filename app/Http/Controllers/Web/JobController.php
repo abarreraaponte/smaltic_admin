@@ -20,8 +20,9 @@ class JobController extends Controller
     public function index()
     {
         $jobs = Job::all();
+        $customers = Customer::active()->get();
 
-        return view('web.jobs.index', compact('jobs'));
+        return view('web.jobs.index', compact('jobs', 'customers'));
     }
 
     /**
@@ -109,11 +110,9 @@ class JobController extends Controller
      */
     public function edit(Job $job)
     {
-        $customers = Customer::active()->get();
-
         $job->load(['job_lines', 'payments']);
 
-        return view('web.jobs.edit', compact('job', 'customers'));
+        return view('web.jobs.edit', compact('job'));
     }
 
     /**
