@@ -55,7 +55,7 @@
                                 <div class="row">
                                     <div class="col-md-3 mb-3">
                                         <label for="service">Servicio</label>
-                                        <select class="custom-select d-block w-100" id="service_id" name="service_id[]" required>
+                                        <select class="custom-select d-block w-100" id="services" name="service_id[]" required onchange="setamount(this)">
                                             <option value="">{{ __('Seleccionar Servicio') }}</option>
                                             @foreach($services as $service)
                                             <option value="{{ $service->id }}">{{ $service->name }}</option>
@@ -65,9 +65,8 @@
                                     <div class="col-md-3 mb-3">
                                         <label for="artist">Artista</label>
                                         <select class="custom-select d-block w-100" id="artist_id" name="artist_id[]" required>
-                                            <option value="">{{ __('Seleccionar Artista') }}</option>
                                             @foreach($artists as $artist)
-                                            <option value="{{ $artist->id }}">{{ $artist->name }}</option>
+                                            <option value="{{ $artist->id }}" @if($artist->id === $customer->artist_id) selected @endif>{{ $artist->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -123,5 +122,11 @@
         {
             line.closest(".row").remove();
         }
+    </script>
+    <script>
+        function setamount(service) 
+        {
+            document.getElementById('amount').value = service.value;
+        } 
     </script>
 @endsection
