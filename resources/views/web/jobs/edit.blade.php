@@ -33,11 +33,7 @@
                                 <div class="row mt-3">
                                     <div class="col-md-6 mb-3">
                                         <label for="customer">{{ __('Cliente') }}</label>
-                                        <select class="form-control" name="customer_id" required>
-                                            @foreach($customers as $customer)
-                                            <option value="{{ $customer->id }}" @if($customer->id === $job->customer_id) selected @endif>{{ $customer->name }}</option>
-                                            @endforeach
-                                        </select>
+                                        <div><a href="{{ '/web/customers/' . $job->customer->getRouteKey() }}" target="_blank">{{ $job->customer->name }}</a></div>
                                     </div>
                                 </div>
                                 <div class="row mt-4">

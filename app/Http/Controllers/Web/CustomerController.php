@@ -72,7 +72,7 @@ class CustomerController extends Controller
         $customer->phone = str_replace(['+', '.', '-'], ['', '', ''], $request->get('phone'));
         $customer->save();
 
-        return redirect('/web/customers/' . $customer->getRouteKey())->with('success', __('El cliente ha sido creado exitosamente'));
+        return redirect('/web/customers/' . $customer->getRouteKey() . '/job/create')->with('success', __('El cliente ha sido creado exitosamente'));
     }
 
     /**
