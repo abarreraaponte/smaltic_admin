@@ -16,12 +16,17 @@ class CreateJobsTable extends Migration
         Schema::create('jobs', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('customer_id')->unsigned();
+            $table->integer('service_id')->unsigned();
+            $table->integer('artist_id')->unsigned();
             $table->date('date');
-            $table->string('hour')->nullable();
+            $table->string('details')->nullable();
+            $table->integer('amount');
             $table->timestamps();
             $table->softDeletes();
 
             $table->foreign('customer_id')->references('id')->on('customers');
+            $table->foreign('service_id')->references('id')->on('services');
+            $table->foreign('artist_id')->references('id')->on('artists');
         });
     }
 
