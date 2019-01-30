@@ -6,7 +6,7 @@ use App\Models\BaseModel;
 
 class Service extends BaseModel
 {
-    public function jobs()
+    public function job_lines()
     {
     	return $this->hasMany('App\Models\Job');
     }
