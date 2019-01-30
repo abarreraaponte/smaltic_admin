@@ -17,17 +17,21 @@ class Job extends BaseModel
     	return $this->hasMany('App\Models\Payment');
     }
 
-    public function job_lines()
+    public function service()
     {
-        return $this->hasMany('App\Models\JobLine');
+        return $this->belongsTo('App\Models\Service');
+    }
+
+    public function artist()
+    {
+        return $this->belongsTo('App\Models\Artist');
     }
 
     public function canBeDeleted()
     {
         $p = $this->payments->count();
-        $jl = $this->job_lines->count();
 
-        if($p + $jl >= 1)
+        if($p >= 1)
         {
             return false;
         }
@@ -39,10 +43,6 @@ class Job extends BaseModel
 
     }
 
-    public function getAmount()
-    {
-        return $this->job_lines->pluck('amount')->sum();
-    }
 
     public function getPaidAmount()
     {
@@ -51,6 +51,6 @@ class Job extends BaseModel
 
     public function getPendingAmount()
     {
-        return $this->getAmount() - $this->getPaidAmount();
+        return $this->amount - $this->getPaidAmount();
     }
 }

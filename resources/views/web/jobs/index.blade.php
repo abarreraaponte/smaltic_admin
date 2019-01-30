@@ -78,6 +78,7 @@
                 </button>
             </div>
             <div class="modal-body">
+            	<a class="btn btn-primary mt-3 mb-3" href="/web/customers/create"><i class="fas fa-female"></i> {{ __('Nueva Clienta') }}</a>
                 <div class="table-responsive table-sm table-hover">
 			        <table id="secondary_table" class="table table-bordered table-striped">
 			            <thead class="thead-light">

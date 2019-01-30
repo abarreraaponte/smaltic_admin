@@ -39,8 +39,24 @@
                                         <input type="text" class="form-control" id="name" value="{{ $job->date }}" readonly>
                                     </div>
                                     <div class="col-md-6 mb-3">
-                                        <label for="hour"> {{ __('Hora') }}</label>
-                                        <input type="text" class="form-control" id="name" value="{{ $job->hour }}" readonly>
+                                        <label for="hour"> {{ __('Detalles') }}</label>
+                                        <input type="text" class="form-control" id="details" value="{{ $job->details }}" readonly>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-4">
+                                    <div class="col-md-4 mb-3">
+                                        <label for="service">Servicio</label>
+                                        <input type="text" class="form-control" id="service" value="{{ $job->service->name }}" readonly>
+
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label for="artist">Artista</label>
+                                        <input type="text" class="form-control" id="artist" value="{{ $job->artist->name }}" readonly>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label for="amount">Monto</label>
+                                        <input type="number" class="form-control" id="amount" value="{{ $job->amount }}" readonly>
                                     </div>
                                 </div>
                             </div>                            

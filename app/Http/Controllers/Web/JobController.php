@@ -53,40 +53,22 @@ class JobController extends Controller
         $request->validate([
             'customer_id' => 'required|integer',
             'date' => 'required|date',
-            'hour' => 'string|nullable|max:20',
-            'service_id' => 'required|array|min:1',
-            'service_id.*' => 'required|integer',
-            'artist_id' => 'required|array|min:1',
-            'artist_id.*' => 'required|integer',
-            'details' => 'required|array|min:1',
-            'details.*' => 'nullable|string|max:100',
-            'amount' => 'required|array|min:1',
-            'amount.*' => 'required|integer',
+            'service_id' => 'required|integer',
+            'artist_id' => 'required|integer',
+            'details' => 'nullable|string|max:255',
+            'amount' => 'required|integer',
         ]);
 
         $job = new Job;
         $job->customer_id = $request->get('customer_id');
         $job->date = $request->get('date');
-        $job->hour = $request->get('hour');
+        $job->service_id = $request->get('service_id');
+        $job->artist_id = $request->get('artist_id');
+        $job->details = $request->get('details');
+        $job->amount = $request->get('amount');
         $job->save();
 
-        $service = $request->get('service_id');
-        $artist = $request->get('artist_id');
-        $details = $request->get('details');
-        $amount = $request->get('amount');
-
-        foreach($request->get('service_id') as $key => $sv)
-        {
-            $job_line = new JobLine;
-            $job_line->job_id = $job->id;
-            $job_line->service_id = $service[$key];
-            $job_line->artist_id = $artist[$key];
-            $job_line->details = $details[$key];
-            $job_line->amount = $amount[$key];
-            $job_line->save();
-        }
-
-        return redirect('/web/jobs/' . $job->getRouteKey())->with('success', __('La cita ha sido creada exitosamente'));
+        return redirect('/web/jobs/' . $job->getRouteKey())->with('success', __('El trabajo ha sido registrado exitosamente'));
     }
 
     /**
@@ -97,7 +79,7 @@ class JobController extends Controller
      */
     public function show(Job $job)
     {
-        $job->load(['job_lines', 'payments']);
+        $job->load(['payments']);
 
         return view('web.jobs.view', compact('job'));
     }
@@ -110,9 +92,11 @@ class JobController extends Controller
      */
     public function edit(Job $job)
     {
-        $job->load(['job_lines', 'payments']);
+        $job->load(['payments']);
+        $artists = Artist::active()->get();
+        $services = Service::active()->get();
 
-        return view('web.jobs.edit', compact('job'));
+        return view('web.jobs.edit', compact('job', 'artists', 'services'));
     }
 
     /**
@@ -125,17 +109,21 @@ class JobController extends Controller
     public function update(Request $request, Job $job)
     {
         $request->validate([
-            'customer_id' => 'required|integer',
             'date' => 'required|date',
-            'hour' => 'string|nullable|max:20',
+            'service_id' => 'required|integer',
+            'artist_id' => 'required|integer',
+            'details' => 'nullable|string|max:255',
+            'amount' => 'required|integer',
         ]);
 
-        $job->customer_id = $request->get('customer_id');
         $job->date = $request->get('date');
-        $job->hour = $request->get('hour');
+        $job->service_id = $request->get('service_id');
+        $job->artist_id = $request->get('artist_id');
+        $job->details = $request->get('details');
+        $job->amount = $request->get('amount');
         $job->save();
 
-        return redirect('/web/jobs/' . $job->getRouteKey())->with('success', __('La cita ha sido creada exitosamente'));
+        return redirect('/web/jobs/' . $job->getRouteKey())->with('success', __('El trabajo ha sido editado exitosamente'));
     }
 
     /**

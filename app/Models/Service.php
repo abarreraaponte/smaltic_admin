@@ -6,9 +6,9 @@ use App\Models\BaseModel;
 
 class Service extends BaseModel
 {
-    public function job_lines()
+    public function jobs()
     {
-    	return $this->hasMany('App\Models\JobLine');
+    	return $this->hasMany('App\Models\Job');
     }
 
     public function canBeDeleted()

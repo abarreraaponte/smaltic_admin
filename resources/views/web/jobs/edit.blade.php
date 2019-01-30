@@ -42,8 +42,31 @@
                                         <input type="date" class="form-control" id="date" name="date" value="{{ $job->date }}" required>
                                     </div>
                                     <div class="col-md-6 mb-3">
-                                        <label for="hour"> {{ __('Hora') }}</label>
-                                        <input type="time" class="form-control" id="hour" name="hour" value="{{ $job->hour }}">
+                                        <label for="details">Detalles</label>
+                                        <input type="text" class="form-control" id="details" value="{{ $job->details }}" name="details">
+                                    </div>
+                                </div>
+
+                                <div class="row mt-4">
+                                    <div class="col-md-4 mb-3">
+                                        <label for="service">Servicio</label>
+                                        <select class="custom-select d-block w-100" id="service" name="service_id" required>
+                                            @foreach($services as $service)
+                                            <option value="{{ $service->id }}" @if($service->id === $job->service_id) selected @endif>{{ $service->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label for="artist">Artista</label>
+                                        <select class="custom-select d-block w-100" id="artist" name="artist_id" required>
+                                            @foreach($artists as $artist)
+                                            <option value="{{ $artist->id }}" @if($artist->id === $job->artist_id) selected @endif>{{ $artist->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label for="amount">Monto</label>
+                                        <input type="number" class="form-control" id="amount" value="{{ $job->amount }}" name="amount" required>
                                     </div>
                                 </div>
                             </div>
