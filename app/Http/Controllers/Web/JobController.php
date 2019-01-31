@@ -103,8 +103,19 @@ class JobController extends Controller
     public function show(Job $job)
     {
         $job->load(['payments']);
+        $first_line = $job->job_lines->first();
+        if($job->job_lines->count() > 1)
+        {
+            $last_line = $job->job_lines->last();
+        }
 
-        return view('web.jobs.view', compact('job'));
+        else
+        {
+            $last_line = null;
+        }
+        
+
+        return view('web.jobs.view', compact('job', 'first_line', 'last_line'));
     }
 
     /**

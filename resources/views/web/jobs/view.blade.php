@@ -47,18 +47,33 @@
                                 <div class="row mt-4">
                                     <div class="col-md-4 mb-3">
                                         <label for="service">Servicio</label>
-                                        <input type="text" class="form-control" id="service" value="{{ $job->service->name }}" readonly>
-
+                                        <input type="text" class="form-control" id="service_1" value="{{ $first_line->service->name }}" readonly>
                                     </div>
                                     <div class="col-md-4 mb-3">
                                         <label for="artist">Artista</label>
-                                        <input type="text" class="form-control" id="artist" value="{{ $job->artist->name }}" readonly>
+                                        <input type="text" class="form-control" id="artist_1" value="{{ $first_line->artist->name }}" readonly>
                                     </div>
                                     <div class="col-md-4 mb-3">
                                         <label for="amount">Monto</label>
-                                        <input type="number" class="form-control" id="amount" value="{{ $job->amount }}" readonly>
+                                        <input type="number" class="form-control" id="amount_1" value="{{ $first_line->amount }}" readonly>
                                     </div>
                                 </div>
+                                @if($last_line != null)
+                                <div class="row mt-4">
+                                    <div class="col-md-4 mb-3">
+                                        <label for="service">Servicio</label>
+                                        <input type="text" class="form-control" id="service_2" value="{{ $last_line->service->name }}" readonly>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label for="artist">Artista</label>
+                                        <input type="text" class="form-control" id="artist_2" value="{{ $last_line->artist->name }}" readonly>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label for="amount">Monto</label>
+                                        <input type="number" class="form-control" id="amount_2" value="{{ $last_line->amount }}" readonly>
+                                    </div>
+                                </div>
+                                @endif
                             </div>                            
                         </div>
                     </div>
