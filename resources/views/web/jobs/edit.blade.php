@@ -50,30 +50,59 @@
                                 <div class="row mt-4">
                                     <div class="col-md-4 mb-3">
                                         <label for="service">Servicio</label>
-                                        <select class="custom-select d-block w-100" id="service" name="service_id" required>
+                                        <select class="custom-select d-block w-100" id="service1" name="service_id" required>
+                                            <option value="">{{ __('Seleccionar Servicio') }}</option>
                                             @foreach($services as $service)
-                                            <option value="{{ $service->id }}" @if($service->id === $job->service_id) selected @endif>{{ $service->name }}</option>
+                                            <option value="{{ $service->id }}" @if($service->id === $first_line->service_id) selected @endif>{{ $service->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                     <div class="col-md-4 mb-3">
                                         <label for="artist">Artista</label>
-                                        <select class="custom-select d-block w-100" id="artist" name="artist_id" required>
+                                        <select class="custom-select d-block w-100" id="artist1" name="artist_id" required>
                                             @foreach($artists as $artist)
-                                            <option value="{{ $artist->id }}" @if($artist->id === $job->artist_id) selected @endif>{{ $artist->name }}</option>
+                                            <option value="{{ $artist->id }}" @if($artist->id === $first_line->artist_id) selected @endif>{{ $artist->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                     <div class="col-md-4 mb-3">
                                         <label for="amount">Monto</label>
-                                        <input type="number" class="form-control" id="amount" value="{{ $job->amount }}" name="amount" required>
+                                        <input type="number" class="form-control" id="amount1" value="{{ $first_line->amount }}" name="amount" required>
                                     </div>
                                 </div>
+                                @if($last_line != null)
+                                <div class="row mt-4" id="secondline" style="display: none;">
+                                    <div class="col-md-4 mb-3">
+                                        <label for="service">Servicio</label>
+                                        <select class="custom-select d-block w-100" id="service2" name="service_id_2">
+                                            <option value="">{{ __('Seleccionar Servicio') }}</option>
+                                            @foreach($services as $service)
+                                            <option value="{{ $service->id }}" @if($service->id === $last_line->service_id) selected @endif>{{ $service->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label for="artist">Artista</label>
+                                        <select class="custom-select d-block w-100" id="artist2" name="artist_id_2">
+                                            @foreach($artists as $artist)
+                                            <option value="{{ $artist->id }}" @if($artist->id === $last_line->artist_id) selected @endif>{{ $artist->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label for="amount">Monto</label>
+                                        <input type="number" class="form-control" id="amount2" value="{{ $last_line->amount }}" name="amount_2">
+                                    </div>
+                                </div>
+                                @endif
+                            </div> 
                             </div>
 
                             <hr class="mb-4">
 
                             <button class="btn btn-primary" type="submit">{{ __('Guardar') }}</button>
+                            <button class="btn btn-dark" id="addsecondlinebutton" onclick="event.preventDefault(); addsecondline()">{{ __('Agregar Segunda Linea') }}</button>
+                            <button class="btn btn-danger" style="display: none;" id="removesecondlinebutton" onclick="event.preventDefault(); removesecondline()">{{ __('Remover Segunda Linea') }}</button>
                         </div>
                     </div>
                 </div>
@@ -95,6 +124,25 @@
             // disable unload warning
             $(window).off('beforeunload');
         });
+    </script>
+
+    <script>
+        function addsecondline() {
+            document.getElementById('secondline').style.display = "";
+            document.getElementById('service2').required = true;
+            document.getElementById('artist2').required = true;
+            document.getElementById('amount2').required = true;
+            document.getElementById('addsecondlinebutton').style.display = "none";
+            document.getElementById('removesecondlinebutton').style.display = "";
+        };
+        function removesecondline() {
+            document.getElementById('secondline').style.display = "none";
+            document.getElementById('service2').required = false;
+            document.getElementById('artist2').required = false;
+            document.getElementById('amount2').required = false;
+            document.getElementById('addsecondlinebutton').style.display = "";
+            document.getElementById('removesecondlinebutton').style.display = "none";
+        };
     </script>
 @endsection
 
