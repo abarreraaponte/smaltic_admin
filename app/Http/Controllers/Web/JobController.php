@@ -129,8 +129,18 @@ class JobController extends Controller
         $job->load(['payments']);
         $artists = Artist::active()->get();
         $services = Service::active()->get();
+        $first_line = $job->job_lines->first();
+        if($job->job_lines->count() > 1)
+        {
+            $last_line = $job->job_lines->last();
+        }
 
-        return view('web.jobs.edit', compact('job', 'artists', 'services'));
+        else
+        {
+            $last_line = null;
+        }
+
+        return view('web.jobs.edit', compact('job', 'artists', 'services', 'first_line', 'last_line'));
     }
 
     /**
