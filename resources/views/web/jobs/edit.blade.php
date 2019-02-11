@@ -31,9 +31,21 @@
 
                             <div id="entity_data">
                                 <div class="row mt-3">
-                                    <div class="col-md-6 mb-3">
+                                    <div class="col-md-3 mb-3">
                                         <label for="customer">{{ __('Cliente') }}</label>
                                         <div><a href="{{ '/web/customers/' . $job->customer->getRouteKey() }}" target="_blank">{{ $job->customer->name }}</a></div>
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                         <label for="amount">{{ __('Monto Total') }}</label>
+                                        <input type="text" class="form-control" id="name" value="{{ $job->getAmount() }}" readonly>
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                         <label for="amount">{{ __('Monto Pagado') }}</label>
+                                        <input type="text" class="form-control" id="name" value="{{ $job->getPaidAmount() }}" readonly>
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                         <label for="amount">{{ __('Monto Pendiente') }}</label>
+                                        <input type="text" class="form-control" id="name" value="{{ $job->getPendingAmount() }}" readonly>
                                     </div>
                                 </div>
                                 <div class="row mt-4">
@@ -184,9 +196,9 @@
 @push('form_scripts')
 
     <script>
-        function {{ 'deactivate' . $job->id . '()' }} {
+        function {{ 'delete' . $job->id . '()' }} {
             swal({
-                title: "{{ __('Seguro que desea desactivar el Trabajo?') . ' ' . $job->getNameValue() }}",
+                title: "{{ __('Seguro que desea borrar el Trabajo?') . ' ' . $job->getNameValue() }}",
                 type: "warning",
                 showCancelButton: true,
                 confirmButtonColor: '#f6993f',
@@ -196,7 +208,7 @@
             }).then((result) => {
                     if (result.value) {
                         event.preventDefault();
-                        document.getElementById('{{ 'deactivate-record' . $job->getRouteKey() }}').submit();
+                        document.getElementById('{{ 'delete-record' . $job->getRouteKey() }}').submit();
                     }
                 }
             )
