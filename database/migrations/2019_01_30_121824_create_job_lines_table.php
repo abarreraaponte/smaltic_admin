@@ -22,7 +22,7 @@ class CreateJobLinesTable extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('job_id')->references('id')->on('jobs');
+            $table->foreign('job_id')->references('id')->on('jobs')->onDelete('cascade');
             $table->foreign('service_id')->references('id')->on('services');
             $table->foreign('artist_id')->references('id')->on('artists');
         });

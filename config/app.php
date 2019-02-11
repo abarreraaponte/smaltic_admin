@@ -13,7 +13,19 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'Smaltic'),
+
+    /*
+    |---------------------------------------------------------------------
+    | Reward Baseline is the minimun amount a customer is required to have
+    | in order to use rewards.
+    |
+    | Reward Rate is the percentage of the amount of a job that get's
+    | converted to reward.
+    */
+
+    'reward_baseline' => env('REWARD_BASELINE', 10000),
+    'reward_rate' => env('REWARD_RATE', 20),
 
     /*
     |--------------------------------------------------------------------------
