@@ -93,6 +93,32 @@
                                         <label for="amount">Monto</label>
                                         <input type="number" class="form-control" id="amount2" value="{{ $last_line->amount }}" name="amount_2">
                                     </div>
+                                    <input id="toggle-delete-last-line" type="hidden" name="delete_last_line" value="0">
+                                </div>
+                                @else
+                                <div class="row mt-4" id="secondline" style="display: none;">
+                                    <div class="col-md-4 mb-3">
+                                        <label for="service">Servicio</label>
+                                        <select class="custom-select d-block w-100" id="service2" name="service_id_2">
+                                            <option value="">{{ __('Seleccionar Servicio') }}</option>
+                                            @foreach($services as $service)
+                                            <option value="{{ $service->id }}">{{ $service->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label for="artist">Artista</label>
+                                        <select class="custom-select d-block w-100" id="artist2" name="artist_id_2">
+                                            @foreach($artists as $artist)
+                                            <option value="{{ $artist->id }}" @if($artist->id === $job->customer->artist_id) selected @endif>{{ $artist->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label for="amount">Monto</label>
+                                        <input type="number" class="form-control" id="amount2" value="" name="amount_2">
+                                    </div>
+                                    <input id="toggle-delete-last-line" type="hidden" name="delete_last_line" value="0">
                                 </div>
                                 @endif
                             </div> 
@@ -132,6 +158,7 @@
             document.getElementById('service2').required = true;
             document.getElementById('artist2').required = true;
             document.getElementById('amount2').required = true;
+            document.getElementById('toggle-delete-last-line').value = "0";
             document.getElementById('addsecondlinebutton').style.display = "none";
             document.getElementById('removesecondlinebutton').style.display = "";
         };
@@ -140,10 +167,18 @@
             document.getElementById('service2').required = false;
             document.getElementById('artist2').required = false;
             document.getElementById('amount2').required = false;
+            document.getElementById('toggle-delete-last-line').value = "1";
             document.getElementById('addsecondlinebutton').style.display = "";
             document.getElementById('removesecondlinebutton').style.display = "none";
         };
     </script>
+
+    @if($last_line != null)
+    <script>
+        window.document.onload = addsecondline();
+    </script>
+    @endif
+
 @endsection
 
 @push('form_scripts')
