@@ -4,7 +4,7 @@
 
 <div class="container-fluid">
 	<div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-10">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap mb-2">
                 <div>
                     <a class="h5"><i class="fas fa-calendar-check"></i> {{ __('Crear Trabajo para: ') . ' ' . $customer->name }}</a>

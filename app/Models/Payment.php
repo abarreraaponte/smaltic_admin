@@ -30,4 +30,9 @@ class Payment extends BaseModel
     {
         return $this->belongsTo('App\Models\Customer');
     }
+
+    public function reward()
+    {
+        return $this->hasOne('App\Models\Reward');
+    }
 }

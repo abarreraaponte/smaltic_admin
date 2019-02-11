@@ -58,6 +58,9 @@ Route::prefix('web')->middleware(['auth'])->group(function () {
 	
 	## Jobs CRUD Routes ##
 	Route::resource('/jobs', 'Web\JobController')->except('create');
+	Route::post('/jobs/{job}/payment/create', 'Web\JobPaymentController@add');
+	Route::put('/jobs/{job}/payment/{payment}/edit', 'Web\JobPaymentController@edit');
+	Route::delete('/jobs/{job}/payment/{payment}/delete', 'Web\JobPaymentController@delete');
 	Route::get('/customers/{customer}/job/create', 'Web\JobController@create');
 
 	## Expenses CRUD Routes ##

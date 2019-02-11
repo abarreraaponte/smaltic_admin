@@ -9,6 +9,7 @@ use App\Models\Artist;
 use App\Models\Service;
 use App\Models\Job;
 use App\Models\JobLine;
+use App\Models\PaymentMethod;
 
 class JobController extends Controller
 {
@@ -103,6 +104,10 @@ class JobController extends Controller
     public function show(Job $job)
     {
         $job->load(['payments']);
+        $payments = $job->payments;
+        $points = $job->customer->rewards->pluck('value')->sum();
+        $payment_methods = PaymentMethod::where('is_reward', 0)->get();
+        $rpm = PaymentMethod::where('is_reward', '1')->first();
         $first_line = $job->job_lines->first();
         if($job->job_lines->count() > 1)
         {
@@ -115,7 +120,7 @@ class JobController extends Controller
         }
         
 
-        return view('web.jobs.view', compact('job', 'first_line', 'last_line'));
+        return view('web.jobs.view', compact('job', 'first_line', 'last_line', 'payments', 'points', 'payment_methods', 'rpm'));
     }
 
     /**
