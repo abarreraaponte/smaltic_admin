@@ -160,14 +160,57 @@ class JobController extends Controller
             'amount' => 'required|integer',
         ]);
 
+        if($request->get('service_id_2') != null)
+        {
+            $request->validate([
+                'service_id_2' => 'required|integer',
+                'artist_id_2' => 'required|integer',
+                'amount_2' => 'required|integer',
+                'delete_last_line' => 'nullable|integer',
+            ]);
+        }
+
         $job->date = $request->get('date');
-        $job->service_id = $request->get('service_id');
-        $job->artist_id = $request->get('artist_id');
         $job->details = $request->get('details');
-        $job->amount = $request->get('amount');
         $job->save();
 
-        return redirect('/web/jobs/' . $job->getRouteKey())->with('success', __('El trabajo ha sido editado exitosamente'));
+        $jl = $job->job_lines->first();
+        $jl->service_id = $request->get('service_id');
+        $jl->artist_id = $request->get('artist_id');
+        $jl->amount = $request->get('amount');
+        $jl->save();
+
+        if($request->get('service_id_2') != null)
+        {
+            if($job->job_lines->count() === 1)
+            {
+                $jl2 = new JobLine;
+                $jl2->job_id = $job->id;
+                $jl2->service_id = $request->get('service_id_2');
+                $jl2->artist_id = $request->get('artist_id_2');
+                $jl2->amount = $request->get('amount_2');
+                $jl2->save();
+            }
+
+            elseif($job->job_lines->count() > 1) 
+            {
+                if($request->get('delete_last_line') === '1')
+                {
+                    $jl2 = $job->job_lines->last();
+                    $jl2->delete();
+                }
+
+                else {
+                    $jl2 = $job->job_lines->last();
+                    $jl2->service_id = $request->get('service_id_2');
+                    $jl2->artist_id = $request->get('artist_id_2');
+                    $jl2->amount = $request->get('amount_2');
+                    $jl2->save();
+                }
+            }
+        }
+
+        return redirect('/web/jobs/' . $job->getRouteKey())->with('success', __('El trabajo ha sido actualizado exitosamente'));
     }
 
     /**
