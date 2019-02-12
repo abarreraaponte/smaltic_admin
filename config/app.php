@@ -24,8 +24,8 @@ return [
     | converted to reward.
     */
 
-    'reward_baseline' => env('REWARD_BASELINE', 10000),
-    'reward_rate' => env('REWARD_RATE', 20),
+    'reward_baseline' => env('REWARD_BASELINE', 15000),
+    'reward_rate' => env('REWARD_RATE', 25),
 
     /*
     |--------------------------------------------------------------------------

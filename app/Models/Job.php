@@ -52,4 +52,9 @@ class Job extends BaseModel
     {
         return $this->getAmount() - $this->getPaidAmount();
     }
+
+    public function reward()
+    {
+        return $this->hasOne('App\Models\Reward');
+    }
 }

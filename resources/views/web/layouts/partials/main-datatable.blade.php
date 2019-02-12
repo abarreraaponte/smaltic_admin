@@ -1,6 +1,7 @@
 <script>
     $(document).ready( function () {
         $('#main_table').DataTable( {
+        	"ordering": false,
         	"language": {
                 "sProcessing":     "Procesando...",
 			    "sLengthMenu":     "Mostrar _MENU_ registros",

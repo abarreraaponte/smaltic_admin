@@ -2,9 +2,9 @@
 
 @section('content')
 
-<div class="container">
+<div class="container-fluid">
 	<div class="row justify-content-center">
-        <div class="col-md-12">
+        <div class="col-md-10">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap mb-2">
                 <div>
                     <a class="h5"><i class="fas fa-calendar-check"></i> {{ __('Ver Trabajo:') . ' ' . $job->name }}</a>
@@ -12,6 +12,10 @@
                 <div>
                     <a href="{{ '/web/jobs/' . $job->getRouteKey() . '/edit' }}" class="btn btn-primary"><i class="fas fa-edit"></i> {{ __('Editar Trabajo') }}</a>
                     <a href="/web/jobs" class="btn btn-outline-primary"><i class="fas fa-list"></i> {{ __('Lista') }}</a>
+                    <button type="button" data-toggle="modal" data-target="#addpayment"  class="btn btn-success"><i class="fas fa-dollar-sign"></i> {{ __('Registrar Pago') }}</button>
+                    @if($points >= config('app.reward_baseline'))
+                        <button type="button" data-toggle="modal" data-target="#usereward"  class="btn btn-warning"><i class="fas fa-award"></i> {{ __('Usar Puntos') }}</button>
+                    @endif
                     <a href="#" class="btn btn-outline-danger" onclick="{{ 'delete' . $job->id . '()' }}"><i class="fas fa-trash"></i></a>
                     <form id="{{ 'delete-record' . $job->getRouteKey() }}" method="post" action="{{ '/web/jobs/' . $job->getRouteKey() }}">
                         <input name="_method" type="hidden" value="DELETE">
@@ -92,6 +96,9 @@
                 </div>
         </div>
     </div>
+
+    @include('web.jobs.payments')
+    
 </div>
 
 @endsection
@@ -121,5 +128,27 @@
             )
         }
     </script>
+
+    @foreach($payments as $payment)
+        <script>
+            function {{ 'deletepayment' . $payment->id . '()' }} {
+                    swal({
+                        title: "Estás seguro que deseas este pago?",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Si, Borrar',
+                        cancelButtonText: "No, Cancelar"
+                    }).then((result) => {
+                            if (result.value) {
+                                event.preventDefault();
+                                document.getElementById('{{ 'delete-payment' . $payment->getRouteKey() }}').submit();
+                            }
+                        }
+                    )
+                }
+        </script>
+    @endforeach
 
 @endpush
