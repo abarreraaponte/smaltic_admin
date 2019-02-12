@@ -7,7 +7,7 @@
         <div class="col-md-10">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap mb-2">
                 <div>
-                    <a class="h5"><i class="fas fa-calendar-check"></i> {{ __('Ver Trabajo:') . ' ' . $job->name }}</a>
+                    <a class="h5"><i class="fas fa-calendar-check"></i> {{ __('Ver Trabajo de:') . ' ' . $job->customer->name }}</a>
                 </div>
                 <div>
                     <a href="{{ '/web/jobs/' . $job->getRouteKey() . '/edit' }}" class="btn btn-primary"><i class="fas fa-edit"></i> {{ __('Editar Trabajo') }}</a>
@@ -32,19 +32,23 @@
 
                             <div id="entity_data">
                                 <div class="row mt-3">
-                                    <div class="col-md-3 mb-3">
+                                    <div class="col-md-4 mb-3">
                                         <label for="customer">{{ __('Cliente') }}</label>
                                         <div><a href="{{ '/web/customers/' . $job->customer->getRouteKey() }}" target="_blank">{{ $job->customer->name }}</a></div>
                                     </div>
-                                    <div class="col-md-3 mb-3">
+                                    <div class="col-md-2 mb-3">
+                                        <label for="customer">{{ __('Puntos Disponibles') }}</label>
+                                        <div>{{ $points }}</div>
+                                    </div>
+                                    <div class="col-md-2 mb-3">
                                          <label for="amount">{{ __('Monto Total') }}</label>
                                         <input type="text" class="form-control" id="name" value="{{ $job->getAmount() }}" readonly>
                                     </div>
-                                    <div class="col-md-3 mb-3">
+                                    <div class="col-md-2 mb-3">
                                          <label for="amount">{{ __('Monto Pagado') }}</label>
                                         <input type="text" class="form-control" id="name" value="{{ $job->getPaidAmount() }}" readonly>
                                     </div>
-                                    <div class="col-md-3 mb-3">
+                                    <div class="col-md-2 mb-3">
                                          <label for="amount">{{ __('Monto Pendiente') }}</label>
                                         <input type="text" class="form-control" id="name" value="{{ $job->getPendingAmount() }}" readonly>
                                     </div>

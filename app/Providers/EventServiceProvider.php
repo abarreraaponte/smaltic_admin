@@ -18,6 +18,18 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+
+        'App\Events\PaymentCreated' => [
+            'App\Listeners\AddPaymentReward'
+        ],
+
+        'App\Events\PaymentUpdated' => [
+            'App\Listeners\UpdatePaymentReward'
+        ],
+        
+        'App\Events\PaymentDeleted' => [
+            'App\Listeners\DeletePaymentReward'
+        ],
     ];
 
     /**
