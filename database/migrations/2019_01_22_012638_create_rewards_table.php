@@ -17,13 +17,13 @@ class CreateRewardsTable extends Migration
             $table->increments('id');
             $table->integer('customer_id')->unsigned();
             $table->integer('job_id')->unsigned();
-            $table->integer('payment_id')->unsigned();
+            $table->integer('payment_id')->unsigned()->nullable();
             $table->integer('value');
             $table->timestamps();
             $table->softdeletes();
 
             $table->foreign('customer_id')->references('id')->on('customers');
-            $table->foreign('job_id')->references('id')->on('jobs');
+            $table->foreign('job_id')->references('id')->on('jobs')->onDelete('cascade');
             $table->foreign('payment_id')->references('id')->on('payments');
         });
     }

@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Job;
 use App\Models\Payment;
 use App\Models\PaymentMethod;
+use App\Models\Account;
 
 class JobPaymentController extends Controller
 {
@@ -16,7 +17,7 @@ class JobPaymentController extends Controller
             'is_downpayment' => 'required|integer',
             'date' => 'date|required',
             'payment_method_id' => 'integer|required',
-            'account_id' => 'integer|required',
+            'account_id' => 'integer|nullable',
             'amount' => 'integer|required',
             'is_reward' => 'nullable|integer',
             'reference' => 'nullable|string|max:100',
@@ -39,10 +40,13 @@ class JobPaymentController extends Controller
         $payment->customer_id = $job->customer->id;
         if($request->get('is_reward') != null)
         {
-            $payment->is_reward = $request->get('is_reward');
+            $payment->account_id = Account::where('is_reward', '1')->pluck('id')->first();
+        }
+        else{
+            $payment->account_id = $request->get('account_id');
         }
         $payment->payment_method_id = $request->get('payment_method_id');
-        $payment->account_id = $request->get('account_id');
+        
         $payment->reference = $request->get('reference');
         $payment->amount = $request->get('amount');
         $payment->save();
@@ -65,12 +69,11 @@ class JobPaymentController extends Controller
 
         $payment->is_downpayment = $request->get('is_downpayment');
         $payment->date = $request->get('date');
-        if($request->get('is_reward') != null)
+        if($request->get('is_reward') != '1')
         {
-            $payment->is_reward = $request->get('is_reward');
+            $payment->account_id = $request->get('account_id');
         }
         $payment->payment_method_id = $request->get('payment_method_id');
-        $payment->account_id = $request->get('account_id');
         $payment->reference = $request->get('reference');
         $payment->amount = $request->get('amount');
         $payment->save();

@@ -17,6 +17,7 @@ class CreateAccountsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->boolean('active')->default(1);
+            $table->boolean('is_reward')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

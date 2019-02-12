@@ -29,6 +29,12 @@
                                         <input type="hidden" name="customer_id" value="{{ $customer->id }}">
                                         <div><a href="{{ '/web/customers/' . $customer->getRouteKey() }}" target="_blank">{{ $customer->name }}</a></div>
                                     </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="has_reward" name="has_reward" value="1">
+                                            <label class="custom-control-label" for="has_reward">{{ __('Acumula Puntos?') }}</label>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="row mt-4">
                                     <div class="col-md-6 mb-3">

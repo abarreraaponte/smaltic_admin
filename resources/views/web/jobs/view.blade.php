@@ -129,4 +129,26 @@
         }
     </script>
 
+    @foreach($payments as $payment)
+        <script>
+            function {{ 'deletepayment' . $payment->id . '()' }} {
+                    swal({
+                        title: "Estás seguro que deseas este pago?",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Si, Borrar',
+                        cancelButtonText: "No, Cancelar"
+                    }).then((result) => {
+                            if (result.value) {
+                                event.preventDefault();
+                                document.getElementById('{{ 'delete-payment' . $payment->getRouteKey() }}').submit();
+                            }
+                        }
+                    )
+                }
+        </script>
+    @endforeach
+
 @endpush

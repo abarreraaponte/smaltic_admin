@@ -32,4 +32,5 @@ class Account extends BaseModel
     	}
 
     }
+
 }

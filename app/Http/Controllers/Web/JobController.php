@@ -10,6 +10,8 @@ use App\Models\Service;
 use App\Models\Job;
 use App\Models\JobLine;
 use App\Models\PaymentMethod;
+use App\Models\Account;
+use App\Models\Reward;
 
 class JobController extends Controller
 {
@@ -20,7 +22,7 @@ class JobController extends Controller
      */
     public function index()
     {
-        $jobs = Job::all();
+        $jobs = Job::orderBy('id', 'desc')->get();
         $customers = Customer::active()->get();
 
         return view('web.jobs.index', compact('jobs', 'customers'));
@@ -58,6 +60,7 @@ class JobController extends Controller
             'artist_id' => 'required|integer',
             'details' => 'nullable|string|max:255',
             'amount' => 'required|integer',
+            'has_reward' => 'nullable|integer',
         ]);
 
         if($request->get('service_id_2') != null)
@@ -92,6 +95,15 @@ class JobController extends Controller
             $jl2->save();
         }
 
+        if($request->get('has_reward') === '1')
+        {
+            $reward = new Reward;
+            $reward->job_id = $job->id;
+            $reward->customer_id = $job->customer_id;
+            $reward->value = $job->getAmount() * (config('app.reward_rate') / 100);
+            $reward->save();
+        }
+
         return redirect('/web/jobs/' . $job->getRouteKey())->with('success', __('El trabajo ha sido registrado exitosamente'));
     }
 
@@ -104,6 +116,7 @@ class JobController extends Controller
     public function show(Job $job)
     {
         $job->load(['payments']);
+        $accounts = Account::active()->get();
         $payments = $job->payments;
         $points = $job->customer->rewards->pluck('value')->sum();
         $payment_methods = PaymentMethod::where('is_reward', 0)->get();
@@ -120,7 +133,7 @@ class JobController extends Controller
         }
         
 
-        return view('web.jobs.view', compact('job', 'first_line', 'last_line', 'payments', 'points', 'payment_methods', 'rpm'));
+        return view('web.jobs.view', compact('job', 'accounts', 'first_line', 'last_line', 'payments', 'points', 'payment_methods', 'rpm'));
     }
 
     /**
@@ -215,6 +228,13 @@ class JobController extends Controller
             }
         }
 
+        if($job->reward != null)
+        {
+            $reward = $job->reward;
+            $reward->value = $job->getAmount() * (config('app.reward_rate') / 100);
+            $reward->save(); 
+        }
+
         return redirect('/web/jobs/' . $job->getRouteKey())->with('success', __('El trabajo ha sido actualizado exitosamente'));
     }
 
@@ -228,6 +248,10 @@ class JobController extends Controller
     {
         if($job->canBeDeleted() === true)
         {
+            if($job->reward != null)
+            {
+                $job->reward->delete();
+            }
             $job->delete();
             return redirect('/web/jobs')->with('success', __('La cita ha sido eliminada exitosamente'));
         }

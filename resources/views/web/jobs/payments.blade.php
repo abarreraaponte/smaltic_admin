@@ -28,17 +28,17 @@
                                     <td>{{ $payment->payment_method->name }}</td>
                                     <td>{{ $payment->amount }}</td>
                                     @if($payment->payment_method_id != $rpm->id)
-                                        <td><button type="button" data-toggle="modal" data-target="{{ '#editpayment' . $payment->uuid }}"  class="btn btn-sm btn-info bg-gradient-info"><i class="fas fa-edit"></i> {{ __('Editar Pago') }}</button>
+                                        <td><button type="button" data-toggle="modal" data-target="{{ '#editpayment' . $payment->getRouteKey() }}"  class="btn btn-sm btn-primary"><i class="fas fa-edit"></i> {{ __('Editar Pago') }}</button>
                                             <a class="btn btn-sm btn-danger" href="#" onclick='{{ 'deletepayment' . $payment->id . '()' }}'><i class="fas fa-trash-alt"></i></a>
-                                            <form id="{{ 'delete-record' . $payment->getRouteKey() }}" method="post" action="{{ '/transactions/' . $job->getRouteKey() . '/payment/' . $payment->getRouteKey() . '/delete' }}">
+                                            <form id="{{ 'delete-payment' . $payment->getRouteKey() }}" method="post" action="{{ '/web/jobs/' . $job->getRouteKey() . '/payment/' . $payment->getRouteKey() . '/delete' }}">
                                                 <input name="_method" type="hidden" value="DELETE">
                                                 @csrf
                                             </form>
                                         </td>
                                     @elseif($payment->payment_method_id === $rpm->id)
-                                        <td><button type="button" data-toggle="modal" data-target="{{ '#editreward' . $payment->uuid }}"  class="btn btn-sm btn-info bg-gradient-warning"><i class="fas fa-award"></i> {{ __('Editar Uso de Puntos') }}</button>
+                                        <td><button type="button" data-toggle="modal" data-target="{{ '#editreward' . $payment->getRouteKey() }}"  class="btn btn-sm btn-warning"><i class="fas fa-award"></i> {{ __('Editar Uso de Puntos') }}</button>
                                             <a class="btn btn-sm btn-danger" href="#" onclick='{{ 'deletepayment' . $payment->id . '()' }}'><i class="fas fa-trash-alt"></i></a>
-                                            <form id="{{ 'delete-record' . $payment->getRouteKey() }}" method="post" action="{{ '/transactions/' . $job->getRouteKey() . '/payment/' . $payment->getRouteKey() . '/delete' }}">
+                                            <form id="{{ 'delete-payment' . $payment->getRouteKey() }}" method="post" action="{{ '/web/jobs/' . $job->getRouteKey() . '/payment/' . $payment->getRouteKey() . '/delete' }}">
                                                 <input name="_method" type="hidden" value="DELETE">
                                                 @csrf
                                             </form>
@@ -58,18 +58,18 @@
 <div class="modal fade" id="addpayment" role="dialog" tabindex="-1" aria-labelledby="addpayment" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header bg-dark text-white">
+            <div class="modal-header bg-success text-white">
                 <a class="h5 modal-title" id="contactmodallabel">Nuevo Pago</a>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form method="POST" action="{{ '/transactions/' . $job->getRouteKey() . '/payment' }}">
+                <form method="POST" action="{{ '/web/jobs/' . $job->getRouteKey() . '/payment/create' }}">
                     @csrf
                     <label class="mt-3"><a class="text-danger">*</a>¿Es Abono?</label>
-                    <input type="hidden" name="downpayment" value="0">
-                    <input type="checkbox" name="downpayment" value="1">
+                    <input type="hidden" name="is_downpayment" value="0">
+                    <input type="checkbox" name="is_downpayment" value="1">
 
                     <br>
 
@@ -77,10 +77,18 @@
                     <input type="date" class="form-control" name="date" required>
 
                     <label class="mt-3"><a class="text-danger">*</a> Medio de Pago</label>
-                    <select class="form-control" id="artist_id" name="payment_method_id" required>
+                    <select class="form-control" id="payment_method_id" name="payment_method_id" required>
                             <option value="">{{ __('Seleccionar') }}</option>
                         @foreach($payment_methods as $payment_method)
                             <option value="{{ $payment_method->id }}">{{ $payment_method->name }}</option>
+                        @endforeach
+                    </select>
+
+                    <label class="mt-3"><a class="text-danger">*</a> Cuenta</label>
+                    <select class="form-control" id="account_id" name="account_id" required>
+                            <option value="">{{ __('Seleccionar') }}</option>
+                        @foreach($accounts as $account)
+                            <option value="{{ $account->id }}">{{ $account->name }}</option>
                         @endforeach
                     </select>
 
@@ -98,22 +106,22 @@
 
 @if($payment->payment_method_id != $rpm->id)
 <!-- Edit Payment Modal -->
-<div class="modal fade" id="{{ 'editpayment' . $payment->uuid }}" role="dialog" tabindex="-1" aria-labelledby="editpayment" aria-hidden="true">
+<div class="modal fade" id="{{ 'editpayment' . $payment->getRouteKey() }}" role="dialog" tabindex="-1" aria-labelledby="editpayment" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header bg-dark text-white">
+            <div class="modal-header bg-success text-white">
                 <a class="h5 modal-title" id="contactmodallabel">Editar Pago</a>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form method="POST" action="{{ '/transactions/' . $job->getRouteKey() . '/payment/' . $payment->getRouteKey() . '/edit' }}">
+                <form method="POST" action="{{ '/web/jobs/' . $job->getRouteKey() . '/payment/' . $payment->getRouteKey() . '/edit' }}">
                     <input type="hidden" name="_method" value="PUT">
                     @csrf
                     <label class="mt-3"><a class="text-danger">*</a>¿Es Abono?</label>
-                    <input type="hidden" name="downpayment" value="0">
-                    <input type="checkbox" @if($payment->downpayment === 1) checked @endif name="downpayment" value="1">
+                    <input type="hidden" name="is_downpayment" value="0">
+                    <input type="checkbox" @if($payment->downpayment === 1) checked @endif name="is_downpayment" value="1">
 
                     <br>
 
@@ -140,21 +148,21 @@
 
 @elseif($payment->payment_method_id === $rpm->id)
 <!-- Edit Payment With Reward Modal -->
-<div class="modal fade" id="{{ 'editreward' . $payment->uuid }}" role="dialog" tabindex="-1" aria-labelledby="editpayment" aria-hidden="true">
+<div class="modal fade" id="{{ 'editreward' . $payment->getRouteKey() }}" role="dialog" tabindex="-1" aria-labelledby="editpayment" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header bg-gradient-warning text-white">
+            <div class="modal-header bg-warning text-white">
                 <a class="h5 modal-title" id="userewardlabel"><i class="fas fa-award"></i> Modificar Pago con Puntos</a>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form method="POST" action="{{ '/transactions/' . $job->getRouteKey() . '/payment/' . $payment->getRouteKey() . '/edit' }}">
+                <form method="POST" action="{{ '/web/jobs/' . $job->getRouteKey() . '/payment/' . $payment->getRouteKey() . '/edit' }}">
                     <input type="hidden" name="_method" value="PUT">
                     @csrf
                     <input type="hidden" name="is_reward" value="1">
-                    <input type="hidden" name="downpayment" value="0">
+                    <input type="hidden" name="is_downpayment" value="0">
                     <input type="hidden" name="payment_method_id" value="{{ $rpm->id }}">
 
                     <label class="mt-3"><a class="text-danger">*</a> Fecha de Pago</label>
@@ -184,17 +192,17 @@
 <div class="modal fade" id="usereward" role="dialog" tabindex="-1" aria-labelledby="usereward" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header bg-gradient-warning text-white">
+            <div class="modal-header bg-warning text-white">
                 <a class="h5 modal-title" id="userewardlabel"><i class="fas fa-award"></i> Usar Puntos</a>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form method="POST" action="{{ '/transactions/' . $job->getRouteKey() . '/payment' }}">
+                <form method="POST" action="{{ '/web/jobs/' . $job->getRouteKey() . '/payment/create' }}">
                     @csrf
                     <input type="hidden" name="is_reward" value="1">
-                    <input type="hidden" name="downpayment" value="0">
+                    <input type="hidden" name="is_downpayment" value="0">
                     <input type="hidden" name="payment_method_id" value="{{ $rpm->id }}">
 
                     <label class="mt-3"><a class="text-danger">*</a> Fecha de Pago</label>
