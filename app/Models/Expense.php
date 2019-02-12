@@ -11,11 +11,16 @@ class Expense extends BaseModel
     	return $this->hasMany('App\Models\ExpensePayment');
     }
 
+    public function expense_lines()
+    {
+        return $this->hasMany('App\Models\ExpenseLine');
+    }
+
     public function canBeDeleted()
     {
         $ep = $this->expense_payments->count();
 
-        if($jb >= 1)
+        if($ep >= 1)
         {
             return false;
         }
@@ -25,5 +30,20 @@ class Expense extends BaseModel
             return true;
         }
 
+    }
+
+    public function getAmount()
+    {
+        return $this->expense_lines->pluck('amount')->sum();
+    }
+
+    public function getPaidAmount()
+    {
+        return $this->expense_payments->pluck('amount')->sum();
+    }
+
+    public function getPendingAmount()
+    {
+        return $this->getAmount() - $this->getPaidAmount();
     }
 }
