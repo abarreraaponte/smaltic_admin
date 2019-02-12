@@ -59,7 +59,7 @@ class ExpenseController extends Controller
 
         $el = new ExpenseLine;
         $el->expense_id = $expense->id;
-        $el->expense_category_id => $request->get('expense_category_id');
+        $el->expense_category_id = $request->get('expense_category_id');
         $el->description = $request->get('description');
         $el->amount = $request->get('amount');
         $el->save();
