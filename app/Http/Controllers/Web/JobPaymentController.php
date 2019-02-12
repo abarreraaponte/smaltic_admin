@@ -61,7 +61,7 @@ class JobPaymentController extends Controller
             'is_downpayment' => 'required|integer',
             'date' => 'date|required',
             'payment_method_id' => 'integer|required',
-            'account_id' => 'integer|required',
+            'account_id' => 'integer|nullable',
             'amount' => 'integer|required',
             'is_reward' => 'nullable|integer',
             'reference' => 'nullable|string|max:100',

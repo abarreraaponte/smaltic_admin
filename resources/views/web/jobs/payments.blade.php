@@ -136,6 +136,14 @@
                         @endforeach
                     </select>
 
+                    <label class="mt-3"><a class="text-danger">*</a> Cuenta</label>
+                    <select class="form-control" id="account_id" name="account_id" required>
+                            <option value="">{{ __('Seleccionar') }}</option>
+                        @foreach($accounts as $account)
+                            <option value="{{ $account->id }}" @if($account->id === $payment->account_id) selected @endif>{{ $account->name }}</option>
+                        @endforeach
+                    </select>
+
                     <label class="mt-3"><a class="text-danger">*</a> Monto del Pago</label>
                     <input type="number" class="form-control" name="amount" value="{{ $payment->amount }}" min="0" step="100" max="{{ $payment->amount + $job->getPendingAmount() }}" required>
 

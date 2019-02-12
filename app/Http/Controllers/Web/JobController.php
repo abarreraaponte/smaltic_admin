@@ -116,7 +116,7 @@ class JobController extends Controller
     public function show(Job $job)
     {
         $job->load(['payments']);
-        $accounts = Account::active()->get();
+        $accounts = Account::active()->where('is_reward', '<>', '1')->get();
         $payments = $job->payments;
         $points = $job->customer->rewards->pluck('value')->sum();
         $payment_methods = PaymentMethod::where('is_reward', 0)->get();
