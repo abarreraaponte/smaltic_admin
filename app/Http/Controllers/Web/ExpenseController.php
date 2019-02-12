@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Expense;
 use App\Models\ExpenseLine;
+use App\Models\ExpenseCategory;
 use App\Models\PaymentMethod;
 use App\Models\ExpensePayment;
 use App\Models\Account;
@@ -19,9 +20,10 @@ class ExpenseController extends Controller
      */
     public function index()
     {
-        $expenses = Expense::orderBy('id', 'desc')->get();
+        $expense_lines = ExpenseLine::orderBy('id', 'desc')->get();
+        $expense_lines->load('expense');
 
-        return view('web.expenses.index', compact('expense'));
+        return view('web.expenses.index', compact('expense_lines'));
     }
 
     /**
@@ -31,7 +33,9 @@ class ExpenseController extends Controller
      */
     public function create()
     {
-        return view('web.expenses.create');
+        $expense_categories = ExpenseCategory::active()->get();
+
+        return view('web.expenses.create', compact('expense_categories'));
     }
 
     /**
@@ -44,6 +48,7 @@ class ExpenseController extends Controller
     {
         $request->validate([
             'date' => 'required|date',
+            'expense_category_id' => 'required|integer',
             'description' => 'required|string|max:255',
             'amount' => 'required|integer',
         ]);
@@ -54,6 +59,7 @@ class ExpenseController extends Controller
 
         $el = new ExpenseLine;
         $el->expense_id = $expense->id;
+        $el->expense_category_id => $request->get('expense_category_id');
         $el->description = $request->get('description');
         $el->amount = $request->get('amount');
         $el->save();
