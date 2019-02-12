@@ -32,6 +32,12 @@ Route::prefix('web')->middleware(['auth'])->group(function () {
 	Route::put('/artists/{artist}/inactivate', 'Web\ArtistController@inactivate');
     Route::put('/artists/{artist}/reactivate', 'Web\ArtistController@reactivate');
 
+    ## Expense Categories CRUD Routes ##
+	Route::resource('/expense-categories', 'Web\ExpenseCategoryController');
+	Route::get('/expense-categories/inactives/list', 'Web\ExpenseCategoryController@inactives');
+	Route::put('/expense-categories/{expense_category}/inactivate', 'Web\ExpenseCategoryController@inactivate');
+    Route::put('/expense-categories/{expense_category}/reactivate', 'Web\ExpenseCategoryController@reactivate');
+
     ## Sources CRUD Routes ##
 	Route::resource('/sources', 'Web\SourceController');
 	Route::get('/sources/inactives/list', 'Web\SourceController@inactives');
@@ -65,6 +71,9 @@ Route::prefix('web')->middleware(['auth'])->group(function () {
 
 	## Expenses CRUD Routes ##
 	Route::resource('/expenses', 'Web\ExpenseController');
+	Route::post('/expenses/{expense}/payment/create', 'Web\ExpensePaymentController@add');
+	Route::put('/expenses/{expense}/payment/{payment}/edit', 'Web\ExpensePaymentController@edit');
+	Route::delete('/expenses/{expense}/payment/{payment}/delete', 'Web\ExpensePaymentController@delete');
 
 	## Reports Routes ##
 	Route::get('/reports', 'Web\ReportController@index');

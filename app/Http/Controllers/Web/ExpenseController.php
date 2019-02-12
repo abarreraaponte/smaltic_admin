@@ -4,6 +4,11 @@ namespace App\Http\Controllers\Web;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Expense;
+use App\Models\ExpenseLine;
+use App\Models\PaymentMethod;
+use App\Models\ExpensePayment;
+use App\Models\Account;
 
 class ExpenseController extends Controller
 {
@@ -14,7 +19,9 @@ class ExpenseController extends Controller
      */
     public function index()
     {
-        //
+        $expenses = Expense::orderBy('id', 'desc')->get();
+
+        return view('web.expenses.index', compact('expense'));
     }
 
     /**
@@ -24,7 +31,7 @@ class ExpenseController extends Controller
      */
     public function create()
     {
-        //
+        return view('web.expenses.create');
     }
 
     /**
@@ -35,16 +42,32 @@ class ExpenseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'date' => 'required|date',
+            'description' => 'required|string|max:255',
+            'amount' => 'required|integer',
+        ]);
+
+        $expense = new Expense;
+        $expense->date = $request->get('date');
+        $expense->save();
+
+        $el = new ExpenseLine;
+        $el->expense_id = $expense->id;
+        $el->description = $request->get('description');
+        $el->amount = $request->get('amount');
+        $el->save();
+
+        return redirect('/web/expenses/' . $expense->getRouteKey())->with('success', 'El Gasto ha sido registrado exitosamente');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int  Expense $expense
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Expense $expense)
     {
         //
     }
@@ -52,10 +75,10 @@ class ExpenseController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int  Expense $expense
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Expense $expense)
     {
         //
     }
@@ -64,10 +87,10 @@ class ExpenseController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  int  Expense $expense
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Expense $expense)
     {
         //
     }
@@ -75,10 +98,10 @@ class ExpenseController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int  Expense $expense
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Expense $expense)
     {
         //
     }
