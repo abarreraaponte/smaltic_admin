@@ -99,8 +99,8 @@
                             <hr class="mb-4">
 
                             <button class="btn btn-primary" type="submit">{{ __('Guardar') }}</button>
-                            <button class="btn btn-dark" id="addsecondlinebutton" onclick="addsecondline()">{{ __('Agregar Segunda Linea') }}</button>
-                            <button class="btn btn-danger" style="display: none;" id="removesecondlinebutton" onclick="removesecondline()">{{ __('Remover Segunda Linea') }}</button>
+                            <button class="btn btn-dark" id="addsecondlinebutton" onclick="event.preventDefault(); addsecondline()">{{ __('Agregar Segunda Linea') }}</button>
+                            <button class="btn btn-danger" style="display: none;" id="removesecondlinebutton" onclick="event.preventDefault(); removesecondline()">{{ __('Remover Segunda Linea') }}</button>
                         </div>
                     </div>
                 </div>
