@@ -7,17 +7,14 @@
         <div class="col-md-10">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap mb-2">
                 <div>
-                    <a class="h5"><i class="fas fa-calendar-check"></i> {{ __('Ver Trabajo de:') . ' ' . $job->customer->name }}</a>
+                    <a class="h5"><i class="fas fa-credit-card"></i> {{ __('Ver Gasto') }}</a>
                 </div>
                 <div>
-                    <a href="{{ '/web/jobs/' . $job->getRouteKey() . '/edit' }}" class="btn btn-primary"><i class="fas fa-edit"></i> {{ __('Editar Trabajo') }}</a>
-                    <a href="/web/jobs" class="btn btn-outline-primary"><i class="fas fa-list"></i> {{ __('Lista') }}</a>
+                    <a href="{{ '/web/expenses/' . $expense->getRouteKey() . '/edit' }}" class="btn btn-primary"><i class="fas fa-edit"></i> {{ __('Editar Gasto') }}</a>
+                    <a href="/web/expenses" class="btn btn-outline-primary"><i class="fas fa-list"></i> {{ __('Lista') }}</a>
                     <button type="button" data-toggle="modal" data-target="#addpayment"  class="btn btn-success"><i class="fas fa-dollar-sign"></i> {{ __('Registrar Pago') }}</button>
-                    @if($points >= config('app.reward_baseline'))
-                        <button type="button" data-toggle="modal" data-target="#usereward"  class="btn btn-warning"><i class="fas fa-award"></i> {{ __('Usar Puntos') }}</button>
-                    @endif
-                    <a href="#" class="btn btn-outline-danger" onclick="{{ 'delete' . $job->id . '()' }}"><i class="fas fa-trash"></i></a>
-                    <form id="{{ 'delete-record' . $job->getRouteKey() }}" method="post" action="{{ '/web/jobs/' . $job->getRouteKey() }}">
+                    <a href="#" class="btn btn-outline-danger" onclick="{{ 'delete' . $expense->id . '()' }}"><i class="fas fa-trash"></i></a>
+                    <form id="{{ 'delete-record' . $expense->getRouteKey() }}" method="post" action="{{ '/web/expenses/' . $expense->getRouteKey() }}">
                         <input name="_method" type="hidden" value="DELETE">
                         @csrf
                     </form>
@@ -33,67 +30,39 @@
                             <div id="entity_data">
                                 <div class="row mt-3">
                                     <div class="col-md-4 mb-3">
-                                        <label for="customer">{{ __('Cliente') }}</label>
-                                        <div><a href="{{ '/web/customers/' . $job->customer->getRouteKey() }}" target="_blank">{{ $job->customer->name }}</a></div>
-                                    </div>
-                                    <div class="col-md-2 mb-3">
-                                        <label for="customer">{{ __('Puntos Disponibles') }}</label>
-                                        <div>{{ $points }}</div>
-                                    </div>
-                                    <div class="col-md-2 mb-3">
                                          <label for="amount">{{ __('Monto Total') }}</label>
-                                        <input type="text" class="form-control" id="name" value="{{ $job->getAmount() }}" readonly>
+                                        <input type="text" class="form-control" id="name" value="{{ $expense->getAmount() }}" readonly>
                                     </div>
-                                    <div class="col-md-2 mb-3">
+                                    <div class="col-md-4 mb-3">
                                          <label for="amount">{{ __('Monto Pagado') }}</label>
-                                        <input type="text" class="form-control" id="name" value="{{ $job->getPaidAmount() }}" readonly>
+                                        <input type="text" class="form-control" id="name" value="{{ $expense->getPaidAmount() }}" readonly>
                                     </div>
-                                    <div class="col-md-2 mb-3">
+                                    <div class="col-md-4 mb-3">
                                          <label for="amount">{{ __('Monto Pendiente') }}</label>
-                                        <input type="text" class="form-control" id="name" value="{{ $job->getPendingAmount() }}" readonly>
+                                        <input type="text" class="form-control" id="name" value="{{ $expense->getPendingAmount() }}" readonly>
                                     </div>
                                 </div>
-                                <div class="row mt-6">
+                                <div class="row mt-4">
                                     <div class="col-md-6 mb-3">
                                         <label for="date"><a class="text-danger">*</a> {{ __('Fecha') }}<span class="text-muted ml-1">{{ __('  (Obligatorio)') }}</span></label>
-                                        <input type="text" class="form-control" id="name" value="{{ $job->date }}" readonly>
+                                        <input type="date" class="form-control" id="date" value="{{ $expense->date }}" readonly>
                                     </div>
                                     <div class="col-md-6 mb-3">
-                                        <label for="hour"> {{ __('Detalles') }}</label>
-                                        <input type="text" class="form-control" id="details" value="{{ $job->details }}" readonly>
+                                        <label for="details">{{ __('Descripción') }}</label>
+                                        <input type="text" class="form-control" id="description" value="{{ $expense_line->description }}" readonly>
                                     </div>
                                 </div>
 
                                 <div class="row mt-4">
-                                    <div class="col-md-4 mb-3">
-                                        <label for="service">Servicio</label>
-                                        <input type="text" class="form-control" id="service_1" value="{{ $first_line->service->name }}" readonly>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="service">Categoria</label>
+                                        <input type="text" class="form-control" id="expene_cateogory_id" value="{{ $expense_line->expense_category->name }}" readonly>
                                     </div>
-                                    <div class="col-md-4 mb-3">
-                                        <label for="artist">Artista</label>
-                                        <input type="text" class="form-control" id="artist_1" value="{{ $first_line->artist->name }}" readonly>
-                                    </div>
-                                    <div class="col-md-4 mb-3">
+                                    <div class="col-md-6 mb-3">
                                         <label for="amount">Monto</label>
-                                        <input type="number" class="form-control" id="amount_1" value="{{ $first_line->amount }}" readonly>
+                                        <input type="number" class="form-control" id="amount1" value="{{ $expense_line->amount }}" readonly>
                                     </div>
                                 </div>
-                                @if($last_line != null)
-                                <div class="row mt-4">
-                                    <div class="col-md-4 mb-3">
-                                        <label for="service">Servicio</label>
-                                        <input type="text" class="form-control" id="service_2" value="{{ $last_line->service->name }}" readonly>
-                                    </div>
-                                    <div class="col-md-4 mb-3">
-                                        <label for="artist">Artista</label>
-                                        <input type="text" class="form-control" id="artist_2" value="{{ $last_line->artist->name }}" readonly>
-                                    </div>
-                                    <div class="col-md-4 mb-3">
-                                        <label for="amount">Monto</label>
-                                        <input type="number" class="form-control" id="amount_2" value="{{ $last_line->amount }}" readonly>
-                                    </div>
-                                </div>
-                                @endif
                             </div>                            
                         </div>
                     </div>
@@ -101,7 +70,7 @@
         </div>
     </div>
 
-    @include('web.jobs.payments')
+    @include('web.expenses.payments')
     
 </div>
 
@@ -114,9 +83,9 @@
 @push('form_scripts')
 
     <script>
-        function {{ 'delete' . $job->id . '()' }} {
+        function {{ 'delete' . $expense->id . '()' }} {
             swal({
-                title: "{{ __('Seguro que desea borrar el Trabajo?') . ' ' . $job->getNameValue() }}",
+                title: "{{ __('Seguro que desea borrar el Gasto?') . ' ' . $expense->getNameValue() }}",
                 type: "warning",
                 showCancelButton: true,
                 confirmButtonColor: '#f6993f',
@@ -126,16 +95,16 @@
             }).then((result) => {
                     if (result.value) {
                         event.preventDefault();
-                        document.getElementById('{{ 'delete-record' . $job->getRouteKey() }}').submit();
+                        document.getElementById('{{ 'delete-record' . $expense->getRouteKey() }}').submit();
                     }
                 }
             )
         }
     </script>
 
-    @foreach($payments as $payment)
+    @foreach($expense_payments as $expense_payment)
         <script>
-            function {{ 'deletepayment' . $payment->id . '()' }} {
+            function {{ 'deletepayment' . $expense_payment->id . '()' }} {
                     swal({
                         title: "Estás seguro que deseas este pago?",
                         type: "warning",
@@ -147,7 +116,7 @@
                     }).then((result) => {
                             if (result.value) {
                                 event.preventDefault();
-                                document.getElementById('{{ 'delete-payment' . $payment->getRouteKey() }}').submit();
+                                document.getElementById('{{ 'delete-payment' . $expense_payment->getRouteKey() }}').submit();
                             }
                         }
                     )
