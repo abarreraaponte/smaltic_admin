@@ -21,7 +21,7 @@
                                 <tr>
                                     <td>{{ $payment->date }}</td>
                                     <td>
-                                        @if($payment->downpayment === 1)
+                                        @if($payment->is_downpayment === 1)
                                         Si
                                         @else
                                         No
