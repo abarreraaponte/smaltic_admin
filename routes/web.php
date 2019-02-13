@@ -15,7 +15,7 @@ Route::get('/', function () {
     return redirect('/web/home');
 });
 
-Auth::routes();
+Auth::routes(['register' => false]);
 
 Route::prefix('web')->middleware(['auth'])->group(function () {
 	Route::get('/home', 'Web\HomeController@index')->name('home');
@@ -72,8 +72,8 @@ Route::prefix('web')->middleware(['auth'])->group(function () {
 	## Expenses CRUD Routes ##
 	Route::resource('/expenses', 'Web\ExpenseController');
 	Route::post('/expenses/{expense}/payment/create', 'Web\ExpensePaymentController@add');
-	Route::put('/expenses/{expense}/payment/{payment}/edit', 'Web\ExpensePaymentController@edit');
-	Route::delete('/expenses/{expense}/payment/{payment}/delete', 'Web\ExpensePaymentController@delete');
+	Route::put('/expenses/{expense}/payment/{expense_payment}/edit', 'Web\ExpensePaymentController@edit');
+	Route::delete('/expenses/{expense}/payment/{expense_payment}/delete', 'Web\ExpensePaymentController@delete');
 
 	## Reports Routes ##
 	Route::get('/reports', 'Web\ReportController@index');

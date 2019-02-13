@@ -29,25 +29,25 @@
                                         <input type="date" class="form-control" id="date" name="date" required>
                                     </div>
                                     <div class="col-md-6 mb-3">
-                                        <label for="details">Detalles</label>
+                                        <label for="details">{{ __('Descripción') }}</label>
                                         <input type="text" class="form-control" id="description" value="" name="description" required>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="row mt-4">
-                                <div class="col-md-6 mb-3">
-                                    <label for="service">Categoria</label>
-                                    <select class="custom-select d-block w-100" id="expense_category" name="expense_category_id" required>
-                                        <option value="">{{ __('Seleccionar Categoria') }}</option>
-                                        @foreach($expense_categories as $expense_category)
-                                        <option value="{{ $expense_category->id }}">{{ $expense_category->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="amount">Monto</label>
-                                    <input type="number" class="form-control" id="amount1" value="" name="amount" required>
+                                <div class="row mt-4">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="service">Categoria</label>
+                                        <select class="custom-select d-block w-100" id="expense_category" name="expense_category_id" required>
+                                            <option value="">{{ __('Seleccionar Categoria') }}</option>
+                                            @foreach($expense_categories as $expense_category)
+                                            <option value="{{ $expense_category->id }}">{{ $expense_category->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="amount">Monto</label>
+                                        <input type="number" class="form-control" id="amount1" value="" name="amount" required>
+                                    </div>
                                 </div>
                             </div>
 

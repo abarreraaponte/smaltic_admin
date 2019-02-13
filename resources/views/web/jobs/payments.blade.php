@@ -9,7 +9,9 @@
                             <tr>
                                 <th>Fecha</th>
                                 <th>¿Es Abono?</th>
+                                <th>Cuenta</th>
                                 <th>Medio de Pago</th>
+                                <th>Referencia</th>
                                 <th>Monto Total</th>
                                 <th>Acciones</th>
                             </tr>
@@ -25,7 +27,9 @@
                                         No
                                         @endif
                                     </td>
+                                    <td>{{ $payment->account->name }}</td>
                                     <td>{{ $payment->payment_method->name }}</td>
+                                    <td>{{ $payment->reference }}</td>
                                     <td>{{ $payment->amount }}</td>
                                     @if($payment->payment_method_id != $rpm->id)
                                         <td><button type="button" data-toggle="modal" data-target="{{ '#editpayment' . $payment->getRouteKey() }}"  class="btn btn-sm btn-primary"><i class="fas fa-edit"></i> {{ __('Editar Pago') }}</button>
@@ -92,6 +96,9 @@
                         @endforeach
                     </select>
 
+                    <label class="mt-3">Referencia <small class="text-muted">(Opcional)</small></label>
+                    <input type="text" class="form-control" name="reference" value="">
+
                     <label class="mt-3"><a class="text-danger">*</a> Monto del Pago</label>
                     <input type="number" class="form-control" name="amount" value="{{ $job->getPendingAmount() }}" min="0" max="{{ $job->getPendingAmount() }}" step="100" required>
 
@@ -143,6 +150,9 @@
                             <option value="{{ $account->id }}" @if($account->id === $payment->account_id) selected @endif>{{ $account->name }}</option>
                         @endforeach
                     </select>
+
+                    <label class="mt-3">Referencia <small class="text-muted">(Opcional)</small></label>
+                    <input type="text" class="form-control" name="reference" value="{{ $payment->reference }}">
 
                     <label class="mt-3"><a class="text-danger">*</a> Monto del Pago</label>
                     <input type="number" class="form-control" name="amount" value="{{ $payment->amount }}" min="0" step="100" max="{{ $payment->amount + $job->getPendingAmount() }}" required>

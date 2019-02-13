@@ -41,9 +41,6 @@
                             <a class="nav-link" href="/web/expenses"><i class="fas fa-receipt"></i> {{ __('Gastos') }}</a>
                         </li>
                         <li class="nav-item ml-2">
-                            <a class="nav-link" href="/web/reports"><i class="fas fa-chart-bar"></i> {{ __('Reportes') }}</a>
-                        </li>
-                        <li class="nav-item ml-2">
                             <a class="nav-link" href="/web/customers"><i class="fas fa-female"></i> {{ __('Clientas') }}</a>
                         </li>
                         <li class="nav-item dropdown">
@@ -57,6 +54,9 @@
                                 <a class="dropdown-item" href="/web/expense-categories"><i class="fas fa-angle-right"></i> {{ __('Categorias de Gasto') }}</a>
                             </div>
                         </li>
+                         {{-- <li class="nav-item ml-2">
+                            <a class="nav-link" href="/web/reports"><i class="fas fa-chart-bar"></i> {{ __('Reportes') }}</a>
+                        </li> --}}
                     </ul>
 
                     <!-- Right Side Of Navbar -->

@@ -252,6 +252,12 @@ class JobController extends Controller
             {
                 $job->reward->delete();
             }
+
+            foreach($job->job_lines as $job_line)
+            {
+                $job_line->delete();
+            }
+
             $job->delete();
             return redirect('/web/jobs')->with('success', __('La cita ha sido eliminada exitosamente'));
         }

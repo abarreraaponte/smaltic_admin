@@ -75,7 +75,12 @@ class ExpenseController extends Controller
      */
     public function show(Expense $expense)
     {
-        //
+        $expense_line = $expense->expense_lines->first();
+        $expense_payments = $expense->expense_payments;
+        $payment_methods = PaymentMethod::active()->get();
+        $accounts = Account::active()->where('is_reward', '<>', '1')->get();
+
+        return view('web.expenses.view', compact('expense', 'expense_line', 'expense_payments', 'payment_methods', 'accounts'));
     }
 
     /**
@@ -86,7 +91,10 @@ class ExpenseController extends Controller
      */
     public function edit(Expense $expense)
     {
-        //
+        $expense_line = $expense->expense_lines->first();
+        $expense_categories = ExpenseCategory::active()->get();
+
+        return view('web.expenses.edit', compact('expense', 'expense_line', 'expense_categories'));
     }
 
     /**
@@ -98,7 +106,23 @@ class ExpenseController extends Controller
      */
     public function update(Request $request, Expense $expense)
     {
-        //
+        $request->validate([
+            'date' => 'required|date',
+            'expense_category_id' => 'required|integer',
+            'description' => 'required|string|max:255',
+            'amount' => 'required|integer',
+        ]);
+
+        $expense->date = $request->get('date');
+        $expense->save();
+
+        $el = $expense->expense_lines->first();
+        $el->expense_category_id = $request->get('expense_category_id');
+        $el->description = $request->get('description');
+        $el->amount = $request->get('amount');
+        $el->save();
+
+        return redirect('/web/expenses/' . $expense->getRouteKey())->with('success', 'El Gasto ha sido actualizado exitosamente');
     }
 
     /**
@@ -109,6 +133,22 @@ class ExpenseController extends Controller
      */
     public function destroy(Expense $expense)
     {
-        //
+        if($expense->canBeDeleted() === true)
+        {
+
+            foreach($expense->expense_lines as $expense_line)
+            {
+                $expense_line->delete();
+            }
+
+            $expense->delete();
+
+            return redirect('/web/expenses')->with('success', __('La cita ha sido eliminada exitosamente'));
+        }
+
+        else
+        {
+            return back()->with('errors', __('Esta cita no puede ser eliminado, intente eliminar los pagos primero')); 
+        }
     }
 }
