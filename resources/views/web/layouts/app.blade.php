@@ -22,7 +22,7 @@
     <div id="app">
         
         <!-- Top Bar-->
-        <nav class="navbar navbar-expand-md navbar-light navbar-main-top">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm navbar-main-top">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <img src="/img/brand/logo.png" width="90" height="60">
@@ -33,7 +33,7 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
+                    <ul class="navbar-nav mr-auto" style="font-size: 1.1rem;">
                         <li class="nav-item ml-2">
                             <a class="nav-link" href="/web/jobs"><i class="fas fa-calendar-check"></i> {{ __('Trabajos') }}</a>
                         </li>
@@ -60,7 +60,7 @@
                     </ul>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
+                    <ul class="navbar-nav ml-auto" style="font-size: 1.1rem;">
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
