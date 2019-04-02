@@ -80,3 +80,13 @@ Route::prefix('web')->middleware(['auth'])->group(function () {
 
 	
 });
+
+Route::prefix('web')->middleware(['auth', 'admin'])->group(function () {
+	
+	// User Routes
+	Route::resource('/users', 'Web\UserController')->except(['show', 'edit', 'create']);
+	Route::get('/users/inactives/list', 'Web\UserController@inactives');
+	Route::put('/users/{user}/inactivate', 'Web\UserController@inactivate');
+    Route::put('/users/{user}/reactivate', 'Web\UserController@reactivate');
+
+});

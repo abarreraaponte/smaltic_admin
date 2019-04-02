@@ -71,7 +71,7 @@
 <div class="modal fade" id="selectcustomer" role="dialog" tabindex="-1" aria-labelledby="addcustomer" aria-hidden="true">
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
-            <div class="modal-header bg-success text-white">
+            <div class="modal-header">
                 <a class="h5 modal-title" id="contactmodallabel">Seleccionar Cliente</a>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>

@@ -22,7 +22,7 @@
     <div id="app">
         
         <!-- Top Bar-->
-        <nav class="navbar navbar-expand-md navbar-light navbar-main-top">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm navbar-main-top">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <img src="/img/brand/logo.png" width="90" height="60">
@@ -33,7 +33,7 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
+                    <ul class="navbar-nav mr-auto" style="font-size: 1.1rem;">
                         <li class="nav-item ml-2">
                             <a class="nav-link" href="/web/jobs"><i class="fas fa-calendar-check"></i> {{ __('Trabajos') }}</a>
                         </li>
@@ -43,7 +43,7 @@
                         <li class="nav-item ml-2">
                             <a class="nav-link" href="/web/customers"><i class="fas fa-female"></i> {{ __('Clientas') }}</a>
                         </li>
-                        <li class="nav-item dropdown">
+                        <li class="nav-item dropdown ml-2">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre><i class="fas fa-database"></i> {{ __('Datos')}}</a>
                             <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="/web/artists"><i class="fas fa-angle-right"></i> {{ __('Artistas') }}</a>
@@ -52,6 +52,7 @@
                                 <a class="dropdown-item" href="/web/payment-methods"><i class="fas fa-angle-right"></i> {{ __('Medios de Pago') }}</a>
                                 <a class="dropdown-item" href="/web/services"><i class="fas fa-angle-right"></i> {{ __('Servicios') }}</a>
                                 <a class="dropdown-item" href="/web/expense-categories"><i class="fas fa-angle-right"></i> {{ __('Categorias de Gasto') }}</a>
+                                <a class="dropdown-item" href="/web/users"><i class="fas fa-angle-right"></i> {{ __('Usuarios') }}</a>
                             </div>
                         </li>
                          {{-- <li class="nav-item ml-2">
@@ -60,7 +61,7 @@
                     </ul>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
+                    <ul class="navbar-nav ml-auto" style="font-size: 1.1rem;">
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
