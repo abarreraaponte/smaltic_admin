@@ -7,7 +7,7 @@
         <div class="col-md-10">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap mb-2">
                 <div>
-                    <a class="h5"><i class="fas fa-calendar-check"></i> {{ __('Ver Trabajo de:') . ' ' . $job->customer->name }}</a>
+                    <a class="h5"><i class="fas fa-calendar-check"></i> {{ __('Ver Trabajo de:') . ' ' . $job->customer->name }} <span class="badge badge-dark ml-2">{{ $job->getPaymentStatusLabel() }}</span></a>
                 </div>
                 <div>
                     <a href="{{ '/web/jobs/' . $job->getRouteKey() . '/edit' }}" class="btn btn-primary"><i class="fas fa-edit"></i> {{ __('Editar Trabajo') }}</a>
@@ -23,8 +23,8 @@
                     </form>
                 </div>
             </div>
-                <div class="card">
-                    <div class="card-header">
+                <div class="card border-0 shadow-sm rounded">
+                    <div class="card-header border-0">
                         <h4 class="mt-2">{{ __('Información Principal') }}</h4>
                     </div>
                     <div class="card-body">

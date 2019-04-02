@@ -22,8 +22,8 @@
             <form method="POST" action="{{ '/web/jobs/' . $job->getRouteKey() }}" enctype="multipart/form-data">
                 <input type="hidden" name="_method" value="PUT">
                 @csrf
-                <div class="card">
-                    <div class="card-header">
+                <div class="card border-0 shadow-sm rounded">
+                    <div class="card-header border-0">
                         <h4 class="mt-2">{{ __('Información Principal') }}</h4>
                     </div>
                     <div class="card-body">

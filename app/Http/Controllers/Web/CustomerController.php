@@ -83,7 +83,7 @@ class CustomerController extends Controller
      */
     public function show(Customer $customer)
     {
-        $customer->load(['jobs', 'payments', 'rewards']);
+        $customer->load(['jobs']);
         $points = $customer->rewards->pluck('value')->sum();
         return view('web.customers.view', compact('customer', 'points'));
     }

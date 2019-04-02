@@ -26,7 +26,7 @@
 	            </div>
 	        </div>
 
-	        <div class="card">
+	        <div class="card border-0 shadow-sm">
 	            <div class="card-body">
 					<div class="table-responsive table-hover">
 				        <table id="main_table" class="table table-bordered table-striped">
@@ -41,7 +41,7 @@
 				            <tbody>
 					            @foreach($jobs as $job)
 					                <tr>
-					                	<td>{{ $job->date }}</td>
+					                	<td>{{ \Carbon\Carbon::parse($job->date)->format('d/m/Y') }}</td>
 					                	<td>{{ $job->hour }}</td>
 					                	<th><a href="{{ '/web/customers/' . $job->customer->getRouteKey() }}" target="_blank">{{ $job->customer->name }}</a> </th>
 					                    <td>

@@ -18,6 +18,7 @@ class CreateJobsTable extends Migration
             $table->integer('customer_id')->unsigned();
             $table->date('date');
             $table->string('details')->nullable();
+            $table->string('payment_status')->default('pending_payment');
             $table->timestamps();
             $table->softDeletes();
 
