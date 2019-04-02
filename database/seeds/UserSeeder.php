@@ -17,12 +17,14 @@ class UserSeeder extends Seeder
         $user->name = 'Alejandro Barrera Aponte';
         $user->email = 'alejandro@dinamo24.com';
         $user->password = Hash::make('dinamo24-');
+        $user->role = 'admin';
         $user->save();
 
         $user = new User;
         $user->name = 'Mariangel Fernandez';
         $user->email = 'mariangelaless@gmail.com';
         $user->password = Hash::make('dinamo24-');
+        $user->role = 'admin';
         $user->save();
     }
 }

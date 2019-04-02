@@ -60,6 +60,7 @@ class User extends Authenticatable
         $this->active = false;
         $this->save();
     }
+
     /**
      * Reactivates the Model.
      */
@@ -70,6 +71,33 @@ class User extends Authenticatable
         }
         $this->active = true;
         $this->save();
+    }
+
+    /**
+    *
+    * Add List of roles to be selected
+    **/
+    public static function roles()
+    {
+        return collect([
+            [
+                'name' => 'admin',
+                'label' => __('Administrator'),
+            ],
+            [
+                'name' => 'user',
+                'label' => __('User'),
+            ],
+        ]);
+    }
+    
+    /**
+    *
+    * Gets the role label
+    **/
+    public function getRoleLabel()
+    {
+        return $this->roles()->where('name', $this->role)->pluck('label')->first();
     }
 
 }

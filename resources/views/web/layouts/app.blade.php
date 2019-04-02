@@ -43,7 +43,7 @@
                         <li class="nav-item ml-2">
                             <a class="nav-link" href="/web/customers"><i class="fas fa-female"></i> {{ __('Clientas') }}</a>
                         </li>
-                        <li class="nav-item dropdown">
+                        <li class="nav-item dropdown ml-2">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre><i class="fas fa-database"></i> {{ __('Datos')}}</a>
                             <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="/web/artists"><i class="fas fa-angle-right"></i> {{ __('Artistas') }}</a>
@@ -52,6 +52,7 @@
                                 <a class="dropdown-item" href="/web/payment-methods"><i class="fas fa-angle-right"></i> {{ __('Medios de Pago') }}</a>
                                 <a class="dropdown-item" href="/web/services"><i class="fas fa-angle-right"></i> {{ __('Servicios') }}</a>
                                 <a class="dropdown-item" href="/web/expense-categories"><i class="fas fa-angle-right"></i> {{ __('Categorias de Gasto') }}</a>
+                                <a class="dropdown-item" href="/web/users"><i class="fas fa-angle-right"></i> {{ __('Usuarios') }}</a>
                             </div>
                         </li>
                          {{-- <li class="nav-item ml-2">
