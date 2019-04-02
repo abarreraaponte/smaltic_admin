@@ -78,6 +78,10 @@ Route::prefix('web')->middleware(['auth'])->group(function () {
 	## Reports Routes ##
 	Route::get('/reports', 'Web\ReportController@index');
 
+	// Profile Routes
+	Route::get('/profile', 'Web\ProfileController@index')->name('profile');
+	Route::put('/profile', 'Web\ProfileController@update');
+
 	
 });
 

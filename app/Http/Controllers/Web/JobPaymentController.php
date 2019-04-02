@@ -38,18 +38,22 @@ class JobPaymentController extends Controller
         $payment->date = $request->get('date');
         $payment->job_id = $job->id;
         $payment->customer_id = $job->customer->id;
+
         if($request->get('is_reward') != null)
         {
             $payment->account_id = Account::where('is_reward', '1')->pluck('id')->first();
         }
+
         else{
             $payment->account_id = $request->get('account_id');
         }
+
         $payment->payment_method_id = $request->get('payment_method_id');
-        
         $payment->reference = $request->get('reference');
         $payment->amount = $request->get('amount');
         $payment->save();
+
+        $job->updatePaymentStatus();
 
         return redirect('/web/jobs/' . $job->getRouteKey())->with('success', 'El pago ha sido registrado exitosamente');
 
@@ -78,6 +82,8 @@ class JobPaymentController extends Controller
         $payment->amount = $request->get('amount');
         $payment->save();
 
+        $job->updatePaymentStatus();
+
         return redirect('/web/jobs/' . $job->getRouteKey())->with('success', 'El pago ha sido editado exitosamente');
 
     }
@@ -85,6 +91,8 @@ class JobPaymentController extends Controller
     public function delete(Request $request, Job $job, Payment $payment)
     {
         $payment->delete();
+
+        $job->updatePaymentStatus();
 
         return redirect('/web/jobs/' . $job->getRouteKey())->with('success', 'El pago ha sido eliminado exitosamente');
     }

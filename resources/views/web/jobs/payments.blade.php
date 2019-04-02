@@ -1,6 +1,6 @@
 <div class="row justify-content-center">
         <div class="col-md-10">
-            <div class="card mt-4">
+            <div class="card border-0 shadow-sm mt-4">
                 <div class="card-header"><a class="h5">Pagos de Esta Sesión</a></div>
                 <div class="card-body">
                     <div class="table-responsive table-hover">
@@ -78,7 +78,7 @@
                     <br>
 
                     <label class="mt-3"><a class="text-danger">*</a> Fecha de Pago</label>
-                    <input type="date" class="form-control" name="date" required>
+                    <input type="date" class="form-control" name="date" value="{{ date('Y-m-d') }}" required>
 
                     <label class="mt-3"><a class="text-danger">*</a> Medio de Pago</label>
                     <select class="form-control" id="payment_method_id" name="payment_method_id" required>

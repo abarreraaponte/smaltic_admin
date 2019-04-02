@@ -7,7 +7,7 @@
         <div class="col-md-12">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap mb-2">
                 <div>
-                    <a class="h5"><i class="fas fa-female"></i> {{ __('Ver Clienta:') . ' ' . $customer->name }}</a>
+                    <a class="h5"><i class="fas fa-female"></i> {{ __('Ver Clienta:') . ' ' . $customer->name }} <span class="badge badge-dark ml-2">{{ 'Puntos:' . ' ' . $points }}</span></a>
                 </div>
                 <div>
                     <a class="btn btn-success" href="{{ '/web/customers/' . $customer->getRouteKey() . '/job/create' }}"><i class="fas fa-comment-dollar"></i> {{ __('Nuevo Trabajo') }}</a>
@@ -64,6 +64,9 @@
                 </div>
         </div>
     </div>
+
+    @include('web.customers.jobs')
+    
 </div>
 
 @endsection

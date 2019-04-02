@@ -57,4 +57,59 @@ class Job extends BaseModel
     {
         return $this->hasOne('App\Models\Reward');
     }
+
+    /**
+    *
+    * Add List of roles to be selected
+    **/
+    public static function payment_statuses()
+    {
+        return collect([
+            [
+                'name' => 'pending_payment',
+                'label' => __('Pendiente de Pago'),
+            ],
+            [
+                'name' => 'partial_payment',
+                'label' => __('Pago Parcial'),
+            ],
+            [
+                'name' => 'paid',
+                'label' => __('Pagado'),
+            ],
+        ]);
+    }
+    
+    /**
+    *
+    * Gets the role label
+    **/
+    public function getPaymentStatusLabel()
+    {
+        return $this->payment_statuses()->where('name', $this->payment_status)->pluck('label')->first();
+    }
+
+
+    // Update Job Payment Status
+    public function updatePaymentStatus()
+    {
+        if($this->getPendingAmount() === 0)
+        {
+            $this->payment_status = 'paid';
+            $this->save();
+        }
+
+        elseif($this->getPaidAmount() === 0)
+        {
+            $this->payment_status = 'pending_paymeny';
+            $this->save();
+        }
+
+        else
+        {
+            $this->payment_status = 'partial_payment';
+            $this->save();
+        }
+    }
+    
 }
