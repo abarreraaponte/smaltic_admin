@@ -13,7 +13,7 @@ abstract class BaseModel extends Model
     {
         return $this->name;
     }
-    
+
     /**
      * @param $query
      * @return mixed

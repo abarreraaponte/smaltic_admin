@@ -20,7 +20,7 @@
 </head>
 <body>
     <div id="app">
-        
+
         <!-- Top Bar-->
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm navbar-main-top">
             <div class="container-fluid">
@@ -28,7 +28,7 @@
                     <img src="/img/brand/logo.png" width="90" height="60">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span><i class="fas fa-th"></i>
+                    <span class="navbar-toggler-icon"></span>
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -132,6 +132,6 @@
     @yield('ps_scripts')
     @stack('list_scripts')
     @stack('form_scripts')
-    
+
 </body>
 </html>

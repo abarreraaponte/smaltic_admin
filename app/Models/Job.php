@@ -6,7 +6,7 @@ use App\Models\BaseModel;
 
 class Job extends BaseModel
 {
-    
+
     public function customer()
     {
     	return $this->belongsTo('App\Models\Customer');
@@ -40,7 +40,10 @@ class Job extends BaseModel
 
     public function getAmount()
     {
-        return $this->job_lines->pluck('amount')->sum();
+        $line_amount = $this->job_lines->pluck('amount')->sum();
+        $discount_amount = $this->discounts->pluck('amount')->sum();
+
+        return $line_amount - $discount_amount;
     }
 
     public function getPaidAmount()
@@ -56,6 +59,11 @@ class Job extends BaseModel
     public function reward()
     {
         return $this->hasOne('App\Models\Reward');
+    }
+
+    public function discounts()
+    {
+        return $this->hasMany('App\Models\Discount');
     }
 
     /**
@@ -79,7 +87,7 @@ class Job extends BaseModel
             ],
         ]);
     }
-    
+
     /**
     *
     * Gets the role label
@@ -111,5 +119,5 @@ class Job extends BaseModel
             $this->save();
         }
     }
-    
+
 }

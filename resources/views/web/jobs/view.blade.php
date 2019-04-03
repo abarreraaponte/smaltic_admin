@@ -30,10 +30,17 @@
                         <h4 class="mt-2">{{ __('Información Principal') }}</h4>
                     </div>
                     <div class="card-body">
+                        @if($available_discount_amount > 0 and $job->payment_status != 'paid')
+                            <div class="alert alert-secondary" role="alert">
+                                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap">
+                                    <a>{{ 'Este cliente tiene' . ' ' . $available_discount_amount . ' ' . 'pesos disponibles para. descuentos.' }}</a>
+                                    <button class="btn btn-sm btn-secondary" type="button" data-toggle="modal" data-target="#applydiscount">{{ 'Aplicar Descuentos' }}</button>
+                                </div>
+                            </div>
+                        @endif
                         <div class="order-md-1">
-
                             <div id="entity_data">
-                                <div class="row mt-3">
+                                <div class="row mt-4">
                                     <div class="col-md-4 mb-3">
                                         <label for="customer">{{ __('Cliente') }}</label>
                                         <div><a href="{{ '/web/customers/' . $job->customer->getRouteKey() }}" target="_blank">{{ $job->customer->name }}</a></div>
@@ -96,7 +103,7 @@
                                     </div>
                                 </div>
                                 @endif
-                            </div>                            
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -104,13 +111,15 @@
     </div>
 
     @include('web.jobs.payments')
-    
+
+    @include('web.jobs.discount-modal')
+
 </div>
 
 @endsection
 
 @section('ps_scripts')
-    
+
 @endsection
 
 @push('form_scripts')

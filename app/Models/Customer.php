@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\BaseModel;
+use App\Models\Discount;
 
 class Customer extends BaseModel
 {
@@ -31,6 +32,11 @@ class Customer extends BaseModel
         return $this->hasMany('App\Models\Reward');
     }
 
+    public function discounts()
+    {
+        return $this->hasMany('App\Models\Discount');
+    }
+
     public function canBeDeleted()
     {
         $jb = $this->jobs->count();
@@ -46,5 +52,17 @@ class Customer extends BaseModel
             return true;
         }
 
+    }
+
+    public function getAvailableDiscounts()
+    {
+         return Discount::where('customer_id', $this->id)->unapplied()->get();
+    }
+
+    public function getAvailableDiscountAmount()
+    {
+        $discounts = Discount::where('customer_id', $this->id)->unapplied()->get();
+
+        return $discounts->pluck('amount')->sum();
     }
 }
