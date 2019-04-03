@@ -16,9 +16,10 @@ class CreateRewardsTable extends Migration
         Schema::create('rewards', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('customer_id')->unsigned();
-            $table->integer('job_id')->unsigned();
+            $table->integer('job_id')->unsigned()->nullable();
             $table->integer('payment_id')->unsigned()->nullable();
             $table->integer('value');
+            $table->string('description')->nullable();
             $table->timestamps();
             $table->softdeletes();
 

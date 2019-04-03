@@ -101,6 +101,7 @@ class JobController extends Controller
             $reward->job_id = $job->id;
             $reward->customer_id = $job->customer_id;
             $reward->value = $job->getAmount() * (config('app.reward_rate') / 100);
+            $reward->description = 'Clienta Frecuente';
             $reward->save();
         }
 
