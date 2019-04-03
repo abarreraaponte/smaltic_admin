@@ -46,6 +46,11 @@ class Job extends BaseModel
         return $line_amount - $discount_amount;
     }
 
+    public function getDiscountAmount()
+    {
+        return $this->discounts->pluck('amount')->sum();
+    }
+
     public function getPaidAmount()
     {
         return $this->payments->pluck('amount')->sum();
