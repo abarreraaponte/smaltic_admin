@@ -34,6 +34,7 @@ class AddPaymentReward
             $reward->customer_id = $event->payment->customer->id;
             $reward->payment_id = $event->payment->id;
             $reward->value = $event->payment->amount * -1;
+            $reward->description = 'Uso de Puntos';
             $reward->save();
         }
     }

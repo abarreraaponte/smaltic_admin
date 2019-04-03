@@ -41,7 +41,7 @@
                                 <div class="row mt-3">
                                     <div class="col-md-6 mb-3">
                                         <label for="source">{{ __('¿Cómo nos Conoce?') }}</label>
-	                                    <select class="form-control" name="source_id">
+	                                    <select class="form-control" name="source_id" onchange="toggleReferrer()" id="source">
 	                                        <option value="">Seleccionar</option>
 	                                        @foreach($sources as $source)
 	                                        <option value="{{ $source->id }}">{{ $source->name }}</option>
@@ -57,6 +57,17 @@
 	                                        <option value="{{ $artist->id }}">{{ $artist->name }}</option>
 	                                        @endforeach
 	                                    </select>
+                                    </div>
+                                </div>
+                                <div id="referrer" class="row mt-3" style="display: none;">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="source">{{ __('Referente') }}</label>
+                                        <select class="form-control" name="referrer_id" id="referrer_id">
+                                            <option value="">Seleccionar</option>
+                                            @foreach($customers as $customer)
+                                            <option value="{{ $customer->id }}">{{ $customer->name }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -85,5 +96,25 @@
             // disable unload warning
             $(window).off('beforeunload');
         });
+    </script>
+    <script>
+        function toggleReferrer() {
+
+            var reference_source = "{{ $reference_source }}";
+
+            if(document.getElementById('source').value === reference_source)
+            {
+                document.getElementById('referrer').style.display = "";
+                document.getElementById('referrer_id').required = true;
+            }
+
+            else
+            {
+                document.getElementById('referrer').style.display = "none";
+                document.getElementById('referrer_id').required = false;
+            }
+
+
+        }
     </script>
 @endsection

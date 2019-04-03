@@ -44,8 +44,9 @@ class CustomerController extends Controller
     {
         $artists = Artist::active()->get();
         $sources = Source::active()->get();
-
-        return view('web.customers.create', compact('artists', 'sources'));
+        $customers = Customer::active()->get();
+        $reference_source = $sources->where('is_customer_reference', 1)->pluck('id')->first();
+        return view('web.customers.create', compact('artists', 'sources', 'customers', 'reference_source'));
     }
 
     /**
@@ -59,6 +60,7 @@ class CustomerController extends Controller
         $request->validate([
             'source_id' => 'integer|nullable',
             'artist_id' => 'integer|nullable',
+            'referrer_id' => 'integer|nullable',
             'name' => 'string|required|max:100',
             'instagram' => 'string|nullable|max:100',
             'phone' => 'string|required|max:100',
@@ -71,6 +73,19 @@ class CustomerController extends Controller
         $customer->instagram = $request->get('instagram');
         $customer->phone = str_replace(['+', '.', '-'], ['', '', ''], $request->get('phone'));
         $customer->save();
+
+        if($request->get('referrer_id') != null)
+        {
+            $referrer_id = $request->get('referrer_id');
+            $referrer = Customer::where('id', $referrer_id)->first();
+
+            $reward = new Reward;
+            $reward->customer_id = $referrer->id;
+            $reward->value = 3000;
+            $reward->description = 'Premio por referencia';
+            $reward->save();
+
+        }
 
         return redirect('/web/customers/' . $customer->getRouteKey() . '/job/create')->with('success', __('El cliente ha sido creado exitosamente'));
     }

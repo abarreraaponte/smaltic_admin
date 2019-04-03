@@ -21,7 +21,7 @@ class SourceSeeder extends Seeder
         $source->save();
 
         $source = new Source;
-        $source->name = 'Referencia';
+        $source->name = 'Referida por Clienta';
         $source->is_customer_reference = 1;	
         $source->save();
     }
