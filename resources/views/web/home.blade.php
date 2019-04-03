@@ -3,20 +3,10 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Dashboard</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    You are logged in!
-                </div>
-            </div>
+        <div class="text-center mb-4">
+            <img class="mb-4" src="/img/undempty05.svg" alt="" width="400">
+            <h1 class="h2 mb-3 font-weight-normal"><strong>Hola!</strong> {{ Auth::user()->name }}</h1>
+            <p>{{ __('Usa la barrar superior para ir a la sección que desees') }}</p>
         </div>
     </div>
 </div>
