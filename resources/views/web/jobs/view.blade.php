@@ -40,14 +40,18 @@
                         @endif
                         <div class="order-md-1">
                             <div id="entity_data">
-                                <div class="row mt-4">
-                                    <div class="col-md-4 mb-3">
+                                <div class="row mt-4 mb-3">
+                                    <div class="col-md-2 mb-3">
                                         <label for="customer">{{ __('Cliente') }}</label>
                                         <div><a href="{{ '/web/customers/' . $job->customer->getRouteKey() }}" target="_blank">{{ $job->customer->name }}</a></div>
                                     </div>
                                     <div class="col-md-2 mb-3">
                                         <label for="customer">{{ __('Puntos Disponibles') }}</label>
                                         <div>{{ $points }}</div>
+                                    </div>
+                                    <div class="col-md-2 mb-3">
+                                        <label for="discount_amount">{{ __('Descuentos Aplicados') }}</label>
+                                        <input type="text" class="form-control" id="discount_amount" value="{{ $job->getDiscountAmount() }}" readonly>
                                     </div>
                                     <div class="col-md-2 mb-3">
                                          <label for="amount">{{ __('Monto Total') }}</label>

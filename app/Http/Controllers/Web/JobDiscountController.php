@@ -25,6 +25,8 @@ class JobDiscountController extends Controller
             $discount->save();
         }
 
+        $job->updatePaymentStatus();
+
         return redirect('/web/jobs/' . $job->getRouteKey())->with('success', 'El descuento ha sido aplicado exitosamente');
 
     }
