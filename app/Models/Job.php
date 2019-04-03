@@ -101,7 +101,7 @@ class Job extends BaseModel
 
         elseif($this->getPaidAmount() === 0)
         {
-            $this->payment_status = 'pending_paymeny';
+            $this->payment_status = 'pending_payment';
             $this->save();
         }
 

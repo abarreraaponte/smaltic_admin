@@ -12,9 +12,11 @@
                 <div>
                     <a href="{{ '/web/jobs/' . $job->getRouteKey() . '/edit' }}" class="btn btn-primary"><i class="fas fa-edit"></i> {{ __('Editar Trabajo') }}</a>
                     <a href="/web/jobs" class="btn btn-outline-primary"><i class="fas fa-list"></i> {{ __('Lista') }}</a>
+                     @if($job->payment_status != 'paid')
                     <button type="button" data-toggle="modal" data-target="#addpayment"  class="btn btn-success"><i class="fas fa-dollar-sign"></i> {{ __('Registrar Pago') }}</button>
                     @if($points >= config('app.reward_baseline'))
                         <button type="button" data-toggle="modal" data-target="#usereward"  class="btn btn-warning"><i class="fas fa-award"></i> {{ __('Usar Puntos') }}</button>
+                    @endif
                     @endif
                     <a href="#" class="btn btn-outline-danger" onclick="{{ 'delete' . $job->id . '()' }}"><i class="fas fa-trash"></i></a>
                     <form id="{{ 'delete-record' . $job->getRouteKey() }}" method="post" action="{{ '/web/jobs/' . $job->getRouteKey() }}">

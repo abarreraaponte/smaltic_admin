@@ -28,6 +28,8 @@ class ExpensePaymentController extends Controller
         $expense_payment->amount = $request->get('amount');
         $expense_payment->save();
 
+        $expense->updatePaymentStatus();
+
         return redirect('/web/expenses/' . $expense->getRouteKey())->with('success', 'El pago ha sido registrado exitosamente');
 
     }
@@ -49,6 +51,8 @@ class ExpensePaymentController extends Controller
         $expense_payment->amount = $request->get('amount');
         $expense_payment->save();
 
+        $expense->updatePaymentStatus();
+
         return redirect('/web/expenses/' . $expense->getRouteKey())->with('success', 'El pago ha sido editado exitosamente');
 
     }
@@ -56,6 +60,8 @@ class ExpensePaymentController extends Controller
     public function delete(Request $request, Expense $expense, ExpensePayment $expense_payment)
     {
         $expense_payment->delete();
+
+        $expense->updatePaymentStatus();
 
         return redirect('/web/expenses/' . $expense->getRouteKey())->with('success', 'El pago ha sido eliminado exitosamente');
     }

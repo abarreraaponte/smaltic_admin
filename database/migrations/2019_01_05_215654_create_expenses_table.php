@@ -16,6 +16,7 @@ class CreateExpensesTable extends Migration
         Schema::create('expenses', function (Blueprint $table) {
             $table->increments('id');
             $table->date('date');
+            $table->string('payment_status')->default('pending_payment');
             $table->timestamps();
             $table->softDeletes();
         });

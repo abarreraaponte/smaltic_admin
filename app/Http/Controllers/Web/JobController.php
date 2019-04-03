@@ -235,6 +235,8 @@ class JobController extends Controller
             $reward->save(); 
         }
 
+        $job->updatePaymentStatus();
+
         return redirect('/web/jobs/' . $job->getRouteKey())->with('success', __('El trabajo ha sido actualizado exitosamente'));
     }
 

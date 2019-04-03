@@ -122,6 +122,8 @@ class ExpenseController extends Controller
         $el->amount = $request->get('amount');
         $el->save();
 
+        $expense->updatePaymentStatus();
+
         return redirect('/web/expenses/' . $expense->getRouteKey())->with('success', 'El Gasto ha sido actualizado exitosamente');
     }
 

@@ -54,7 +54,7 @@
                 <form method="POST" action="{{ '/web/expenses/' . $expense->getRouteKey() . '/payment/create' }}">
                     @csrf
                     <label class="mt-3"><a class="text-danger">*</a> Fecha de Pago</label>
-                    <input type="date" class="form-control" name="date" required>
+                    <input type="date" class="form-control" name="date" value="{{ date('Y-m-d') }}" required>
 
                     <label class="mt-3"><a class="text-danger">*</a> Medio de Pago</label>
                     <select class="form-control" id="payment_method_id" name="payment_method_id" required>

@@ -7,12 +7,14 @@
         <div class="col-md-10">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap mb-2">
                 <div>
-                    <a class="h5"><i class="fas fa-credit-card"></i> {{ __('Ver Gasto') }}</a>
+                    <a class="h5"><i class="fas fa-credit-card"></i> {{ __('Ver Gasto') }} <span class="badge badge-dark ml-2">{{ $expense->getPaymentStatusLabel() }}</span></a>
                 </div>
                 <div>
                     <a href="{{ '/web/expenses/' . $expense->getRouteKey() . '/edit' }}" class="btn btn-primary"><i class="fas fa-edit"></i> {{ __('Editar Gasto') }}</a>
                     <a href="/web/expenses" class="btn btn-outline-primary"><i class="fas fa-list"></i> {{ __('Lista') }}</a>
+                    @if($expense->payment_status != 'paid')
                     <button type="button" data-toggle="modal" data-target="#addpayment"  class="btn btn-success"><i class="fas fa-dollar-sign"></i> {{ __('Registrar Pago') }}</button>
+                    @endif
                     <a href="#" class="btn btn-outline-danger" onclick="{{ 'delete' . $expense->id . '()' }}"><i class="fas fa-trash"></i></a>
                     <form id="{{ 'delete-record' . $expense->getRouteKey() }}" method="post" action="{{ '/web/expenses/' . $expense->getRouteKey() }}">
                         <input name="_method" type="hidden" value="DELETE">
