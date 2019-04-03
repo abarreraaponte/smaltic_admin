@@ -7,7 +7,7 @@
         <div class="col-md-12">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap mb-2">
                 <div>
-                    <a class="h5"><i class="fas fa-female"></i> {{ __('Ver Clienta:') . ' ' . $customer->name }} <span class="badge badge-dark ml-2">{{ 'Puntos:' . ' ' . $points }}</span></a>
+                    <a class="h5"><i class="fas fa-female"></i> {{ __('Ver Clienta:') . ' ' . $customer->name }} <span class="badge badge-dark ml-2">{{ 'Puntos:' . ' ' . $points }}</span> <span class="badge badge-info ml-2">{{ 'Descuentos Disponibles:' . ' ' . $available_discount_amount }}</span></a>
                 </div>
                 <div>
                     <a class="btn btn-success" href="{{ '/web/customers/' . $customer->getRouteKey() . '/job/create' }}"><i class="fas fa-comment-dollar"></i> {{ __('Nuevo Trabajo') }}</a>
@@ -58,7 +58,7 @@
 	                                    <input type="text" class="form-control" id="artist_id" @isset($customer->artist->name)value="{{ $customer->artist->name }}" @endisset readonly>
                                     </div>
                                 </div>
-                            </div>                            
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -66,13 +66,13 @@
     </div>
 
     @include('web.customers.jobs')
-    
+
 </div>
 
 @endsection
 
 @section('ps_scripts')
-    
+
 @endsection
 
 @push('form_scripts')

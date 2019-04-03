@@ -123,6 +123,8 @@ class JobController extends Controller
         $payment_methods = PaymentMethod::where('is_reward', 0)->get();
         $rpm = PaymentMethod::where('is_reward', '1')->first();
         $first_line = $job->job_lines->first();
+        $available_discounts = $job->customer->getAvailableDiscounts();
+        $available_discount_amount = $job->customer->getAvailableDiscountAmount();
         if($job->job_lines->count() > 1)
         {
             $last_line = $job->job_lines->last();
@@ -132,9 +134,9 @@ class JobController extends Controller
         {
             $last_line = null;
         }
-        
 
-        return view('web.jobs.view', compact('job', 'accounts', 'first_line', 'last_line', 'payments', 'points', 'payment_methods', 'rpm'));
+
+        return view('web.jobs.view', compact('job', 'accounts', 'first_line', 'last_line', 'payments', 'points', 'payment_methods', 'rpm', 'available_discounts', 'available_discount_amount'));
     }
 
     /**
@@ -211,7 +213,7 @@ class JobController extends Controller
                 $jl2->save();
             }
 
-            elseif($job->job_lines->count() > 1) 
+            elseif($job->job_lines->count() > 1)
             {
                 if($request->get('delete_last_line') === '1')
                 {
@@ -233,7 +235,7 @@ class JobController extends Controller
         {
             $reward = $job->reward;
             $reward->value = $job->getAmount() * (config('app.reward_rate') / 100);
-            $reward->save(); 
+            $reward->save();
         }
 
         $job->updatePaymentStatus();
@@ -267,7 +269,7 @@ class JobController extends Controller
 
         else
         {
-            return back()->with('errors', __('Esta cita no puede ser eliminado, intente eliminar los pagos primero')); 
+            return back()->with('errors', __('Esta cita no puede ser eliminado, intente eliminar los pagos primero'));
         }
     }
 }

@@ -52,7 +52,7 @@
                             @endforeach
                             </tbody>
                         </table>
-                    </div> 
+                    </div>
                 </div>
             </div>
         </div>
@@ -224,7 +224,7 @@
                     <input type="hidden" name="payment_method_id" value="{{ $rpm->id }}">
 
                     <label class="mt-3"><a class="text-danger">*</a> Fecha de Pago</label>
-                    <input type="date" class="form-control" name="date" required>
+                    <input type="date" class="form-control" name="date" value="{{ date('Y-m-d') }}" required>
 
                     @if($job->getPendingAmount() < $points)
                         <label class="mt-3"><a class="text-danger">*</a> Puntos a Utilizar (Pesos)</label>

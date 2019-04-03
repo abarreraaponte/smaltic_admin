@@ -34,7 +34,8 @@
 				            <tr>
 				                <th>{{ __('Fecha') }}</th>
 				                <th>{{ __('Hora') }}</th>
-				                <th>{{ __('Cliente') }}</th>
+                                <th>{{ __('Cliente') }}</th>
+                                <th>{{__('Estado') }}</th>
 				                <th>{{ __('Acciones') }}</th>
 				            </tr>
 				            </thead>
@@ -43,7 +44,8 @@
 					                <tr>
 					                	<td>{{ \Carbon\Carbon::parse($job->date)->format('d/m/Y') }}</td>
 					                	<td>{{ $job->hour }}</td>
-					                	<th><a href="{{ '/web/customers/' . $job->customer->getRouteKey() }}" target="_blank">{{ $job->customer->name }}</a> </th>
+                                        <th><a href="{{ '/web/customers/' . $job->customer->getRouteKey() }}" target="_blank">{{ $job->customer->name }}</a> </th>
+                                        <th><span class="badge badge-dark ml-2">{{ $job->getPaymentStatusLabel() }}</span></th>
 					                    <td>
 		                                    <a  class="btn btn-sm btn-primary" href="{{ '/web/jobs/' . $job->getRouteKey() }}"><i class="fas fa-eye"></i></a>
 					                        <a  class="btn btn-sm btn-outline-primary" href="{{ '/web/jobs/' . $job->getRouteKey() . '/edit' }}"><i class="fas fa-edit"></i></a>

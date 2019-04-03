@@ -61,9 +61,10 @@ Route::prefix('web')->middleware(['auth'])->group(function () {
 	Route::get('/payment-methods/inactives/list', 'Web\PaymentMethodController@inactives');
 	Route::put('/payment-methods/{payment_method}/inactivate', 'Web\PaymentMethodController@inactivate');
 	Route::put('/payment-methods/{payment_method}/reactivate', 'Web\PaymentMethodController@reactivate');
-	
+
 	## Jobs CRUD Routes ##
-	Route::resource('/jobs', 'Web\JobController')->except('create');
+    Route::resource('/jobs', 'Web\JobController')->except('create');
+    Route::post('/jobs/{job}/discounts/apply', 'Web\JobDiscountController@apply');
 	Route::post('/jobs/{job}/payment/create', 'Web\JobPaymentController@add');
 	Route::put('/jobs/{job}/payment/{payment}/edit', 'Web\JobPaymentController@edit');
 	Route::delete('/jobs/{job}/payment/{payment}/delete', 'Web\JobPaymentController@delete');
@@ -82,11 +83,11 @@ Route::prefix('web')->middleware(['auth'])->group(function () {
 	Route::get('/profile', 'Web\ProfileController@index')->name('profile');
 	Route::put('/profile', 'Web\ProfileController@update');
 
-	
+
 });
 
 Route::prefix('web')->middleware(['auth', 'admin'])->group(function () {
-	
+
 	// User Routes
 	Route::resource('/users', 'Web\UserController')->except(['show', 'edit', 'create']);
 	Route::get('/users/inactives/list', 'Web\UserController@inactives');

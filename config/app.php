@@ -26,6 +26,7 @@ return [
 
     'reward_baseline' => env('REWARD_BASELINE', 15000),
     'reward_rate' => env('REWARD_RATE', 25),
+    'referral_amount' => env('REFERRAL_AMOUNT', 3000),
 
     /*
     |--------------------------------------------------------------------------

@@ -8,7 +8,7 @@ use App\Models\Customer;
 use App\Models\Job;
 use App\Models\Payment;
 use App\Models\Artist;
-use App\Models\Reward;
+use App\Models\Discount;
 use App\Models\Source;
 
 
@@ -79,11 +79,11 @@ class CustomerController extends Controller
             $referrer_id = $request->get('referrer_id');
             $referrer = Customer::where('id', $referrer_id)->first();
 
-            $reward = new Reward;
-            $reward->customer_id = $referrer->id;
-            $reward->value = 3000;
-            $reward->description = 'Premio por referencia';
-            $reward->save();
+            $discount = new Discount;
+            $discount->customer_id = $referrer->id;
+            $discount->amount = config('app.referral_amount');
+            $discount->description = 'Premio por haber referido a:' . ' ' . $customer->name;
+            $discount->save();
 
         }
 
@@ -100,7 +100,8 @@ class CustomerController extends Controller
     {
         $customer->load(['jobs']);
         $points = $customer->rewards->pluck('value')->sum();
-        return view('web.customers.view', compact('customer', 'points'));
+        $available_discount_amount = $customer->getAvailableDiscountAmount();
+        return view('web.customers.view', compact('customer', 'points', 'available_discount_amount'));
     }
 
     /**
@@ -160,7 +161,7 @@ class CustomerController extends Controller
 
         else
         {
-            return back()->with('errors', ' Este cliente no puede ser eliminado, intente desactivarlo'); 
+            return back()->with('errors', ' Este cliente no puede ser eliminado, intente desactivarlo');
         }
     }
 
