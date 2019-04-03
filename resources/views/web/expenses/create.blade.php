@@ -26,7 +26,7 @@
                                 <div class="row mt-4">
                                     <div class="col-md-6 mb-3">
                                         <label for="date"><a class="text-danger">*</a> {{ __('Fecha') }}<span class="text-muted ml-1">{{ __('  (Obligatorio)') }}</span></label>
-                                        <input type="date" class="form-control" id="date" name="date" required>
+                                        <input type="date" class="form-control" id="date" name="date" value="{{ date('Y-m-d') }}" required>
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label for="details">{{ __('Descripción') }}</label>
