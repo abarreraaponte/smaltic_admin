@@ -76,8 +76,9 @@ Route::prefix('web')->middleware(['auth'])->group(function () {
 	Route::put('/expenses/{expense}/payment/{expense_payment}/edit', 'Web\ExpensePaymentController@edit');
 	Route::delete('/expenses/{expense}/payment/{expense_payment}/delete', 'Web\ExpensePaymentController@delete');
 
-	## Reports Routes ##
-	Route::get('/reports', 'Web\ReportController@index');
+	## Report Routes ##
+    Route::get('/reports', 'Web\ReportController@index');
+    Route::post('/reports/sales', 'Web\ReportController@sales');
 
 	// Profile Routes
 	Route::get('/profile', 'Web\ProfileController@index')->name('profile');

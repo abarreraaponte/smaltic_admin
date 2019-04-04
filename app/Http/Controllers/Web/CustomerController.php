@@ -63,7 +63,7 @@ class CustomerController extends Controller
             'referrer_id' => 'integer|nullable',
             'name' => 'string|required|max:100',
             'instagram' => 'string|nullable|max:100',
-            'phone' => 'string|required|max:100',
+            'phone' => 'string|nullable|max:100',
         ]);
 
         $customer = new Customer;
@@ -132,7 +132,7 @@ class CustomerController extends Controller
             'artist_id' => 'integer|nullable',
             'name' => 'string|required|max:100',
             'instagram' => 'string|nullable|max:100',
-            'phone' => 'string|required|max:100',
+            'phone' => 'string|phone|max:100',
         ]);
 
         $customer->source_id = $request->get('source_id');
