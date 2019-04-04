@@ -12,3 +12,5 @@ yarn-error.log
 *.sublime-project
 *.sublime-workspace
 *.code-workspace
+/.idea
+.idea
