@@ -39,11 +39,11 @@
                                         <input type="text" class="form-control" id="name" value="{{ $customer->name }}" readonly>
                                     </div>
                                     <div class="col-md-4 mb-3">
-                                        <label for="instagram"><i class="fab fa-instagram"></i> {{ __('Instagram') }}<span class="text-muted ml-1">{{ __('  (Obligatorio)') }}</span></label>
+                                        <label for="instagram"><i class="fab fa-instagram"></i> {{ __('Instagram') }}</label>
                                         <input type="text" class="form-control" id="instagram" value="{{ $customer->instagram }}" readonly>
                                     </div>
                                     <div class="col-md-4 mb-3">
-                                        <label for="phone"><i class="fas fa-phone"></i> {{ __('Teléfono') }}<span class="text-muted ml-1">{{ __('  (Obligatorio)') }}</span></label>
+                                        <label for="phone"><i class="fas fa-phone"></i> {{ __('Teléfono') }}</label>
                                         <input type="text" class="form-control" id="phone" value="{{ $customer->phone }}" readonly>
                                     </div>
                                 </div>
