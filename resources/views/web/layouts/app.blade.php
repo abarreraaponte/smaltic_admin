@@ -35,16 +35,16 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto" style="font-size: 1.1rem;">
                         <li class="nav-item ml-2">
-                            <a class="nav-link" href="/web/jobs"><i class="fas fa-calendar-check"></i> {{ __('Trabajos') }}</a>
+                            <a class="nav-link" href="/web/jobs" @if(request()->segment(2) === 'jobs') style="color: #3490DC;" @endif><i class="fas fa-calendar-check"></i> {{ __('Trabajos') }}</a>
                         </li>
                         <li class="nav-item ml-2">
-                            <a class="nav-link" href="/web/expenses"><i class="fas fa-receipt"></i> {{ __('Gastos') }}</a>
+                            <a class="nav-link" href="/web/expenses" @if(request()->segment(2) === 'expenses') style="color: #3490DC;" @endif><i class="fas fa-receipt"></i> {{ __('Gastos') }}</a>
                         </li>
                         <li class="nav-item ml-2">
-                            <a class="nav-link" href="/web/customers"><i class="fas fa-female"></i> {{ __('Clientas') }}</a>
+                            <a class="nav-link" href="/web/customers" @if(request()->segment(2) === 'customers') style="color: #3490DC;" @endif><i class="fas fa-female"></i> {{ __('Clientas') }}</a>
                         </li>
                         <li class="nav-item ml-2">
-                            <a class="nav-link" href="/web/reports"><i class="fas fa-chart-bar"></i> {{ __('Reportes') }}</a>
+                            <a class="nav-link" href="/web/reports" @if(request()->segment(2) === 'reports') style="color: #3490DC;" @endif><i class="fas fa-chart-bar"></i> {{ __('Reportes') }}</a>
                         </li>
                         <li class="nav-item dropdown ml-2">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre><i class="fas fa-database"></i> {{ __('Datos')}}</a>
