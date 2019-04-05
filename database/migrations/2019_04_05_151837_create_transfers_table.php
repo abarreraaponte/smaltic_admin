@@ -14,8 +14,18 @@ class CreateTransfersTable extends Migration
     public function up()
     {
         Schema::create('transfers', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
+            $table->integer('origin_account_id')->unsigned();
+            $table->integer('end_account_id')->unsigned();
+            $table->date('date');
+            $table->string('description')->nullable();
+            $table->string('reference')->nullable();
+            $table->integer('amount');
             $table->timestamps();
+            $table->softDeletes();
+
+            $table->foreign('origin_account_id')->references('id')->on('accounts');
+            $table->foreign('end_account_id')->references('id')->on('accounts');
         });
     }
 
