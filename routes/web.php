@@ -79,6 +79,7 @@ Route::prefix('web')->middleware(['auth'])->group(function () {
 	## Report Routes ##
     Route::get('/reports', 'Web\ReportController@index');
     Route::post('/reports/sales', 'Web\ReportController@sales');
+    Route::post('/reports/expenses', 'Web\ReportController@expenses');
 
 	// Profile Routes
 	Route::get('/profile', 'Web\ProfileController@index')->name('profile');
