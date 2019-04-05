@@ -42,7 +42,23 @@ class TransferController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'origin_account_id' => 'required|required',
+            'end_account_id' => 'required|required',
+            'date' => 'date|required',
+            'description' => 'nullable|string|max:255',
+            'reference' => 'nullable|string|max:255',
+            'amount' => 'required|integer',
+        ]);
+
+        $transfer = new Transfer;
+        $transfer->origin_account_id = $request->get('origin_account_id');
+        $transfer->end_account_id = $request->get('end_account_id');
+        $transfer->date = $request->get('date');
+        $transfer->description = $request->get('description');
+        $transfer->reference = $request->get('reference');
+        $transfer->amount = $request->get('amount');
+        $transfer->save();
     }
 
     /**
