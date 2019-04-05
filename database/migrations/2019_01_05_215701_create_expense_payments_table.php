@@ -17,7 +17,7 @@ class CreateExpensePaymentsTable extends Migration
             $table->increments('id');
             $table->integer('account_id')->unsigned();
             $table->integer('payment_method_id')->unsigned();
-            $table->integer('expense_id')->unsigned();
+            $table->integer('expense_id')->unsigned()->nullable();
             $table->date('date');
             $table->integer('amount');
             $table->string('reference')->nullable();
