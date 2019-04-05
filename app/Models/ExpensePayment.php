@@ -25,4 +25,9 @@ class ExpensePayment extends BaseModel
     {
         return true;
     }
+
+    public function transfer()
+    {
+        return $this->belongsTo(Transfer::class);
+    }
 }

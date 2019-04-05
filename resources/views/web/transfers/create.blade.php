@@ -47,15 +47,21 @@
                                 <div class="row mt-4">
                                     <div class="col-md-4 mb-3">
                                         <label for="name"><a class="text-danger">*</a> {{ __('Fecha') }}<span class="text-muted ml-1">{{ __('  (Obligatorio)') }}</span></label>
-                                        <input type="text" class="form-control" id="name" name="name" required>
+                                        <input type="date" class="form-control" id="name" name="name" value="{{ date('Y-m-d') }}" required>
                                     </div>
                                     <div class="col-md-4 mb-3">
-                                        <label for="instagram"><i class="fab fa-instagram"></i> {{ __('Instagram') }}</label>
-                                        <input type="text" class="form-control" id="instagram" name="instagram" placeholder="{{ __('@smaltic_art') }}">
+                                        <label for="description">{{ __('Descripción') }}</label>
+                                        <input type="text" class="form-control" id="description" name="description">
                                     </div>
                                     <div class="col-md-4 mb-3">
-                                        <label for="phone"><i class="fas fa-phone"></i> {{ __('Teléfono') }}<span class="text-muted ml-1">{{ __('  (Obligatorio)') }}</span></label>
-                                        <input type="text" class="form-control" id="phone" name="phone" placeholder="56912345678" required>
+                                        <label for="reference">{{ __('Referencia') }}</label>
+                                        <input type="text" class="form-control" id="reference" name="reference">
+                                    </div>
+                                </div>
+                                <div class="row mt-4">
+                                    <div class="col-md-4 mb-3">
+                                        <label for="amount"><a class="text-danger">*</a> {{ __('Monto') }}<span class="text-muted ml-1">{{ __('  (Obligatorio)') }}</span></label>
+                                        <input type="text" class="form-control" id="amount" name="amount" required>
                                     </div>
                                 </div>
                             </div>

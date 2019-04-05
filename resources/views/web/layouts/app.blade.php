@@ -33,7 +33,7 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto" style="font-size: 1.1rem;">
+                    <ul class="navbar-nav mr-auto" style="font-size: 1rem;">
                         <li class="nav-item ml-2">
                             <a class="nav-link" href="/web/jobs" @if(request()->segment(2) === 'jobs') style="color: #3490DC;" @endif><i class="fas fa-calendar-check"></i> {{ __('Trabajos') }}</a>
                         </li>
@@ -64,7 +64,7 @@
                     </ul>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto" style="font-size: 1.1rem;">
+                    <ul class="navbar-nav ml-auto" style="font-size: 1rem;">
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">

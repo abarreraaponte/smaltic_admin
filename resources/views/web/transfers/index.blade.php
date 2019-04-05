@@ -8,7 +8,7 @@
         <img class="mb-4" src="/img/undempty05.svg" alt="" width="200">
         <h1 class="h2 mb-3 font-weight-normal">{{ __(':/ No has creado ninguna transferencia') }}</h1>
         <p>{{ __('Para crear a la primera, presiona el botón que está a continuación') }}</p>
-        <a class="btn btn-lg btn-primary" href="/web/transfers/create"><i class="fas fa-exchange-alt"></i> {{ __('Crear Clienta') }}</a>
+        <a class="btn btn-lg btn-primary" href="/web/transfers/create"><i class="fas fa-exchange-alt"></i> {{ __('Crear Transferencia') }}</a>
     </div>
 }
 

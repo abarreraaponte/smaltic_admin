@@ -35,4 +35,9 @@ class Payment extends BaseModel
     {
         return $this->hasOne('App\Models\Reward');
     }
+
+    public function transfer()
+    {
+        return $this->belongsTo(Transfer::class);
+    }
 }

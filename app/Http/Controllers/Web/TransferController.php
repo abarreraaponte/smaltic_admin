@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Web;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Transfer;
+use App\Models\Account;
 
 class TransferController extends Controller
 {
@@ -14,7 +16,10 @@ class TransferController extends Controller
      */
     public function index()
     {
-        //
+
+        $transfers = Transfer::orderBy('date', 'desc')->get();
+
+        return view('web.transfers.index', compact('transfers'));
     }
 
     /**
@@ -24,7 +29,9 @@ class TransferController extends Controller
      */
     public function create()
     {
-        //
+        $accounts = Account::active()->where('is_reward', 0)->get();
+
+        return view('web.transfers.create', compact('accounts'));
     }
 
     /**
@@ -34,17 +41,6 @@ class TransferController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
     {
         //
     }

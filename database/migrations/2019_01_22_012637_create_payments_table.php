@@ -19,6 +19,7 @@ class CreatePaymentsTable extends Migration
             $table->integer('payment_method_id')->unsigned();
             $table->integer('job_id')->unsigned()->nullable();
             $table->integer('customer_id')->unsigned();
+            $table->integer('transfer_id')->unsigned()->nullable();
             $table->date('date');
             $table->integer('amount');
             $table->string('reference')->nullable();
