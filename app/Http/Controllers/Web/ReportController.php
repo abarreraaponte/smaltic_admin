@@ -15,6 +15,9 @@ use App\Models\ExpenseCategory;
 use App\Models\Payment;
 use App\Models\ExpensePayment;
 use App\Models\Account;
+use App\Exports\JobsExport;
+use App\Exports\ExpensesExport;
+use App\Exports\AccountExport;
 
 class ReportController extends Controller
 {
@@ -74,7 +77,14 @@ class ReportController extends Controller
         $customers = Customer::all();
         $amount_sum = $job_lines->pluck('amount')->sum();
 
+        $request->flash();
+
         return view('web.reports.jobs', compact('job_lines', 'customers', 'date_from', 'date_until', 'amount_sum'));
+    }
+
+    public function salesExport(Request $request)
+    {
+        return (new JobsExport($request))->download('ventas.xlsx');
     }
 
     public function expenses(Request $request)
@@ -115,8 +125,14 @@ class ReportController extends Controller
             ->orderBy('id', 'asc')->get();
 
         $amount_sum = $expense_lines->pluck('amount')->sum();
+        $request->flash();
 
         return view('web.reports.expenses', compact('expense_lines','date_from', 'date_until', 'amount_sum'));
+    }
+
+    public function expensesExport(Request $request)
+    {
+        return (new ExpensesExport($request))->download('gastos.xlsx');
     }
 
     public function accounts(Request $request)
@@ -142,7 +158,14 @@ class ReportController extends Controller
 
         $amount_sum = $payments->pluck('amount')->sum();
 
+        $request->flash();
+
         return view('web.reports.accounts', compact('payments', 'date_from', 'date_until', 'amount_sum', 'account'));
+    }
+
+    public function accountsExport(Request $request)
+    {
+        return (new AccountExport($request))->download('cuenta.xlsx');
     }
 
 }
