@@ -14,9 +14,9 @@ class CreateDiscountsTable extends Migration
     public function up()
     {
         Schema::create('discounts', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('customer_id')->unsigned();
-            $table->integer('job_id')->unsigned()->nullable();
+            $table->bigIncrements('id');
+            $table->bigInteger('customer_id')->unsigned();
+            $table->bigInteger('job_id')->unsigned()->nullable();
             $table->integer('amount');
             $table->string('description')->nullable();
             $table->timestamps();

@@ -34,6 +34,12 @@
                                         <button type="button" class="btn btn-sm btn-dark" href="#" data-toggle="modal" data-target="#expensesreport"><i class="fas fa-search"></i></button>
                                     </td>
                                 </tr>
+                                <tr>
+                                    <td>Reporte de Cuentas</td>
+                                    <td>
+                                        <button type="button" class="btn btn-sm btn-dark" href="#" data-toggle="modal" data-target="#accountsreport"><i class="fas fa-search"></i></button>
+                                    </td>
+                                </tr>
 				            </tbody>
 				        </table>
 			        </div>
@@ -92,8 +98,8 @@
     </div>
 </div>
 
-<!--Sales Report Modal -->
-<div class="modal fade" id="expensesreport" role="dialog" tabindex="-1" aria-labelledby="salesreport" aria-hidden="true">
+<!--Expenses Report Modal -->
+<div class="modal fade" id="expensesreport" role="dialog" tabindex="-1" aria-labelledby="expensesreport" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header bg-danger text-white">
@@ -127,6 +133,40 @@
                     </select>
 
                     <button type="submit" class="btn btn-danger btn-block mt-3"><i class="fas fa-search"></i> Buscar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Accounts Report Modal -->
+<div class="modal fade" id="accountsreport" role="dialog" tabindex="-1" aria-labelledby="accountsreport" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-info text-white">
+                <a class="h5 modal-title" id="contactmodallabel">Filtros - Reporte de Cuentas</a>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="{{ '/web/reports/accounts' }}">
+                    @csrf
+
+                    <label class="mt-3">Fecha Desde <span class="text-muted">Opcional</span></label>
+                    <input type="date" class="form-control" name="date_from" value="{{ date('Y-m-d') }}">
+
+                    <label class="mt-3">Fecha Hasta<span class="text-muted">Opcional</span></label>
+                    <input type="date" class="form-control" name="date_until" value="{{ date('Y-m-d') }}">
+
+                    <label class="mt-3">Cuenta a Consultaar</label>
+                    <select class="form-control" id="account" name="account_id" required>
+                        @foreach($accounts as $account)
+                            <option value="{{ $account->id }}">{{ $account->name }}</option>
+                        @endforeach
+                    </select>
+
+                    <button type="submit" class="btn btn-info btn-block mt-3"><i class="fas fa-search"></i> Buscar</button>
                 </form>
             </div>
         </div>

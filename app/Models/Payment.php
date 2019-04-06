@@ -21,6 +21,11 @@ class Payment extends BaseModel
     	return $this->belongsTo('App\Models\Job');
     }
 
+    public function expense()
+    {
+        return $this->belongsTo('App\Models\Expense');
+    }
+
     public function canBeDeleted()
     {
         return true;
@@ -34,5 +39,26 @@ class Payment extends BaseModel
     public function reward()
     {
         return $this->hasOne('App\Models\Reward');
+    }
+
+    public function transfer()
+    {
+        return $this->belongsTo(Transfer::class);
+    }
+
+    public function description()
+    {
+        if($this->job != null)
+        {
+            return 'Pago por trabajo';
+        }
+        elseif ($this->expense != null)
+        {
+            return 'Gasto';
+        }
+        elseif ($this->job === null and $this->expense === null)
+        {
+            return 'Transferencia';
+        }
     }
 }

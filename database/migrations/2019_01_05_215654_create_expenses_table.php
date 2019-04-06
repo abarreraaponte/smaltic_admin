@@ -14,7 +14,7 @@ class CreateExpensesTable extends Migration
     public function up()
     {
         Schema::create('expenses', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->date('date');
             $table->string('payment_status')->default('pending_payment');
             $table->timestamps();

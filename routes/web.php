@@ -76,14 +76,12 @@ Route::prefix('web')->middleware(['auth'])->group(function () {
 	Route::put('/expenses/{expense}/payment/{expense_payment}/edit', 'Web\ExpensePaymentController@edit');
 	Route::delete('/expenses/{expense}/payment/{expense_payment}/delete', 'Web\ExpensePaymentController@delete');
 
-	## Report Routes ##
-    Route::get('/reports', 'Web\ReportController@index');
-    Route::post('/reports/sales', 'Web\ReportController@sales');
-    Route::post('/reports/expenses', 'Web\ReportController@expenses');
-
 	// Profile Routes
 	Route::get('/profile', 'Web\ProfileController@index')->name('profile');
 	Route::put('/profile', 'Web\ProfileController@update');
+
+    ## Transfer CRUD Routes ##
+    Route::resource('/transfers', 'Web\TransferController')->except('view', 'edit', 'update');
 
 
 });
@@ -95,5 +93,11 @@ Route::prefix('web')->middleware(['auth', 'admin'])->group(function () {
 	Route::get('/users/inactives/list', 'Web\UserController@inactives');
 	Route::put('/users/{user}/inactivate', 'Web\UserController@inactivate');
     Route::put('/users/{user}/reactivate', 'Web\UserController@reactivate');
+
+    ## Report Routes ##
+    Route::get('/reports', 'Web\ReportController@index');
+    Route::post('/reports/sales', 'Web\ReportController@sales');
+    Route::post('/reports/expenses', 'Web\ReportController@expenses');
+    Route::post('/reports/accounts', 'Web\ReportController@accounts');
 
 });

@@ -14,7 +14,7 @@ class CreateSourcesTable extends Migration
     public function up()
     {
         Schema::create('sources', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('name');
             $table->boolean('is_customer_reference')->default(0);
             $table->boolean('active')->default(1);

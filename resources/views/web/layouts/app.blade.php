@@ -33,12 +33,15 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto" style="font-size: 1.1rem;">
+                    <ul class="navbar-nav mr-auto" style="font-size: 1rem;">
                         <li class="nav-item ml-2">
                             <a class="nav-link" href="/web/jobs" @if(request()->segment(2) === 'jobs') style="color: #3490DC;" @endif><i class="fas fa-calendar-check"></i> {{ __('Trabajos') }}</a>
                         </li>
                         <li class="nav-item ml-2">
                             <a class="nav-link" href="/web/expenses" @if(request()->segment(2) === 'expenses') style="color: #3490DC;" @endif><i class="fas fa-receipt"></i> {{ __('Gastos') }}</a>
+                        </li>
+                        <li class="nav-item ml-2">
+                            <a class="nav-link" href="/web/transfers" @if(request()->segment(2) === 'transfers') style="color: #3490DC;" @endif><i class="fas fa-exchange-alt"></i> {{ __('Transferencias') }}</a>
                         </li>
                         <li class="nav-item ml-2">
                             <a class="nav-link" href="/web/customers" @if(request()->segment(2) === 'customers') style="color: #3490DC;" @endif><i class="fas fa-female"></i> {{ __('Clientas') }}</a>
@@ -61,7 +64,7 @@
                     </ul>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto" style="font-size: 1.1rem;">
+                    <ul class="navbar-nav ml-auto" style="font-size: 1rem;">
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
