@@ -97,7 +97,10 @@ Route::prefix('web')->middleware(['auth', 'admin'])->group(function () {
     ## Report Routes ##
     Route::get('/reports', 'Web\ReportController@index');
     Route::post('/reports/sales', 'Web\ReportController@sales');
+    Route::post('/reports/sales/export', 'Web\ReportController@salesexport');
     Route::post('/reports/expenses', 'Web\ReportController@expenses');
+    Route::post('/reports/expenses/export', 'Web\ReportController@expensesexport');
     Route::post('/reports/accounts', 'Web\ReportController@accounts');
+    Route::post('/reports/accounts/export', 'Web\ReportController@accountsexport');
 
 });
