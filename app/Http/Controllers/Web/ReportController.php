@@ -163,4 +163,9 @@ class ReportController extends Controller
         return view('web.reports.accounts', compact('payments', 'date_from', 'date_until', 'amount_sum', 'account'));
     }
 
+    public function accountsExport(Request $request)
+    {
+        return (new AccountExport($request))->download('cuenta.xlsx');
+    }
+
 }

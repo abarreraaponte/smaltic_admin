@@ -159,7 +159,7 @@
                     <label class="mt-3">Fecha Hasta<span class="text-muted">Opcional</span></label>
                     <input type="date" class="form-control" name="date_until" value="{{ date('Y-m-d') }}">
 
-                    <label class="mt-3">Cuenta a Consultaar</label>
+                    <label class="mt-3">Cuenta a Consultar</label>
                     <select class="form-control" id="account" name="account_id" required>
                         @foreach($accounts as $account)
                             <option value="{{ $account->id }}">{{ $account->name }}</option>
