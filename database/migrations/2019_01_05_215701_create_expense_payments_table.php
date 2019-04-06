@@ -16,7 +16,7 @@ class CreateExpensePaymentsTable extends Migration
         Schema::create('expense_payments', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('account_id')->unsigned();
-            $table->integer('payment_method_id')->unsigned();
+            $table->integer('payment_method_id')->unsigned()->nullable();
             $table->integer('expense_id')->unsigned()->nullable();
             $table->integer('transfer_id')->unsigned()->nullable();
             $table->date('date');

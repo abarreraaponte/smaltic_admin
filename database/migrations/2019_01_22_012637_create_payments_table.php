@@ -16,7 +16,7 @@ class CreatePaymentsTable extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('account_id')->unsigned();
-            $table->integer('payment_method_id')->unsigned();
+            $table->integer('payment_method_id')->unsigned()->nullable();
             $table->integer('job_id')->unsigned()->nullable();
             $table->integer('customer_id')->unsigned();
             $table->integer('transfer_id')->unsigned()->nullable();

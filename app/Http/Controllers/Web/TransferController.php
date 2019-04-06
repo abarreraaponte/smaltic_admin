@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Transfer;
 use App\Models\Account;
+use App\Models\Payment;
+use App\Models\ExpensePayment;
 
 class TransferController extends Controller
 {
@@ -59,6 +61,24 @@ class TransferController extends Controller
         $transfer->reference = $request->get('reference');
         $transfer->amount = $request->get('amount');
         $transfer->save();
+
+        $ep = new ExpensePayment;
+        $ep->account_id = $transfer->origin_accont_id;
+        $ep->transfer_id = $transfer->id;
+        $ep->date = $transfer->date;
+        $ep->amount = $transfer->amount;
+        $ep->reference = $transfer->reference;
+        $ep->save();
+
+        $payment = new Payment;
+        $payment->account_id = $transfer->end_account_id;
+        $payment->transfer_id = $transfer->id;
+        $payment->date = $transfer->date;
+        $payment->amount = $transfer->amount;
+        $payment->reference = $transfer->reference;
+        $payment->save();
+
+        return redirect('/web/transfers')->with('success', 'La transferencia ha sido creada exitosamente');
     }
 
     /**
