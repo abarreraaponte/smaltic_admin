@@ -82,7 +82,7 @@ class ReportController extends Controller
         return view('web.reports.jobs', compact('job_lines', 'customers', 'date_from', 'date_until', 'amount_sum'));
     }
 
-    public function salesexport(Request $request)
+    public function salesExport(Request $request)
     {
         return (new JobsExport($request))->download('ventas.xlsx');
     }
@@ -128,6 +128,11 @@ class ReportController extends Controller
         $request->flash();
 
         return view('web.reports.expenses', compact('expense_lines','date_from', 'date_until', 'amount_sum'));
+    }
+
+    public function expensesExport(Request $request)
+    {
+        return (new ExpensesExport($request))->download('gastos.xlsx');
     }
 
     public function accounts(Request $request)
