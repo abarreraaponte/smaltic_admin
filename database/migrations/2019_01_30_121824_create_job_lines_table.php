@@ -14,10 +14,10 @@ class CreateJobLinesTable extends Migration
     public function up()
     {
         Schema::create('job_lines', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('job_id')->unsigned();
-            $table->integer('service_id')->unsigned();
-            $table->integer('artist_id')->unsigned();
+            $table->bigIncrements('id');
+            $table->bigInteger('job_id')->unsigned();
+            $table->bigInteger('service_id')->unsigned();
+            $table->bigInteger('artist_id')->unsigned();
             $table->integer('amount');
             $table->timestamps();
             $table->softDeletes();

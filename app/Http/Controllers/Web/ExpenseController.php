@@ -8,7 +8,7 @@ use App\Models\Expense;
 use App\Models\ExpenseLine;
 use App\Models\ExpenseCategory;
 use App\Models\PaymentMethod;
-use App\Models\ExpensePayment;
+use App\Models\Payment;
 use App\Models\Account;
 
 class ExpenseController extends Controller
@@ -76,7 +76,7 @@ class ExpenseController extends Controller
     public function show(Expense $expense)
     {
         $expense_line = $expense->expense_lines->first();
-        $expense_payments = $expense->expense_payments;
+        $expense_payments = $expense->payments;
         $payment_methods = PaymentMethod::active()->get();
         $accounts = Account::active()->where('is_reward', '<>', '1')->get();
 

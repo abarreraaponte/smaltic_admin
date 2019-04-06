@@ -22,7 +22,7 @@
                                     <td>{{ $expense_payment->account->name }}</td>
                                     <td>{{ $expense_payment->payment_method->name }}</td>
                                     <td>{{ $expense_payment->reference }}</td>
-                                    <td>{{ $expense_payment->amount }}</td>
+                                    <td>{{ -1 * $expense_payment->amount }}</td>
                                     <td><button type="button" data-toggle="modal" data-target="{{ '#editpayment' . $expense_payment->getRouteKey() }}"  class="btn btn-sm btn-primary"><i class="fas fa-edit"></i> {{ __('Editar Pago') }}</button>
                                         <a class="btn btn-sm btn-danger" href="#" onclick='{{ 'deletepayment' . $expense_payment->id . '()' }}'><i class="fas fa-trash-alt"></i></a>
                                         <form id="{{ 'delete-payment' . $expense_payment->getRouteKey() }}" method="post" action="{{ '/web/expenses/' . $expense->getRouteKey() . '/payment/' . $expense_payment->getRouteKey() . '/delete' }}">

@@ -18,9 +18,7 @@ class TransferController extends Controller
      */
     public function index()
     {
-
         $transfers = Transfer::orderBy('date', 'desc')->get();
-
         return view('web.transfers.index', compact('transfers'));
     }
 
@@ -32,7 +30,6 @@ class TransferController extends Controller
     public function create()
     {
         $accounts = Account::active()->where('is_reward', 0)->get();
-
         return view('web.transfers.create', compact('accounts'));
     }
 
@@ -62,11 +59,11 @@ class TransferController extends Controller
         $transfer->amount = $request->get('amount');
         $transfer->save();
 
-        $ep = new ExpensePayment;
-        $ep->account_id = $transfer->origin_accont_id;
+        $ep = new Payment;
+        $ep->account_id = $transfer->origin_account_id;
         $ep->transfer_id = $transfer->id;
         $ep->date = $transfer->date;
-        $ep->amount = $transfer->amount;
+        $ep->amount = -1 * $transfer->amount;
         $ep->reference = $transfer->reference;
         $ep->save();
 
@@ -82,36 +79,20 @@ class TransferController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Transfer $transfer)
     {
-        //
+        foreach ($transfer->payments as $payment)
+        {
+            $payment->delete();
+        }
+
+        $transfer->delete();
+
+        return redirect('/web/transfers')->with('success', 'La transferencia ha sido eliminada exitosamente');
     }
 }

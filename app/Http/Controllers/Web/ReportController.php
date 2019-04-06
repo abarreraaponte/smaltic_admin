@@ -14,6 +14,7 @@ use App\Models\ExpenseLine;
 use App\Models\ExpenseCategory;
 use App\Models\Payment;
 use App\Models\ExpensePayment;
+use App\Models\Account;
 
 class ReportController extends Controller
 {
@@ -23,8 +24,8 @@ class ReportController extends Controller
         $services = Service::all();
         $payment_statuses = Job::payment_statuses();
         $categories = ExpenseCategory::all();
-
-        return view('web.reports.index', compact('artists','services', 'payment_statuses', 'categories'));
+        $accounts = Account::all();
+        return view('web.reports.index', compact('artists','services', 'payment_statuses', 'categories', 'accounts'));
     }
 
     public function sales(Request $request)
@@ -117,4 +118,31 @@ class ReportController extends Controller
 
         return view('web.reports.expenses', compact('expense_lines','date_from', 'date_until', 'amount_sum'));
     }
+
+    public function accounts(Request $request)
+    {
+        $request->validate([
+            'date_from' => 'date|nullable',
+            'date_until' => 'date|nullable',
+            'account_id' => 'required|integer'
+        ]);
+
+        $date_from = $request->get('date_from');
+        $date_until = $request->get('date_until');
+        $account = Account::where('id', $request->get('account_id'))->first();
+
+        $payments = Payment::with('job', 'customer', 'transfer', 'expense')
+            ->when($date_from, function ($query, $date_from) {
+                return $query->whereDate('date', '>=', $date_from);
+            })
+            ->when($date_until, function ($query, $date_until) {
+                return $query->whereDate('date', '<=', $date_until);
+            })
+            ->where('account_id', $account->id)->orderBy('date', 'desc')->get();
+
+        $amount_sum = $payments->pluck('amount')->sum();
+
+        return view('web.reports.accounts', compact('payments', 'date_from', 'date_until', 'amount_sum', 'account'));
+    }
+
 }

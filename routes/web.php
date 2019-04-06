@@ -81,7 +81,7 @@ Route::prefix('web')->middleware(['auth'])->group(function () {
 	Route::put('/profile', 'Web\ProfileController@update');
 
     ## Transfer CRUD Routes ##
-    Route::resource('/transfers', 'Web\TransferController')->except('view');
+    Route::resource('/transfers', 'Web\TransferController')->except('view', 'edit', 'update');
 
 
 });
@@ -98,5 +98,6 @@ Route::prefix('web')->middleware(['auth', 'admin'])->group(function () {
     Route::get('/reports', 'Web\ReportController@index');
     Route::post('/reports/sales', 'Web\ReportController@sales');
     Route::post('/reports/expenses', 'Web\ReportController@expenses');
+    Route::post('/reports/accounts', 'Web\ReportController@accounts');
 
 });

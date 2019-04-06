@@ -6,9 +6,9 @@ use App\Models\BaseModel;
 
 class Expense extends BaseModel
 {
-    public function expense_payments()
+    public function payments()
     {
-    	return $this->hasMany('App\Models\ExpensePayment');
+    	return $this->hasMany('App\Models\Payment');
     }
 
     public function expense_lines()
@@ -39,7 +39,7 @@ class Expense extends BaseModel
 
     public function getPaidAmount()
     {
-        return $this->expense_payments->pluck('amount')->sum();
+        return -1 * $this->payments->pluck('amount')->sum();
     }
 
     public function getPendingAmount()

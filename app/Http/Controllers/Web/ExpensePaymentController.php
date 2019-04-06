@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\ExpensePayment;
+use App\Models\Payment;
 use App\Models\Expense;
 
 class ExpensePaymentController extends Controller
@@ -19,13 +19,13 @@ class ExpensePaymentController extends Controller
             'reference' => 'nullable|string|max:100',
         ]);
 
-        $expense_payment = new ExpensePayment;
+        $expense_payment = new Payment;
         $expense_payment->date = $request->get('date');
         $expense_payment->expense_id = $expense->id;
         $expense_payment->account_id = $request->get('account_id');
         $expense_payment->payment_method_id = $request->get('payment_method_id');
         $expense_payment->reference = $request->get('reference');
-        $expense_payment->amount = $request->get('amount');
+        $expense_payment->amount = -1 * $request->get('amount');
         $expense_payment->save();
 
         $expense->updatePaymentStatus();
@@ -34,7 +34,7 @@ class ExpensePaymentController extends Controller
 
     }
 
-    public function edit(Request $request, Expense $expense, ExpensePayment $expense_payment)
+    public function edit(Request $request, Expense $expense, Payment $expense_payment)
     {
         request()->validate([
             'date' => 'date|required',
@@ -48,7 +48,7 @@ class ExpensePaymentController extends Controller
         $expense_payment->account_id = $request->get('account_id');
         $expense_payment->payment_method_id = $request->get('payment_method_id');
         $expense_payment->reference = $request->get('reference');
-        $expense_payment->amount = $request->get('amount');
+        $expense_payment->amount = -1 * $request->get('amount');
         $expense_payment->save();
 
         $expense->updatePaymentStatus();

@@ -14,12 +14,13 @@ class CreatePaymentsTable extends Migration
     public function up()
     {
         Schema::create('payments', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('account_id')->unsigned();
-            $table->integer('payment_method_id')->unsigned()->nullable();
-            $table->integer('job_id')->unsigned()->nullable();
-            $table->integer('customer_id')->unsigned();
-            $table->integer('transfer_id')->unsigned()->nullable();
+            $table->bigIncrements('id');
+            $table->bigInteger('account_id')->unsigned();
+            $table->bigInteger('payment_method_id')->unsigned()->nullable();
+            $table->bigInteger('job_id')->unsigned()->nullable();
+            $table->bigInteger('expense_id')->unsigned()->nullable();
+            $table->bigInteger('customer_id')->unsigned()->nullable();
+            $table->bigInteger('transfer_id')->unsigned()->nullable();
             $table->date('date');
             $table->integer('amount');
             $table->string('reference')->nullable();
@@ -32,6 +33,7 @@ class CreatePaymentsTable extends Migration
             $table->foreign('payment_method_id')->references('id')->on('payment_methods');
             $table->foreign('job_id')->references('id')->on('jobs');
             $table->foreign('customer_id')->references('id')->on('customers');
+            $table->foreign('expense_id')->references('id')->on('expenses');
         });
     }
 

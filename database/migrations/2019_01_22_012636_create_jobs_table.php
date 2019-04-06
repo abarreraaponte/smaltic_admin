@@ -14,8 +14,8 @@ class CreateJobsTable extends Migration
     public function up()
     {
         Schema::create('jobs', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('customer_id')->unsigned();
+            $table->bigIncrements('id');
+            $table->bigInteger('customer_id')->unsigned();
             $table->date('date');
             $table->string('details')->nullable();
             $table->string('payment_status')->default('pending_payment');

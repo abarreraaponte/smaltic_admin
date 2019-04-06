@@ -14,9 +14,9 @@ class CreateExpenseLinesTable extends Migration
     public function up()
     {
         Schema::create('expense_lines', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('expense_id')->unsigned();
-            $table->integer('expense_category_id')->unsigned();
+            $table->bigIncrements('id');
+            $table->bigInteger('expense_id')->unsigned();
+            $table->bigInteger('expense_category_id')->unsigned();
             $table->string('description');
             $table->integer('amount');
             $table->timestamps();

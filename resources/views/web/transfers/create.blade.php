@@ -46,8 +46,8 @@
                                 </div>
                                 <div class="row mt-4">
                                     <div class="col-md-4 mb-3">
-                                        <label for="name"><a class="text-danger">*</a> {{ __('Fecha') }}<span class="text-muted ml-1">{{ __('  (Obligatorio)') }}</span></label>
-                                        <input type="date" class="form-control" id="name" name="name" value="{{ date('Y-m-d') }}" required>
+                                        <label for="date"><a class="text-danger">*</a> {{ __('Fecha') }}<span class="text-muted ml-1">{{ __('  (Obligatorio)') }}</span></label>
+                                        <input type="date" class="form-control" id="date" name="date" value="{{ date('Y-m-d') }}" required>
                                     </div>
                                     <div class="col-md-4 mb-3">
                                         <label for="description">{{ __('Descripción') }}</label>

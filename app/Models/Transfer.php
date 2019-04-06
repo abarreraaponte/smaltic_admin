@@ -25,9 +25,4 @@ class Transfer extends BaseModel
     {
         return $this->hasMany(Payment::class);
     }
-
-    public function expense_payent()
-    {
-        return $this->hasMany(ExpensePayment::class);
-    }
 }

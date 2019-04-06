@@ -51,7 +51,6 @@
 										<td>{{ $transfer->reference }}</td>
 										<td>{{ $transfer->amount }}</td>
 					                    <td>
-					                        <a  class="btn btn-sm btn-outline-primary" href="{{ '/web/transfers/' . $transfer->getRouteKey() . '/edit' }}"><i class="fas fa-edit"></i></a>
 					                        <a class="btn btn-sm btn-link text-danger" href="#" onclick="{{ 'delete' . $transfer->id . '()' }}"><i class="fas fa-trash-alt"></i></a>
 					                        <form id="{{ 'delete-record' . $transfer->getRouteKey() }}" method="post" action="{{ '/web/transfers/' . $transfer->getRouteKey() }}">
 					                            <input name="_method" type="hidden" value="DELETE">
