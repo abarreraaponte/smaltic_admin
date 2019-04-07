@@ -18,7 +18,7 @@ class Expense extends BaseModel
 
     public function canBeDeleted()
     {
-        $ep = $this->expense_payments->count();
+        $ep = $this->payments->count();
 
         if($ep >= 1)
         {
