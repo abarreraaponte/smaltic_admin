@@ -7,6 +7,11 @@ use App\Http\Controllers\Controller;
 
 class HomeController extends Controller
 {
+    public function home()
+    {
+        return redirect('/web/home');
+    }
+
     /**
      * Show the application dashboard.
      *
