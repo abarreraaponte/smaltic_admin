@@ -57,7 +57,7 @@ class ExpensePaymentController extends Controller
 
     }
 
-    public function delete(Request $request, Expense $expense, ExpensePayment $expense_payment)
+    public function delete(Request $request, Expense $expense, Payment $expense_payment)
     {
         $expense_payment->delete();
 
