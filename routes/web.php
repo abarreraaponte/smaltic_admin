@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return redirect('/web/home');
-});
+Route::get('/', 'Web\HomeController@home');
 
 Auth::routes(['register' => false]);
 
