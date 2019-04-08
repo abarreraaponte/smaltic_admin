@@ -45,20 +45,4 @@ class Payment extends BaseModel
     {
         return $this->belongsTo(Transfer::class);
     }
-
-    public function description()
-    {
-        if($this->job != null)
-        {
-            return 'Pago por trabajo';
-        }
-        elseif ($this->expense != null)
-        {
-            return 'Gasto';
-        }
-        elseif ($this->job === null and $this->expense === null)
-        {
-            return 'Transferencia';
-        }
-    }
 }

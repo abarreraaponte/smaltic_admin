@@ -23,6 +23,7 @@
 				                <th>{{ __('Fecha') }}</th>
 				                <th>{{ __('Categoria') }}</th>
 				                <th>{{ __('Descripcion') }}</th>
+								<th>{{ __('Estado de Pago') }}</th>
 				                <th>{{ __('Monto') }}</th>
 				                <th>{{ __('Acciones') }}</th>
 				            </tr>
@@ -33,6 +34,7 @@
 					                	<td>{{ $expense_line->expense->date }}</td>
 					                	<td>{{ $expense_line->expense_Category->name }}</td>
 					                	<td>{{ $expense_line->description }}</td>
+										<td><span class="badge badge-dark ml-2">{{ $expense_line->expense->getPaymentStatusLabel() }}</span></td>
 					                	<td>{{ $expense_line->amount }}</td>
 					                    <td>
 		                                    <a  class="btn btn-sm btn-primary" href="{{ '/web/expenses/' . $expense_line->expense->getRouteKey() }}"><i class="fas fa-eye"></i></a>

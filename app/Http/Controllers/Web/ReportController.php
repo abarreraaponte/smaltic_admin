@@ -27,7 +27,7 @@ class ReportController extends Controller
         $services = Service::all();
         $payment_statuses = Job::payment_statuses();
         $categories = ExpenseCategory::all();
-        $accounts = Account::all();
+        $accounts = Account::where('is_reward', '<>', 1)->get();
         return view('web.reports.index', compact('artists','services', 'payment_statuses', 'categories', 'accounts'));
     }
 

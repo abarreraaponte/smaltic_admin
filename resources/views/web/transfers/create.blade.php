@@ -7,7 +7,7 @@
         <div class="col-md-12">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap mb-2">
                 <div>
-                    <a class="h5"><i class="fas fa-exchange-alt"></i> {{ __('Crear Transferencia') }}</a>
+                    <a class="h5"><i class="fas fa-exchange-alt"></i> {{ __('Crear Movimiento') }}</a>
                 </div>
                 <div>
                     <a href="/web/transfers" class="btn btn-primary"><i class="fas fa-list"></i> {{ __('Lista') }}</a>
