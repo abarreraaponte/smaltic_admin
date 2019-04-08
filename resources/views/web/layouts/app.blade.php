@@ -41,7 +41,7 @@
                             <a class="nav-link" href="/web/expenses" @if(request()->segment(2) === 'expenses') style="color: #3490DC;" @endif><i class="fas fa-receipt"></i> {{ __('Gastos') }}</a>
                         </li>
                         <li class="nav-item ml-2">
-                            <a class="nav-link" href="/web/transfers" @if(request()->segment(2) === 'transfers') style="color: #3490DC;" @endif><i class="fas fa-exchange-alt"></i> {{ __('Transferencias') }}</a>
+                            <a class="nav-link" href="/web/transfers" @if(request()->segment(2) === 'transfers') style="color: #3490DC;" @endif><i class="fas fa-exchange-alt"></i> {{ __('Movimientos') }}</a>
                         </li>
                         <li class="nav-item ml-2">
                             <a class="nav-link" href="/web/customers" @if(request()->segment(2) === 'customers') style="color: #3490DC;" @endif><i class="fas fa-female"></i> {{ __('Clientas') }}</a>

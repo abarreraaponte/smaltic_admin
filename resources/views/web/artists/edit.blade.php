@@ -100,7 +100,7 @@
                 showCancelButton: true,
                 confirmButtonColor: '#f6993f',
                 cancelButtonColor: '#aaa',
-                confirmButtonText: 'Si, Borrar',
+                confirmButtonText: 'Si, Desactivar',
                 cancelButtonText: "No, Cancelar"
             }).then((result) => {
                     if (result.value) {

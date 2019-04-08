@@ -6,9 +6,9 @@
 {
 	<div class="text-center mb-4">
         <img class="mb-4" src="/img/undempty05.svg" alt="" width="200">
-        <h1 class="h2 mb-3 font-weight-normal">{{ __(':/ No has creado ninguna transferencia') }}</h1>
-        <p>{{ __('Para crear a la primera, presiona el botón que está a continuación') }}</p>
-        <a class="btn btn-lg btn-primary" href="/web/transfers/create"><i class="fas fa-exchange-alt"></i> {{ __('Crear Transferencia') }}</a>
+        <h1 class="h2 mb-3 font-weight-normal">{{ __(':/ No has creado ningun movimiento') }}</h1>
+        <p>{{ __('Para crear a el primero, presiona el botón que está a continuación') }}</p>
+        <a class="btn btn-lg btn-primary" href="/web/transfers/create"><i class="fas fa-exchange-alt"></i> {{ __('Crear Movimiento') }}</a>
     </div>
 }
 
@@ -19,10 +19,10 @@
 	    <div class="col col-md-12">
 	         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap mb-2">
 	            <div>
-	                <a class="h5"><i class="fas fa-exchange-alt"></i> {{ __('Transferencias') }}</a>
+	                <a class="h5"><i class="fas fa-exchange-alt"></i> {{ __('Movimientos') }}</a>
 	            </div>
 	            <div>
-	                <a href="/web/transfers/create" class="btn btn-primary"><i class="fas fa-plus-circle"></i> {{ __('Nueva')}}</a>
+	                <a href="/web/transfers/create" class="btn btn-primary"><i class="fas fa-plus-circle"></i> {{ __('Nuevo')}}</a>
 	            </div>
 	        </div>
 
@@ -78,7 +78,7 @@
         <script>
             function {{ 'delete' . $transfer->id . '()' }} {
                 swal({
-                    title: "{{ __('Seguro que desea eliminar la transferencia?') . ' ' . $transfer->getNameValue() }}",
+                    title: "{{ __('Seguro que desea eliminar el movimiento?') . ' ' . $transfer->getNameValue() }}",
                     type: "warning",
                     showCancelButton: true,
                     confirmButtonColor: '#e84860',

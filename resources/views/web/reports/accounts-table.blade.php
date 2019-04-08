@@ -11,7 +11,15 @@
     @foreach($payments as $payment)
         <tr>
             <td>{{ $payment->date }}</td>
-            <td>{{ $payment->description() }}</td>
+            <td>
+                @if($payment->customer != null)
+                    {{ 'Pago por trabajo de:' . ' ' . $payment->customer->name }}
+                @elseif($payment->expense != null)
+                    {{ 'Gasto' . ' ' . $payment->expense->expense_lines->pluck('description')->first() }}
+                @elseif($payment->job === null and $payment->expense === null)
+                    {{ 'Transferencia' }}
+                @endif
+            </td>
             <td>{{ $payment->reference }}</td>
             <td>{{ $payment->amount }}</td>
         </tr>
